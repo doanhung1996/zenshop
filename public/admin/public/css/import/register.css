@@ -1,0 +1,42 @@
+#wp_form_login{
+    width: 293px;
+    margin: 30px auto;
+    background: #f5f5f5;
+    padding: 25px;
+}
+#form_login input{
+    display: block;
+    margin-bottom: 10px;
+}
+#form_login input[type="text"],#form_login input[type="password"]{
+    border: 1px solid #33333338;
+    padding: 10px 10px;
+    width: 90%;
+
+}
+#form_login input[type="submit"]{
+    border: none;
+    background: #009688;
+    font-weight: bold;
+    color: #fff;
+    display: block;
+    padding: 10px 10px;
+    margin-top: 30px;
+    width: 97%;
+}
+h2{
+    text-align: center;
+    color: #009688;
+    line-height: 25px;
+}
+a{
+    text-decoration: none;
+    color: #07adc6;
+}
+p{
+    color: #775d5d;
+}
+a:hover{
+    text-decoration: none;
+    color: red;
+}
