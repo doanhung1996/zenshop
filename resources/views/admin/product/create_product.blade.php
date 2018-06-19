@@ -12,35 +12,36 @@
         <div id="content" class="fl-right">
             <div class="section" id="detail-page">
                 <div class="section-detail">
-                    <form method="POST">
-                        <label for="product-name">Tên sản phẩm</label>
+                    <form method="POST" action="{{route('product.store')}}" enctype="multipart/form-data">
+                        @csrf
+                        <label for="product-name">Tên sản phẩm (Product Name)</label>
                         <input type="text" name="product_name" id="product-name">
-                        <label for="product-code">Mã sản phẩm</label>
+                        <label for="product-code">Mã sản phẩm (Product Code)</label>
                         <input type="text" name="product_code" id="product-code">
                         <label for="price">Giá sản phẩm</label>
                         <input type="text" name="price" id="price">
+                        <label for="price">Giảm giá</label>
+                        <input type="text" name="product_discount" id="price">
                         <label for="desc">Mô tả ngắn</label>
-                        <textarea name="desc" id="desc"></textarea>
+                        <textarea name="description" id="editor"></textarea>
                         <label for="desc">Chi tiết</label>
-                        <textarea name="desc" id="desc"></textarea>
+                        <textarea name="detail" id="editor1"></textarea>
                         <label>Hình ảnh</label>
                         <div id="uploadFile">
-                            <input type="file" name="file" id="upload-thumb">
-                            <input type="submit" name="btn-upload-thumb" value="Upload" id="btn-upload-thumb">
-                            <img src="{{asset('admin/public/images/img-thumb.png')}}">
+                            <img id="blah" src="{{asset('admin/public/images/img-thumb.png')}}" alt="your image" width="400" height="400" />
+                            <input type="file" name="fileUpload" onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])">
                         </div>
                         <label>Danh mục sản phẩm</label>
-                        <select name="parent_id">
-                            <option value="">-- Chọn danh mục --</option>
-                            <option value="1">Thể thao</option>
-                            <option value="2">Xã hội</option>
-                            <option value="3">Tài chính</option>
+                        <select name="product_cat_id">
+                        <option value="">-- Chọn danh mục --</option>
+                            @foreach($parent_id as $item)
+                                <option value="{{$item->id}}">{{$item->title}}</option>
+                            @endforeach
                         </select>
                         <label>Trạng thái</label>
                         <select name="status">
-                            <option value="0">-- Chọn danh mục --</option>
-                            <option value="1">Chờ duyệt</option>
-                            <option value="2">Đã đăng</option>
+                            <option value="-1">Chờ duyệt</option>
+                            <option value="1">Đã đăng</option>
                         </select>
                         <button type="submit" name="btn-submit" id="btn-submit">Thêm mới</button>
                     </form>
@@ -49,4 +50,22 @@
         </div>
     </div>
 </div>
-    @endsection('content')
+@if (count($errors) > 0)
+    <div>
+        <ul>
+            @foreach ($errors->all() as $error)
+                <script>
+                    $( document ).ready(function() {
+                        toastr.error("{{$error}}");
+                    });
+                </script>
+            @endforeach
+        </ul>
+    </div>
+@endif
+<script>
+    @if(session()->get('success'))
+    toastr.success( "{{ session()->get('success') }}",{timeOut: 5000});
+    @endif
+</script>
+@endsection('content')

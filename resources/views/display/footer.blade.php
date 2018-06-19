@@ -111,8 +111,16 @@
 
             <!-- Categories -->
             <div class="col-md-3">
-                <h4>Custom Block</h4>
-                <img src="{{asset('public/images/footer-add.jpg')}}" alt="" > </div>
+                <h4>@lang('display_lang.fanpage')</h4>
+                <div class="fb-page" data-href="https://www.facebook.com/zenzen9696/" data-height="250px" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
+                    <blockquote cite="https://www.facebook.com/zenzen9696/" class="fb-xfbml-parse-ignore">
+                        <a href="https://www.facebook.com/zenzen9696/">
+                            Zen
+                        </a>
+                    </blockquote>
+                </div>
+                {{--<img src="{{asset('public/images/footer-add.jpg')}}" alt="" > --}}
+            </div>
         </div>
     </div>
 </footer>

@@ -16,9 +16,9 @@ class CreatePostCatsTable extends Migration
         Schema::create('post_cats', function (Blueprint $table) {
             $table->increments('id');
             $table->text('title');
-            $table->integer('user_id');
+            $table->text('slug');
             $table->integer('parent_id');
-            $table->enum('status', ['1','-1']);
+            $table->integer('user_id');
             $table->timestamps();
         });
     }

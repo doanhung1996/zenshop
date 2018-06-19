@@ -1,7 +1,7 @@
 <div id="sidebar" class="fl-left">
     <ul id="sidebar-menu">
         <li class="nav-item">
-            <a href="{{route('page') }}" title="" class="nav-link nav-toggle">
+            <a href="{{route('page.list') }}" title="" class="nav-link nav-toggle">
                 <span class="fa fa-map icon"></span>
                 <span class="title">Trang</span>
             </a>
@@ -10,12 +10,12 @@
                     <a href="{{route('page.create') }}" title="" class="nav-link">Thêm trang</a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{route('page') }}" title="" class="nav-link">Danh sách các trang</a>
+                    <a href="{{route('page.list') }}" title="" class="nav-link">Danh sách các trang</a>
                 </li>
             </ul>
         </li>
         <li class="nav-item">
-            <a href="{{route('post') }}" title="" class="nav-link nav-toggle">
+            <a href="{{route('post.index') }}" title="" class="nav-link nav-toggle">
                 <span class="fa fa-pencil-square-o icon"></span>
                 <span class="title">Bài viết</span>
             </a>
@@ -27,10 +27,10 @@
                     <a href="{{route('post.cat.create') }}" title="" class="nav-link">Thêm danh mục</a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{route('post') }}" title="" class="nav-link">Danh sách bài viết</a>
+                    <a href="{{route('post.index') }}" title="" class="nav-link">Danh sách bài viết</a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{route('post.cat') }}" title="" class="nav-link">Danh mục bài viết</a>
+                    <a href="{{route('post.cat.index') }}" title="" class="nav-link">Danh mục bài viết</a>
                 </li>
             </ul>
         </li>

@@ -23,7 +23,6 @@ class CreateMenuItemsTable extends Migration
             $table->integer('menu_type_id');
             $table->text('menu_type_title');;
             $table->integer('menu_order');;
-            $table->integer('user_id');
             $table->enum('status', ['1','-1']);
             $table->timestamps();
         });

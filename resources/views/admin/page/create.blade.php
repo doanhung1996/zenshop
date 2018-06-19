@@ -1,5 +1,6 @@
 @extends('admin.index')
 @section('content')
+
 <div id="main-content-wp" class="add-cat-page">
     <div class="section" id="title-page">
         <div class="clearfix">
@@ -12,23 +13,36 @@
         <div id="content" class="fl-right">
             <div class="section" id="detail-page">
                 <div class="section-detail">
-                    <span style="color:#00b8fff2;"><?php if (isset($insert)) echo $insert; ?></span>
-                    <form method="POST">
-                        <label for="title">Tiêu đề</label>
-                        <input type="text" name="title" id="title">
-                        <span style="color:red;"><?php if (isset($error['title'])) echo $error['title']; ?></span>
-                        <label for="title">Slug ( Friendly_url )</label>
-                        <input type="text" name="slug" id="slug">
-                        <span style="color:red;"><?php if (isset($error['slug'])) echo $error['slug']; ?></span>
-                        <label for="content">Nội Dung</label>
-                        <textarea name="content" class="ckeditor" id="editor"></textarea>
-                        <span style="color:red;"><?php if (isset($error['content'])) echo $error['content']; ?></span>
-                        <button type="submit" name="btn-submit" id="btn-submit">Cập nhật</button>
+                    <form method="POST" action="{{route('page.store')}}">
+                        @csrf
+                        <label for="title">Tiêu Đề ( Title)</label>
+                        <input type="text" name="title" id="title" value="{{ old('title') }}">
+                        <label for="content">Nội Dung (Content Page)</label>
+                        <textarea name="content_page" class="ckeditor" id="editor" value="{{ old('content_page') }}"></textarea>
+                        <button type="submit" id="btn-submit">Thêm Mới</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
+@if (count($errors) > 0)
+    <div>
+        <ul>
+            @foreach ($errors->all() as $error)
+                <script>
+                    $( document ).ready(function() {
+                        toastr.error("{{$error}}");
+                    });
+                </script>
+            @endforeach
+        </ul>
+    </div>
+@endif
+<script>
+    @if(session()->get('success')) //sao ko ra nhi
+    toastr.success( "{{ session()->get('success') }}",{timeOut: 5000});
+    @endif
+</script>
 @endsection('content')
 

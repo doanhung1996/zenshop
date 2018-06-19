@@ -19,9 +19,9 @@ class CreatePostsTable extends Migration
             $table->text('description');
             $table->text('image');
             $table->longText('content');
-            $table->integer('user_id');
             $table->integer('post_cat_id');
-            $table->enum('status', ['1','-1']);
+            $table->integer('user_id');
+            $table->enum('status', ['-1','1']);
             $table->timestamps();
         });
     }

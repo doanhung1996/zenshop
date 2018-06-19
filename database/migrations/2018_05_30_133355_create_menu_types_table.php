@@ -16,7 +16,6 @@ class CreateMenuTypesTable extends Migration
         Schema::create('menu_types', function (Blueprint $table) {
             $table->increments('id');
             $table->text('name');
-            $table->integer('user_id');
             $table->enum('status', ['1','-1']);
             $table->timestamps();
         });

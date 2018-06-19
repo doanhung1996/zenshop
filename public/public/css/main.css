@@ -1,4 +1,4 @@
-/*=======================================================
+.header-style-4/*=======================================================
 			PageController Loader
 ========================================================*/
 #loader {
@@ -2900,7 +2900,7 @@ header {
 	width: 100%;
 	z-index: 999;
 	background: none;
-	padding: 40px 0;
+	padding: 0px 0;
 	padding-bottom: 0px;
 	position: relative;
 }
@@ -2974,10 +2974,10 @@ header .sticky {
 	transition: 0.2s ease-in-out;
 }
 header .navbar li a {
-	font-size: 16px;
+	font-size: 14px;
 	color: #fff;
 	font-weight: 500;
-	padding: 16px 15px;
+	padding: 16px 12px;
 	letter-spacing: 0px;
 }
 .ownmenu .cate-style {
@@ -3068,10 +3068,10 @@ header .navbar li.active a:before {
 }
 .ownmenu .nav .dropdown-menu {
 	border: none;
-	min-width: 250px;
+	min-width: 150px;
 	margin-top: 0px;
 	border-radius: 0px;
-	padding: 10px 0px;
+	padding: 5px 0px;
 	border-radius: 0px;
 }
 .ownmenu .nav .dropdown.megamenu .dropdown-menu li a {
@@ -3506,7 +3506,7 @@ header nav {
 	color: #fff !important;
 	background: #27bdb1;
 	padding: 15px 20px;
-	font-size: 17px;
+	font-size: 15px;
 	font-weight: bold;
 	text-align: left;
 	min-width: 270px;
@@ -3646,7 +3646,6 @@ header.header-style-3 .cart-pop .itm-cont {
 }
 .header-style-4 {
 	background: #27bdb1;
-	padding-bottom: 6px;
 }
 .header-style-4 .search-cate {
 	height: 44px;
@@ -8034,4 +8033,7 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
 	filter: Alpha(Opacity=20);
 	border-radius: 5px;
 }
-
+/* responsive for facebook like box */
+.fb_iframe_widget, .fb_iframe_widget span, .fb_iframe_widget span iframe[style] {
+    width: 100% !important;
+}
