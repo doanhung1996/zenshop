@@ -16,10 +16,10 @@ class CreatePagesTable extends Migration
         Schema::create('pages', function (Blueprint $table) {
             $table->increments('id');
             $table->text('title');
-            $table->longText('content');
+            $table->longText('content_page');
             $table->text('slug');
             $table->integer('user_id');
-            $table->enum('status', ['1','-1']);
+            $table->enum('status', [-1,1]);
             $table->timestamps();
         });
     }

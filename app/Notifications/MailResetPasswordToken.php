@@ -46,7 +46,6 @@ class MailResetPasswordToken extends Notification
             ->line("Hey, did you forget your password? Click the button to reset it.")
             ->action('Reset Password', url("password/reset/$this->token/$email.html" ))
             ->line('Thankyou for being a friend');
-
     }
 
     /**

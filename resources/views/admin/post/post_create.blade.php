@@ -12,25 +12,25 @@
         <div id="content" class="fl-right">
             <div class="section" id="detail-page">
                 <div class="section-detail">
-                    <form method="POST">
-                        <label for="title">Tiêu đề</label>
-                        <input type="text" name="title" id="title">
-                        <label for="title">Slug ( Friendly_url )</label>
-                        <input type="text" name="slug" id="slug">
-                        <label for="desc">Mô tả</label>
-                        <textarea name="desc" id="editor"></textarea>
+                    <form method="POST" action="{{route('post.store')}}" enctype="multipart/form-data">
+                        @csrf
+                        <label for="title">Tiêu đề (Title)</label>
+                        <input type="text" name="title" id="title" value="{{ old('title') }}">
+                        <label for="desc">Mô tả (Description)</label>
+                        <textarea name="description" id="editor">{{ old('description') }}</textarea>
+                        <label for="desc">Nội Dung (Content)</label>
+                        <textarea name="content" id="editor1">{{ old('content') }}</textarea>
                         <label>Hình ảnh</label>
                         <div id="uploadFile">
-                            <input type="file" name="file" id="upload-thumb">
-                            <input type="submit" name="btn-upload-thumb" value="Upload" id="btn-upload-thumb">
-                            <img src="{{asset('admin/public/images/img-thumb.png')}}">
+                            <img id="blah" src="{{asset('admin/public/images/img-thumb.png')}}" alt="your image" width="400" height="400" />
+                            <input type="file" name="fileUpload" onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])">
                         </div>
                         <label>Danh mục cha</label>
-                        <select name="parent-Cat">
+                        <select name="post_cat_id">
                             <option value="">-- Chọn danh mục --</option>
-                            <option value="1">Thể thao</option>
-                            <option value="2">Xã hội</option>
-                            <option value="3">Tài chính</option>
+                            @foreach($parent_cat as $cat)
+                            <option value="{{$cat->id}}">{{$cat->title}}</option>
+                            @endforeach
                         </select>
                         <button type="submit" name="btn-submit" id="btn-submit">Thêm mới</button>
                     </form>
@@ -39,4 +39,22 @@
         </div>
     </div>
 </div>
+@if (count($errors) > 0)
+    <div>
+        <ul>
+            @foreach ($errors->all() as $error)
+                <script>
+                    $( document ).ready(function() {
+                        toastr.error("{{$error}}");
+                    });
+                </script>
+            @endforeach
+        </ul>
+    </div>
+@endif
+<script>
+    @if(session()->get('success'))
+    toastr.success( "{{ session()->get('success') }}",{timeOut: 5000});
+    @endif
+</script>
 @endsection('content')

@@ -2,6 +2,13 @@
 
 namespace App\Http\Controllers\Admin\Product;
 
+use App\Http\Requests\SearchProductRequest;
+use App\Http\Requests\StatusProductRequest;
+use App\Http\Requests\StoreCreateProductRequest;
+use App\Http\Requests\UpdateProductRequest;
+use App\Models\Admin\Product;
+use App\Models\Admin\Product_cat;
+use Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -14,7 +21,11 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view('admin.product.product');
+        $product=Product::latest()->with(['user','product_cat'])->paginate(5);
+        $product_all=Product::all()->count();
+        $product_active=Product::where('status','1')->count();
+        $product_pending=Product::where('status','-1')->count();
+        return view('admin.product.product',compact('product','product_all','product_active','product_pending'));
     }
 
     /**
@@ -24,7 +35,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('admin.product.create_product');
+        $parent_id=Product_cat::where('parent_id','!=',0)->get();
+        return view('admin.product.create_product',compact('parent_id'));
     }
 
     /**
@@ -33,9 +45,20 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCreateProductRequest $request)
     {
-        //
+        $data=$request->all();
+        if ($request->hasFile('fileUpload')) {
+            $file = $request->fileUpload;
+            $fileName=$file->getClientOriginalName();
+            $file->move(public_path('uploads'),$fileName);
+            $data['slug']=str_slug($data['product_name']);
+            $data['image']='uploads/'.$fileName;
+            $data['user_id']=Auth::user()->id;
+        }
+        Product::create($data);
+        session()->flash('success', 'Thêm mới thành công !');
+        return back();
     }
 
     /**
@@ -50,6 +73,60 @@ class ProductController extends Controller
     }
 
     /**
+     * Display the specified resource.
+     *
+     * @param  int $id
+     * @return \Illuminate\Http\Response
+     * @throws \Exception
+     */
+    public function status(StatusProductRequest $request)
+    {
+         $actions=$request->actions;
+         $checkItem=$request->checkItem;
+        if ($actions == 'delete'){
+            foreach ($checkItem as $k =>$v){
+                $delete=Product::where('id', $v)->delete();
+            }
+            if($delete){
+                session()->flash('success_status', 'Xóa thành công !');
+            }
+        }else{
+            foreach ($checkItem as $k =>$v){
+                $update=Product::where('id', $v)->update(['status' => "$actions"]);
+            }
+            if($update){
+                session()->flash('success_status', 'Chỉnh sửa thành công !');
+            }else{
+                session()->flash('success_status', 'Đã chỉnh sửa !');
+            }
+        }
+        return back();
+    }
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+     public function search(SearchProductRequest $request){
+         $value=$request->value;
+         $search=$request->search;
+         $product=Product::with(['user'=>function($user) use($value){
+             $user->orwhere('name','like',"%$value%");
+         },'product_cat'=>function($product_cat)use($value){
+             $product_cat->orwhere('title','like',"%$value%");
+         }])->orwhere('product_name','like',"%$value%")->paginate(5);
+         $product->withPath("?value="."$value"."&search="."$search");
+
+         $product_count=Product::with(['user'=>function($user) use ($value){
+             $user->orwhere('name','like',"%$value");
+         },'product_cat'=>function($product_cat)use($value){
+             $product_cat->orwhere('title','like',"%$value%");
+         }])->orwhere('product_name','like',"%$value%")->get();
+         $product_all=count($product_count);
+         return view('admin.product.search_product',compact('product','value','search','product_all'));
+     }
+    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -57,7 +134,9 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $product=Product::where('id',$id)->get();
+        $parent_id=Product_cat::where('parent_id','!=',0)->get();
+        return view('admin.product.update_product',compact('parent_id','product'));
     }
 
     /**
@@ -67,9 +146,20 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateProductRequest $request,Product $product)
     {
-        //
+        $data=$request->all();
+        if ($request->hasFile('fileUpload')) {
+            $file = $request->fileUpload;
+            $fileName=$file->getClientOriginalName();
+            $file->move(public_path('uploads'),$fileName);
+            $data['slug']=str_slug($data['product_name']);
+            $data['image']='uploads/'.$fileName;
+            $data['user_id']=Auth::user()->id;
+        }
+        $product->update($data);
+        session()->flash('success_update', 'Cập Nhật thành công !');
+        return back();
     }
 
     /**

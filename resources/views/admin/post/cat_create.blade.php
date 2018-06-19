@@ -12,26 +12,12 @@
         <div id="content" class="fl-right">
             <div class="section" id="detail-page">
                 <div class="section-detail">
-                    <form method="POST">
+                    <form method="POST" action="{{route('post.cat.store')}}">
+                        @csrf
                         <label for="title">Tiêu đề</label>
-                        <input type="text" name="title" id="title">
-                        <label for="title">Slug ( Friendly_url )</label>
-                        <input type="text" name="slug" id="slug">
-                        <label for="desc">Mô tả</label>
-                        <textarea name="desc" id="desc"></textarea>
-                        <label>Hình ảnh</label>
-                        <div id="uploadFile">
-                            <input type="file" name="file" id="upload-thumb">
-                            <input type="submit" name="btn-upload-thumb" value="Upload" id="btn-upload-thumb">
-                            <img src="{{asset('admin/public/images/img-thumb.png')}}">
-                        </div>
+                        <input type="text" name="title" id="title" value="{{ old('title') }}">
                         <label>Danh mục cha</label>
-                        <select name="parent-Cat">
-                            <option value="">-- Chọn danh mục --</option>
-                            <option value="1">Thể thao</option>
-                            <option value="2">Xã hội</option>
-                            <option value="3">Tài chính</option>
-                        </select>
+                        @include('inc.select')
                         <button type="submit" name="btn-submit" id="btn-submit">Cập nhật</button>
                     </form>
                 </div>
@@ -39,4 +25,22 @@
         </div>
     </div>
 </div>
+@if (count($errors) > 0)
+    <div>
+        <ul>
+            @foreach ($errors->all() as $error)
+                <script>
+                    $( document ).ready(function() {
+                        toastr.error("{{$error}}");
+                    });
+                </script>
+            @endforeach
+        </ul>
+    </div>
+@endif
+<script>
+    @if(session()->get('success'))
+    toastr.success( "{{ session()->get('success') }}",{timeOut: 5000});
+    @endif
+</script>
 @endsection('content')
