@@ -57,10 +57,10 @@
                             <td class="thead-text">1</td>
                             <td class="thead-text">
                                 <div class="thumb">
-                                    <img src="{{asset('admin/public/images/img-product.png')}}" alt="">
+                                    <img src="{{asset('admin/public/images/item-img-1-7.jpg')}}" alt="">
                                 </div>
                             </td>
-                            <td class="thead-text">Chân váy nữ</td>
+                            <td class="thead-text">Tai Nghe</td>
                             <td class="thead-text">145,000 VNĐ</td>
                             <td class="thead-text">5</td>
                             <td class="thead-text">725,000 VNĐ</td>

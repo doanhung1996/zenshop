@@ -12,32 +12,31 @@
             <div id="content" class="fl-right">
                 <div class="section" id="detail-page">
                     <div class="section-detail">
-                        <form method="POST" action="{{route('product.update',$product['0']->id)}}" enctype="multipart/form-data">
+                        <form method="POST" action="{{route('product.update',$product->id)}}" enctype="multipart/form-data">
                             @csrf
                             <label for="product-name">Tên sản phẩm (Product Name)</label>
-                            <input type="text" name="product_name" value="{{$product['0']['product_name']}}" id="product-name">
+                            <input type="text" name="product_name" value="{{$product['product_name']}}" id="product-name">
                             <label for="product-code">Mã sản phẩm (Product Code)</label>
-                            <input type="text" name="product_code" value="{{$product['0']['product_code']}}" id="product-code">
+                            <input type="text" name="product_code" value="{{$product['product_code']}}" id="product-code">
                             <label for="price">Giá sản phẩm</label>
-                            <input type="text" value="{{$product['0']['price']}}" name="price" id="price">
+                            <input type="text" value="{{$product['price']}}" name="price" id="price">
                             <label for="price">Giảm giá</label>
-                            <input type="text" value="{{$product['0']['product_discount']}}" name="product_discount" id="price">
+                            <input type="text" value="{{$product['product_discount']}}" name="product_discount" id="price">
                             <label for="desc">Mô tả ngắn</label>
-                            <textarea name="description" id="editor">{{$product['0']['description']}}</textarea>
+                            <textarea name="description" id="editor">{{$product['description']}}</textarea>
                             <label for="desc">Chi tiết</label>
-                            <textarea name="detail" id="editor1">{{$product['0']['detail']}}</textarea>
+                            <textarea name="detail" id="editor1">{{$product['detail']}}</textarea>
                             <label>Hình ảnh</label>
                             <div id="uploadFile">
-                                <img id="blah" src="{{asset($product['0']['image']) ?? asset('admin/public/images/img-thumb.png')}}" alt="your image" width="400" height="400" />
+                                <img id="blah" src="{{asset($product['image']) ?? asset('admin/public/images/img-thumb.png')}}" alt="your image" width="400" height="400" />
                                 <input type="file" name="fileUpload" onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])">
                             </div>
                             <label>Danh mục sản phẩm</label>
                             <select name="product_cat_id">
                             <option value="">-- Chọn danh mục --</option>
                             @foreach($parent_id as $item)
-                                    <option value="{{$item->parent_id}}" {{$item->parent_id == $product['0']->product_cat_id ? "selected":""}}>{{$item->title}}</option>
+                                    <option value="{{$item->id}}" {{$item->id == $product['product_cat_id'] ? "selected":""}}>{{$item->title}}</option>
                                 @endforeach
-
                             </select>
                             <label>Trạng thái</label>
                             <select name="status">

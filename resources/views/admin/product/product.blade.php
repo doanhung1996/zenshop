@@ -40,12 +40,12 @@
                             <tr>
                                 <td><input type="checkbox" name="checkAll" id="checkAll"></td>
                                 <td><span class="thead-text">STT</span></td>
+                                <td><span class="thead-text">Tên Sản Phẩm</span></td>
                                 <td><span class="thead-text">Mã Code</span></td>
                                 <td><span class="thead-text">Ảnh</span></td>
                                 <td><span class="thead-text">Giá</span></td>
                                 <td><span class="thead-text">Danh Mục</span></td>
                                 <td><span class="thead-text">Trạng Thái</span></td>
-                                <td><span class="thead-text">Hoạt Động</span></td>
                                 <td><span class="thead-text">Tài Khoản</span></td>
                                 <td><span class="thead-text">Thời Gian</span></td>
                             </tr>
@@ -56,21 +56,21 @@
                                 <tr>
                                 <td><input type="checkbox" name="checkItem[]" value="{{$item->id}}" class="checkItem"></td>
                                 <td><span class="tbody-text"><h3>{{$count}}</h3></span>
+                                <td><span class="tbody-text"><h3>{{$item->product_name}}</h3></span>
                                 <td><span class="tbody-text"><h3>{{$item->product_code}}</h3></span>
                                 <td>
                                     <div class="tbody-thumb">
-                                        <img src="{{asset($item->image)}}" alt="">
+                                        <a href="{{asset($item->image)}}" data-lightbox="image"><img src="{{asset($item->image)}}" alt=""></a>
                                     </div>
                                 </td>
                                 <td class="clearfix">
                                     <div class="tb-title fl-left">
-                                        <a href="" title="">{{$item->price}}</a>
+                                        <a href="" title="">{{$item->price}} .đ</a>
                                     </div>
                                     <ul class="list-operation fl-right">
                                         <li><a href="{{route('product.edit',$item->id)}}" title="Sửa" class="edit"><i class="fa fa-pencil" aria-hidden="true"></i></a></li>
                                     </ul>
                                 </td>
-                                <td><span class="tbody-text">{{$item->product_name}}</span></td>
                                 <td><span class="tbody-text">{{$item->product_cat->title}}</span></td>
                                 <td><span class="tbody-text">
                                         @if ($item->status == '1')
@@ -86,12 +86,12 @@
                             <thead>
                             <td><input type="checkbox" name="checkAll" id="checkAll"></td>
                             <td><span class="thead-text">STT</span></td>
+                            <td><span class="thead-text">Tên Sản Phẩm</span></td>
                             <td><span class="thead-text">Mã Code</span></td>
                             <td><span class="thead-text">Ảnh</span></td>
                             <td><span class="thead-text">Giá</span></td>
                             <td><span class="thead-text">Danh Mục</span></td>
                             <td><span class="thead-text">Trạng Thái</span></td>
-                            <td><span class="thead-text">Hoạt Động</span></td>
                             <td><span class="thead-text">Tài Khoản</span></td>
                             <td><span class="thead-text">Thời Gian</span></td>
                             </thead>

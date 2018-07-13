@@ -34,7 +34,7 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     protected  $table="products";
-    protected $fillable=['id','product_name','product_code','description','image','price','detail','product_discount','product_cat_id','user_id','status'];
+    protected $fillable=['id','product_name','product_code','description','image','price','detail','product_discount','product_cat_id','user_id','status','slug'];
     public function product_cat(){
         return $this->belongsTo('App\Models\Admin\Product_cat','product_cat_id','id');
     }
@@ -46,6 +46,9 @@ class Product extends Model
     public function user(){
         return $this->belongsTo('App\User','user_id','id');
     }
-
+    public function path()
+    {
+        return "product/{$this->product_cat->parent->slug}/{$this->product_cat->slug}/{$this->slug}";
+    }
 
 }

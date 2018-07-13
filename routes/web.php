@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -84,4 +83,44 @@ Route::group(['prefix' => 'admin'], function (){
     Route::get('page/{slug}','Display\Page\PageController@show')->name('page');
 //DISPLAY POST
     Route::get('post/{category}/{slug}','Display\Post\PostController@index')->name('post.display');
-    Route::get('post/{category}/{slug}/{id}','Display\Post\PostController@show')->name('post.display.show');
+    Route::get('post/{category}/{slug}/{parent_slug}','Display\Post\PostController@show')->name('post.display.show');
+//DISPLAY PRODUCT
+    Route::get('product/{category}/{slug}','Display\Product\ProductController@index')->name('product.display');
+    Route::get('product/{category}/{slug}/{parent_slug}','Display\Product\ProductController@show')->name('product.display.show');
+//DISPLAY CART
+    Route::get('cart/add','Display\Cart\CartController@add')->name('cart.add');
+    Route::post('cart/store','Display\Cart\CartController@store')->name('cart.store');
+    Route::get('cart/detail','Display\Cart\CartController@index')->name('cart.detail');
+    Route::get('cart/content_cart','Display\Cart\CartController@content_cart')->name('cart.content_cart');
+    Route::post('cart/delete','Display\Cart\CartController@delete')->name('cart.delete');
+    Route::get('cart/delivery','Display\Cart\CartController@delivery')->name('cart.delivery');
+    Route::post('cart/delivery/get_city','Display\Cart\CartController@get_city')->name('cart.delivery.get_city');
+    Route::post('cart/delivery','Display\Cart\CartController@delivery')->name('cart.delivery.change');
+    Route::post('cart/add/delivery','Display\Cart\CartController@add_delivery')->name('cart.delivery.add');
+    Route::post('cart/update','Display\Cart\CartController@update_qty')->name('cart.update');
+    Route::get('cart/confirm','Display\Cart\CartController@confirm')->name('cart.confirm');
+    Route::post('cart/confirm/success','Display\Cart\CartController@confirm_success')->name('cart.confirm_success');
+    Route::view('cart/confirm/success','display.cart.success_cart')->name('cart.confirm_sc');
+    Route::get('ok',function (){
+        return Cart::content();
+    });
+
+
+    Route::get('cart',function (){
+        Cart::add('293ak', 'Product 2', 1, 9.99);
+    });
+    Route::get('xoa', function(){
+//        return Cart::tax();
+//        return Cart::count();
+//        echo '<pre>';
+        return Cart::destroy();
+//        foreach (Cart::content() as $item){
+//            echo $item->model->image;
+//        };
+//
+//            return array_slice(Cart::content()->toArray(),0,2);
+    });
+    Route::get('updatcard/{id}', function($id){
+       Cart::update($id, 5);
+
+    });

@@ -32,7 +32,7 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     protected  $table="orders";
-
+    protected $fillable=['id','fullname','email','phone','province','city','address','pay','delivery','order_code','total_qty','total_sale','order_date','date_transport','customer_id'];
     public function  order_detail(){
         return $this->hasMany('App\Models\Admin\Order_detail','order_id','id');
     }

@@ -29,9 +29,9 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Post extends Model
 {
-    protected $fillable=['title','image','description','content','post_cat_id','user_id'];
+    protected $fillable=['title','image','description','content','post_cat_id','user_id','slug'];
     protected  $table="posts";
-
+//    protected $casts=['status'=>'int'];
     public static function lastest()
     {
     }
@@ -42,5 +42,10 @@ class Post extends Model
 
     public function user(){
         return $this->belongsTo('App\User','user_id','id');
+    }
+
+    public function path()
+    {
+        return "post/{$this->post_cat->parent->slug}/{$this->post_cat->slug}/{$this->slug}";
     }
 }

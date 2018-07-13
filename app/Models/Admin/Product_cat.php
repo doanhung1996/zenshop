@@ -37,15 +37,12 @@ class Product_cat extends Model
 
     public function childs()
     {
-        return $this->hasMany('App\Models\Admin\Product_cat', 'parent_id');
+        return $this->hasMany('App\Models\Admin\Product_cat', 'parent_id','id');
     }
-
-
     public function product_multi_cat($data='',$parent_id=0,$level=0){
         $result=[];
         if(!empty($data)){
             foreach ($data as $item){
-
                 if($item->parent_id==$parent_id){
                     $item['level']=$level;
                     $result[]=$item;
@@ -55,5 +52,20 @@ class Product_cat extends Model
             }
         }
         return $result;
+    }
+    public function product_multi_category($data='',$parent_id=0){
+        $result=[];
+        if(!empty($data)){
+            foreach ($data as $item){
+                if($item->parent_id==$parent_id){
+                    $result[]=$item;
+                }
+            }
+        }
+        return $result;
+    }
+    public function parent()
+    {
+        return $this->belongsTo('App\Models\Admin\Product_cat','parent_id');
     }
 }
