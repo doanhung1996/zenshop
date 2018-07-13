@@ -12,12 +12,14 @@
     <link href="{{asset('admin/public/style.css')}}" rel="stylesheet" type="text/css"/>
     <link href="{{asset('admin/public/responsive.css')}}" rel="stylesheet" type="text/css"/>
     <link href="{{asset('admin/public/test.css')}}" rel="stylesheet" type="text/css"/>
+    <link href="{{asset('admin/public/lightbox-css/lightbox.css')}}" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="{{asset('public/css/toastr.min.css')}}" rel="stylesheet" type="text/css"/>
 
     <script src="{{asset('admin/public/js/jquery-2.2.4.min.js')}}" type="text/javascript"></script>
     <script src="{{asset('admin/public/js/bootstrap/bootstrap.min.js')}}" type="text/javascript"></script>
     <script src="{{asset('admin/public/js/main.js')}}" type="text/javascript"></script>
     <script src="{{asset('admin/public/js/jquery-3.3.1.js')}}"></script>
+    <script src="{{asset('admin/public/lightbox-js/lightbox.js')}}"></script>
     <script
             src="https://code.jquery.com/jquery-3.3.1.js"
             integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="

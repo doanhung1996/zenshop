@@ -40,7 +40,7 @@ body {
 	font-weight: normal;
 	position: relative;
 	font-size: 14px;
-	font-family: 'Lato', sans-serif;
+    font-family: 'Montserrat', sans-serif !important;
 }
 .fonts {
 	font-family: 'Lato', sans-serif;
@@ -716,7 +716,7 @@ section {
 	text-align: center;
 	border: 1px solid #eaeaea;
 	color: #888888;
-	line-height: 30px;
+	line-height: 27px;
 	border-radius: 4px;
 	background: #fff;
 }
@@ -1063,7 +1063,7 @@ section {
 	font-size: 14px;
 	font-weight: bold;
 	display: inline-block;
-	padding: 10px 20px;
+	padding: 13px 20px;
 	border-radius: 50px;
 	background: #0088cc;
 	color: #fff;
@@ -3314,8 +3314,8 @@ footer .social p a {
 	margin-bottom: 20px;
 }
 .order-success i {
-	border: 2px solid #0088cc;
-	color: #0088cc;
+	border: 2px solid #27bdb1;
+	color: #27bdb1;
 	height: 97px;
 	width: 97px;
 	border-radius: 50%;
@@ -4098,7 +4098,7 @@ footer .social p a {
 	margin-right: 30px;
 }
 .product-detail .product .quinty input {
-	border-radius: 30px;
+	border-radius: 20px;
 	height: 40px;
 	width: 100%;
 	font-size: 15px;
@@ -4259,7 +4259,7 @@ footer .social p a {
 	border: 1px solid #e2e2e2;
 	border-radius: 4px;
 	padding: 5px 20px;
-	margin-left: 10px;
+	margin-left: 0px;
 	font-weight: normal;
 	font-size: 13px;
 	height: 39px;
@@ -4316,7 +4316,7 @@ footer .social p a {
 }
 .shopping-cart .table>tbody>tr>td {
 	border: 1px solid #e8e8e8;
-	padding: 30px;
+	padding: 5px;
 }
 .pay-method {
 	border: 1px solid #e8e8e8;
@@ -4327,7 +4327,8 @@ footer .social p a {
 }
 .pay-method input {
 	margin-top: 5px;
-	margin-bottom: 30px;
+	margin-bottom: 0px;
+	height: 38px;
 }
 .pay-method .dropdown-menu {
 	border: none;
@@ -4385,7 +4386,7 @@ footer .social p a {
 	padding-left: 10px;
 }
 .transportation .charges:hover {
-	border: 2px solid #0088cc;
+	border: 2px solid #27bdb1;
 }
 .transportation .charges.select {
 	border: 2px solid #0088cc;
@@ -4461,8 +4462,8 @@ footer .social p a {
 	font-size: 28px;
 }
 .ship-process li.current i {
-	color: #0088cc;
-	border: 2px solid #0088cc;
+	color: #27bdb1;
+	border: 2px solid #27bdb1;
 }
 /*=======================================================
 			Newslatter IE
@@ -6221,10 +6222,10 @@ footer .social p a {
 			Red Layout
 ========================================================*/
 .red .featur-tabs .nav-bars li.active a {
-	border-bottom: 2px solid #f12a43 !important;
+	border-bottom: 2px solid #27bdb1 !important;
 }
 .red .featur-tabs .nav-bars li a:hover {
-	border-bottom: 2px solid #f12a43 !important;
+	border-bottom: 2px solid #27bdb1 !important;
 }
 .red .btn-round {
 	background: #27bdb1;
@@ -6250,11 +6251,11 @@ footer .social p a {
 	color: #555555;
 }
 .red .main-tabs-sec .nav li.active a {
-	background: #ff4040;
-	border: 1px solid #ff4040;
+	background: #27bdb1;
+	border: 1px solid #27bdb1;
 }
 .red .main-tabs-sec .nav li.active a:before {
-	color: #ff4040;
+	color: #27bdb1;
 }
 /*=======================================================
 			Dark Orange

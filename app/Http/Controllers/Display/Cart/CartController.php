@@ -1,0 +1,361 @@
+<?php
+
+namespace App\Http\Controllers\Display\Cart;
+
+//use App\Http\Requests\add_delivery_cart;
+use App\Events\CartSuccess;
+use App\Http\Requests\AddDeliveryCartRequest;
+use App\Http\Requests\CofirmSuccessRequest;
+use App\Http\Requests\ConfirmRequestCart;
+use App\Models\Admin\Customer;
+use App\Models\Admin\Delivery;
+use App\Models\Admin\Order;
+use App\Models\Admin\Order_detail;
+use App\Models\Admin\Product;
+use App\Traits\Provincial;
+use Cart;
+use Cookie;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Session;
+
+//use Session;
+
+class CartController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $data_cart=Cart::content();
+        $data_cart_count = count(Cart::content());
+        $qty = Cart::count();
+        $total =  Cart::total(0);
+        return view('display.cart.detail_cart')->with(['data_cart'=>$data_cart,'data_cart_count'=>$data_cart_count,'qty'=>$qty,'total'=>$total]);
+    }
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function content_cart()
+    {
+        $data_cart=Cart::content();
+        $data_cart_count = count(Cart::content());
+        $qty = Cart::count();
+        $total =  Cart::total(0);
+        return view('display.cart.content_cart')->with(['data_cart'=>$data_cart,'data_cart_count'=>$data_cart_count,'qty'=>$qty,'total'=>$total]);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+    //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function delete(Request $request)
+    {
+        $rowId=$request->rowId;
+        Cart::remove($rowId);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function delivery()
+    {
+       $provincial=Provincial::get_provincial();
+        return view('display.cart.delivery_cart',compact('provincial'));
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function add_delivery(AddDeliveryCartRequest $request)
+    {
+         $data_delivery=[
+                'name'      =>$request->name,
+                'phone'     =>$request->phone,
+                'provincial'=> $request->provincial,
+                'city'      =>$request->city,
+                'address'   =>$request->address,
+                'email'     =>$request->email,
+                'delivery'  =>base64_decode($request->delivery),
+                'pay'       =>base64_decode($request->pay),
+        ];
+         $cart=Cart::content();
+         $qty = Cart::count();
+         $total = Cart::total(0);
+         $total_change=(int)str_replace(',','',$total);
+         if($data_delivery['delivery']==1){
+             $total_all = number_format($total_change,0);
+         }elseif ($data_delivery['delivery']==2){
+             $total_all = number_format($total_change + 30000,0);
+         }elseif ($data_delivery['delivery']==3){
+             $total_all = number_format($total_change + 60000,0);
+         }
+         return view('display.cart.confirm',compact('cart','qty','total','total_all','data_delivery'));
+//        session()->push('delivery',$data_delivery);
+//        Session::put('delivery',$data_delivery);
+//        $value = Session::all();
+//        echo '<pre>';
+//        print_r($value); die;
+//        Delivery::create($data_delivery);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function get_city(Request $request)
+    {
+        $provincial=Provincial::get_provincial();
+        $provincial_name=$request->provincial;
+        foreach ($provincial as $k => $v){
+            if(($v['name']==$provincial_name)){
+                foreach ($v['cities']  as $k_city => $v_city) {
+//                   $city[$v['cities'][$k_city]]=$v['cities'][$k_city];
+                     echo "<option value='" . $v['cities'][$k_city] . "'>" . $v['cities'][$k_city] . "</option>";
+                }
+            }
+        }
+//      echo json_encode($city);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $product_id=$request->product_id;
+        $qty=$request->qty;
+        $product=Product::whereId($product_id)->first();
+        $new_cart = Cart::add("$product->id","$product->product_name","$qty",$product->price);
+        $new_cart->associate('App\Models\Admin\Product');
+        return redirect()->route('cart.detail');
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function confirm_success(ConfirmRequestCart $request)
+    {
+        if (Cart::count()<1){
+            return redirect()->route('home');
+        }
+        //ADD CUSTOMER
+        $customer=[
+            'fullname'    =>$request->name,
+            'email'       =>$request->email,
+            'phone'       =>$request->phone,
+            'province'    =>$request->province,
+            'city'        =>$request->city,
+            'address'     =>$request->address,
+        ];
+        $customer_insert=Customer::create($customer);
+        if ($customer_insert==false){
+            return redirect()->route('home');
+        }
+        //ADD ORDER
+        $total_qty = Cart::count();
+        $total = Cart::total(0);
+        $total_change=(int)str_replace(',','',$total);
+        if($request->delivery==1){
+            $total_sale = (int)$total_change;
+            $delivery='Miễn Phí Vận Chuyển 7 - 12 Ngày';
+            $date=7;
+        }elseif ($request->delivery==2){
+            $total_sale = (int) ($total_change + 30000);
+            $delivery='Chuyển Phát Nhanh 3 - 5 Ngày ( +30.000 đ )';
+            $date=3;
+        }elseif ($request->delivery==3){
+            $total_sale = (int)($total_change + 60000);
+            $delivery='Nhanh Chóng 24 - 48 Giờ ( +60.000 đ )';
+            $date=1;
+        }
+//        return $total_cost;
+        if ($request->pay == 1){
+            $pay='Tại Nhà';
+        }elseif ($request->pay==2){
+            $pay='Chuyển Khoản';
+        }
+        $order_date=date('d/m/Y - H:i:s',strtotime('now'));
+        $date_transport=date('d/m/Y - H:i:s',strtotime("now + $date days"));
+        $order_code = 'HD'.strtoupper(str_random(16));
+        $customer_id=Customer::where('fullname',$request->name)->max('id');
+        $order=[
+            'fullname'        =>$request->name,
+            'email'           =>$request->email,
+            'phone'           =>$request->phone,
+            'province'        =>$request->province,
+            'city'            =>$request->city,
+            'address'         =>$request->address,
+            'pay'             =>$pay,
+            'delivery'        =>$delivery,
+            'order_code'      =>$order_code,
+            'total_qty'       =>$total_qty,
+            'total_sale'      =>$total_sale,
+            'order_date'      =>$order_date,
+            'date_transport'  =>$date_transport,
+            'customer_id'     =>$customer_id,
+        ];
+        $order_insert=Order::create($order);
+        if ($order_insert==false){
+            return redirect()->route('home');
+        }
+        $order_id=Order::where('fullname',$request->name)->max('id');
+        //ADD ORDER DETAIL
+        $cart_content=Cart::content();
+        if (!empty($cart_content)){
+            foreach($cart_content as $k => $v){
+               $purchase=Product::whereId($v->id)->first(['product_purchase'])->product_purchase;
+               $profit=$v->price-$purchase;
+             $order_detail=[
+                    'order_id'    =>$order_id,
+                    'product_id'  =>$v->id,
+                    'name'        =>$v->name,
+                    'quantity'    =>$v->qty,
+                    'price'       =>$v->price,
+                    'subtotal'    =>$v->subtotal,
+                    'profit'      =>$profit,
+                    'order_code'  =>$order_code,
+                ];
+                $order_detail_insert=Order_detail::create($order_detail);
+                if ($order_detail_insert==false){
+                    return redirect()->route('home');
+                }
+            }
+        }else{
+            return redirect()->route('home');
+        }
+        $customer_insert;
+        $cart_content;
+        $total_sale;
+        $total_qty;
+
+        event(new CartSuccess($customer_insert, $cart_content, $total_sale, $total_qty));
+        Cart::destroy();
+        return redirect()->route('cart.confirm_sc');
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function confirm()
+    {
+        return view('display.cart.confirm');
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function add(Request $request)
+    {
+        $id=$request->id;
+        $product=Product::whereId($id)->first();
+        $qty=1;
+        $new_cart = Cart::add("$product->id","$product->product_name","$qty",$product->price);
+        $new_cart->associate('App\Models\Admin\Product');
+        $data_cart_count = count(Cart::content());
+        $qty = Cart::count();
+        $total =  Cart::total(0);
+        $data_cart=Cart::content()->take(2);
+        return response()->view('display.cart.home', compact('data_cart', 'qty', 'total','data_cart_count') );
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+
+    }
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update_qty(Request $request)
+    {
+//        echo $request->
+//        dd(Cart::content());
+        $rowId=$request->rowId;
+        $qty=$request->qty;
+        Cart::update($rowId, $qty);
+//        if ($update==true) {
+//            session()->flash('update_qty_success', 'Cập Nhật Thành Công !');
+//        }
+//        return back();
+    }
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
+    }
+}

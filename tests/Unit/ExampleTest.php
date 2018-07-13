@@ -14,6 +14,7 @@ class ExampleTest extends TestCase
      */
     public function testBasicTest()
     {
+        dd('ok');
         $this->assertTrue(true);
     }
 }

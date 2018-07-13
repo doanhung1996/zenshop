@@ -1,7 +1,6 @@
 @extends('display.index')
 @section('content')
     <div id="content">
-
             <!-- Linking -->
             <div class="linking">
                 <div class="container">
@@ -24,7 +23,7 @@
                                 <div class="col-xs-7"> <img class="img-responsive" src="{{asset($item->image)}}" alt="" > </div>
                                 <div class="col-xs-5"> <span><i class="fa fa-bookmark-o"></i> @php echo date('d/m/Y - H:i:s',strtotime($item->created_at)); @endphp </span> <span><i class="fa fa-comment-o"></i> 0 Comments</span> <a href="#." class="tittle">{{$item->title}} </a>
                                     <p>{!!$item->description !!}</p>
-                                    <a href="{{route('post.display.show',[$check_category->slug,$check_parent->slug,$item->id])}}">Readmore</a></div>
+                                    <a href="{{route('post.display.show',[$check_category->slug,$check_parent->slug,$item->slug])}}">Readmore</a></div>
                             </article>
                         </div>
                         @endforeach

@@ -71,21 +71,28 @@
                     <button class="submit" type="submit"><i class="icon-magnifier"></i></button>
                 </div>
                 <!-- Cart Part -->
-                <ul class="nav navbar-right cart-pop">
-                    <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="itm-cont">3</span> <i class="flaticon-shopping-bag"></i> <strong>My Cart</strong> <br>
-                            <span>3 item(s) - $500.00</span></a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <div class="media-left"> <a href="#." class="thumb"> <img src="{{asset('public/images/item-img-1-1.jpg')}}" class="img-responsive" alt="" > </a> </div>
-                                <div class="media-body"> <a href="#." class="tittle">Funda Para Ebook 7" 128GB full HD</a> <span>250 x 1</span> </div>
-                            </li>
-                            <li>
-                                <div class="media-left"> <a href="#." class="thumb"> <img src="{{asset('public/images/item-img-1-2.jpg')}}" class="img-responsive" alt="" > </a> </div>
-                                <div class="media-body"> <a href="#." class="tittle">Funda Para Ebook 7" full HD</a> <span>250 x 1</span> </div>
-                            </li>
-                            <li class="btn-cart"> <a href="#." class="btn-round">View Cart</a> </li>
-                        </ul>
+                <ul class="nav navbar-right cart-pop" id="home-cart">
+                    @if(Cart::count() == 0)
+                    <li class="dropdown"> <a href="{{route('cart.detail')}}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="itm-cont">0</span> <i class="flaticon-shopping-bag"></i> <strong>@lang('display_lang.my_cart')</strong> <br>
+                            <span>0 item(s) - 0 đ</span></a>
                     </li>
+                        @else
+                        <li class="dropdown"> <a href="{{route('cart.detail')}}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="itm-cont">{{ $data_cart_count }}</span> <i class="flaticon-shopping-bag"></i> <strong>@lang('display_lang.my_cart')</strong> <br>
+                                <span>{{ $qty }} item(s) - {{$total}} đ</span></a>
+                            <ul class="dropdown-menu">
+                                {{--{{dd(data_cart)}}--}}
+                                @if(count($data_cart) > 0)
+                                    @foreach($data_cart as $item)
+                                        <li>
+                                            <div class="media-left"> <a href="{{route('cart.detail')}}" class="thumb"> <img src="{{asset($item->model->image)}}" class="img-responsive" alt="{{$item->name}}" > </a> </div>
+                                            <div class="media-body"> <a href="{{route('cart.detail')}}" class="tittle">{{$item->name}}</a> <span>@php echo number_format($item->price); @endphp đ</span> </div>
+                                        </li>
+                                    @endforeach
+                                @endif
+                                <li class="btn-cart"> <a href="{{route('cart.detail')}}" class="btn-round">@lang('display_lang.view_cart')</a> </li>
+                            </ul>
+                        </li>
+                    @endif
                 </ul>
             </div>
         </div>
@@ -97,12 +104,17 @@
                     <div class="cate-bar-in">
                         <div id="cater" class="collapse">
                             <ul>
-                                <li><a href="#"> Camera, Photo & Video</a></li>
-                                <li class="sub-menu"><a href="#"> Cell Phones & Accessories</a>
-                                    <ul>
-                                        <li><a href="#"> TV & Video</a></li>
-                                    </ul>
-                                </li>
+                            @foreach($header_home as $item_header_home)
+                                    <li class="sub-menu"><a href="#."> {{$item_header_home->title}}</a>
+                                        <ul>
+                                            @if(count($item_header_home->childs)>0)
+                                                @foreach($item_header_home->childs as $item_childs)
+                                                    <li><a href="{{route('product.display',[$item_header_home->slug,$item_childs->slug])}}"> {{$item_childs->title}}</a>
+                                                @endforeach
+                                            @endif
+                                        </ul>
+                                    </li>
+                                @endforeach
                             </ul>
                         </div>
                     </div>
@@ -166,9 +178,6 @@
                                 <li><a href="Blog_details.html"> Tâm Linh </a></li>
                                 <li><a href="Blog_details.html"> Tử Vi </a></li>
                             </ul>
-
-
-
                         </li>
                         <li><a href="{{route('page','ve-chung-toi')}}">Về Chúng Tôi </a></li>
                     </ul>

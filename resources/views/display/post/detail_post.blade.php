@@ -13,9 +13,9 @@
             <div class="linking">
                 <div class="container">
                     <ol class="breadcrumb">
-                        <li><a href="{{route('home')}}">@lang('display_lang.home')e</a></li>
+                        <li><a href="{{route('home')}}">@lang('display_lang.home')</a></li>
                         <li class="active">{{$check_category->title}}</li>
-                        <li><a href="{{route('post.display.show',[$check_category->slug,$check_parent->slug,$post->id])}}">{{$check_parent->title}}</a></li>
+                        <li><a href="{{route('post.display.show',[$check_category->slug,$check_parent->slug,$post->slug])}}">{{$check_parent->title}}</a></li>
                     </ol>
                 </div>
             </div>
@@ -32,7 +32,7 @@
                                 {!! $post->content !!}
                                 <!-- Comments -->
                                     <div class="comments">
-                                        <div class="fb-comments" data-href="http://localhost/zenshop/public/post/phong-cach-song/tinh-yeu/{{$post->id}}" data-numposts="10"></div>
+                                        <div class="fb-comments" data-href="http://localhost/zenshop/public/post/phong-cach-song/tinh-yeu/{{$post->slug}}" data-numposts="10"></div>
                                         <div id="fb-root"></div>
                                     </div>
                                 <!-- ADD comments -->

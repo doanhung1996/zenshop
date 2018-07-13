@@ -19,7 +19,7 @@
                             <label for="title">Tiêu đề (Title)</label>
                             <input type="text" name="title" id="title" value="{{ old('title') ?? $post['0']->title}}">
                             <label for="desc">Mô tả (Description)</label>
-                            <textarea name="description" id="editor">{{ old('description')  ?? $post['0']->description}}</textarea>
+                            <textarea name="description">{{ old('description')  ?? $post['0']->description}}</textarea>
                             <label for="desc">Nội Dung (Content)</label>
                             <textarea name="content" id="editor1">{{ old('content') ?? $post['0']->content}}</textarea>
                             <label>Hình ảnh</label>

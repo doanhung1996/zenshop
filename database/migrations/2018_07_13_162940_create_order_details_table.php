@@ -17,9 +17,13 @@ class CreateOrderDetailsTable extends Migration
             $table->increments('id');
             $table->integer('order_id');
             $table->integer('product_id');
+            $table->string('name');
             $table->integer('quantity');
-            $table->double('price');
-            $table->enum('status', ['1','-1']);
+            $table->integer('price');
+            $table->integer('subtotal');
+            $table->integer('profit');
+            $table->text('order_code');
+            $table->enum('status', ['-1','1']);
             $table->timestamps();
         });
     }

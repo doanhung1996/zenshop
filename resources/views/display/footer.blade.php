@@ -5,29 +5,29 @@
             <li>
                 <div class="media-left"> <i class="flaticon-delivery-truck-1"></i> </div>
                 <div class="media-body">
-                    <h5>Free Shipping</h5>
-                    <span>On order over $99</span></div>
+                    <h5>@lang('display_lang.free_shipping')</h5>
+                    <span>@lang('display_lang.on_order_over')</span></div>
             </li>
             <!-- Money Return -->
             <li>
                 <div class="media-left"> <i class="flaticon-arrows"></i> </div>
                 <div class="media-body">
-                    <h5>Money Return</h5>
-                    <span>30 Days money return</span></div>
+                    <h5>@lang('display_lang.money_return')</h5>
+                    <span>@lang('display_lang.money_return_30')</span></div>
             </li>
             <!-- Support 24/7 -->
             <li>
                 <div class="media-left"> <i class="flaticon-operator"></i> </div>
                 <div class="media-body">
-                    <h5>Support 24/7</h5>
-                    <span>Hotline: (+100) 123 456 7890</span></div>
+                    <h5>@lang('display_lang.support_24_7')</h5>
+                    <span>@lang('display_lang.hotline')</span></div>
             </li>
             <!-- Safe Payment -->
             <li>
                 <div class="media-left"> <i class="flaticon-business"></i> </div>
                 <div class="media-body">
-                    <h5>Safe Payment</h5>
-                    <span>Protect online payment</span></div>
+                    <h5>@lang('display_lang.safe_payment')</h5>
+                    <span>@lang('display_lang.safe_payment_1')</span></div>
             </li>
         </ul>
     </div>
@@ -38,16 +38,16 @@
     <div class="container">
         <div class="row">
             <div class="col-md-4">
-                <h3> <i class="fa fa-envelope-o"></i> Subscribe our Newsletter <small>Get 25% Off first purchase!</small></h3>
+                <h3> <i class="fa fa-envelope-o"></i>@lang('display_lang.email_subscribe')<small>@lang('display_lang.sale')</small></h3>
             </div>
             <div class="col-md-5">
                 <form>
-                    <input type="email" placeholder="Your email address here...">
-                    <button type="submit">Subscribe!</button>
+                    <input type="email" placeholder="@lang('display_lang.enter_email')">
+                    <button type="submit">@lang('display_lang.subscribe') !</button>
                 </form>
             </div>
             <div class="col-md-3">
-                <h3> <i class="fa fa-phone"></i> (+100) 123 456 7890 <small>Call us toll Free 24/7!</small></h3>
+                <h3> <i class="fa fa-phone"></i>@lang('display_lang.hotline')<small>@lang('display_lang.support_24_7')</small></h3>
             </div>
         </div>
     </div>
@@ -61,7 +61,7 @@
         <!-- Footer Upside Links -->
         <div class="foot-link">
             <ul>
-                <li><a href="#."> About us </a></li>
+                <li><a href="{{route('page','ve-chung-toi')}}">@lang('display_lang.about_us')</a></li>
                 <li><a href="#."> Customer Service </a></li>
                 <li><a href="#."> Privacy Policy </a></li>
                 <li><a href="#."> Site Map </a></li>
@@ -75,12 +75,11 @@
 
             <!-- Contact -->
             <div class="col-md-4">
-                <h4>Contact SmartTech!</h4>
-                <p>Address: 45 Grand Central Terminal New York, NY 1017
-                    United State USA</p>
-                <p>Phone: (+100) 123 456 7890</p>
-                <p>Email: Support@smarttech.com</p>
-                <div class="social-links"> <a href="#."><i class="fa fa-facebook"></i></a> <a href="#."><i class="fa fa-twitter"></i></a> <a href="#."><i class="fa fa-linkedin"></i></a> <a href="#."><i class="fa fa-pinterest"></i></a> <a href="#."><i class="fa fa-instagram"></i></a> <a href="#."><i class="fa fa-google"></i></a> </div>
+                <h4>@lang('display_lang.contact_us')</h4>
+                <p>@lang('display_lang.address'): @lang('display_lang.address_contact')</p>
+                <p>@lang('display_lang.phone'): @lang('display_lang.phone_contact')</p>
+                <p>@lang('display_lang.email'): @lang('display_lang.email_contact')</p>
+                <div class="social-links"> <a href="https://www.facebook.com/zenzen1996"><i class="fa fa-facebook"></i></a> <a href="#."><i class="fa fa-twitter"></i></a> <a href="#."><i class="fa fa-linkedin"></i></a> <a href="#."><i class="fa fa-pinterest"></i></a> <a href="#."><i class="fa fa-instagram"></i></a> <a href="#."><i class="fa fa-google"></i></a> </div>
             </div>
 
             <!-- Categories -->
@@ -130,7 +129,7 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-6">
-                <p>Copyright © 2017 <a href="#." class="ri-li"> SmartTech </a>HTML5 template. All rights reserved</p>
+                <p>Copyright © 2018-@php echo date('Y',strtotime('now'));@endphp <a href="{{route('home')}}" class="ri-li">@lang('display_lang.shop')</a> @lang('display_lang.developer')</p>
             </div>
             <div class="col-sm-6 text-right"> <img src="{{asset('public/images/card-icon.png')}}" alt=""> </div>
         </div>

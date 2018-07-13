@@ -26,6 +26,10 @@ class Post_cat extends Model
     {
         return $this->hasMany('App\Models\Admin\Post_cat', 'parent_id');
     }
+    public function parent()
+    {
+        return $this->belongsTo('App\Models\Admin\Post_cat','parent_id');
+    }
 
     public  function multi_data_post($data,$parent_id=0,$level=0){
         $result=array();

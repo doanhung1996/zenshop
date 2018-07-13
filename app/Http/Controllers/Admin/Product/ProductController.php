@@ -134,7 +134,7 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        $product=Product::where('id',$id)->get();
+        $product=Product::where('id',$id)->first();
         $parent_id=Product_cat::where('parent_id','!=',0)->get();
         return view('admin.product.update_product',compact('parent_id','product'));
     }

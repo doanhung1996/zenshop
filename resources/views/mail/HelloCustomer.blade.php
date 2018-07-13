@@ -10,7 +10,5 @@
 <body>
     <h1>Rất vui khi bạn đã đăng kí tài khoản hihi</h1>
     <p>Chào {{$user->name }} <a href="{{ route('home') }}">đây</a></p>
-
-
 </body>
 </html>

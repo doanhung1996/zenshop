@@ -49,11 +49,11 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($category,$slug,$id)
+    public function show($category,$slug,$parent_slug)
     {
         $check_category=Post_cat::where('slug',$category)->firstOrFail();
         $check_parent = $check_category->childs()->where('slug', $slug)->firstOrFail();
-        $post=Post::where('id',$id)->firstOrFail();
+        $post=Post::where(['slug'=>$parent_slug,'status'=> '1'])->firstOrFail();
         return view('display.post.detail_post',compact('post','check_category','check_parent'));
     }
 
