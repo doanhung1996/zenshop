@@ -39,6 +39,10 @@ return [
     'add_to_cart'=>'THÊM VÀO GIỎ HÀNG',
     'product_detail'=>'Chi Tiết Sản Phẩm',
     'related_products'=>'Sản Phẩm Tương Tự',
+    'forget_password'=>'Quên Mật Khẩu !',
+    'come_back'=>'Quay Lại',
+    'send_email'=>'Gửi Email',
+    'account_update'=>'Cập Nhật Tài Khoản',
     //CART
     'my_cart'=>'Giỏ Hàng',
     'item'=>'Mục',
@@ -93,6 +97,7 @@ return [
     'order_1'=>"+30.000 đ",
     'order_2'=>"+60.000 đ",
 // ACCOUNT UPDATE
+    'update_information'=>'Cập Nhật Thông Tin',
     'reset_password'=>'Cập nhật mật khẩu',
     'password_new'=>'Nhập mật khẩu Mới',
     'confirm_password'=>'Nhập lại mật khẩu',

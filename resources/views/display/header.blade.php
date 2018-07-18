@@ -21,7 +21,7 @@
                                 Chào {{ Auth::user()->name }}
                             </a>
                         </li>
-                        <li><a href="{{route('information.account')}}">Cập Nhật Thông Tin</a></li>
+                        <li><a href="{{route('information.account')}}">@lang('display_lang.account_update')</a></li>
                     <li>
                         <a class="nav-link" href="{{ route('logout') }}"
                            onclick="event.preventDefault();

@@ -6,7 +6,7 @@
             <hr style="background: #27bdb1;">
             <div class="row">
                 <!-- Don’t have an Account? Register now -->
-                <h3 class="col-md-4 col-md-offset-4 col-xs-12" id="register_h3" style="color: #27bdb1;">Quên Mật Khẩu !</h3>
+                <h3 class="col-md-4 col-md-offset-4 col-xs-12" id="register_h3" style="color: #27bdb1;">@lang('display_lang.forget_password')</h3>
                 <!-- FORM -->
                 <form class="col-md-4 col-md-offset-4 col-xs-12" action="{{ route('password.email') }}" method="POST">
                     @csrf
@@ -22,10 +22,10 @@
                             @endif
                         </li>
                         <li class="col-sm-12 text-left">
-                            <button style="width: 150px; margin-left: 20px !important;" type="submit" class="btn-round">Gửi Email</button>
+                            <button style="width: 150px; margin-left: 20px !important;" type="submit" class="btn-round">@lang('display_lang.send_email')</button>
                             <div  class="btn-round" style="margin-left: 0px !important;    ">
                                 <a style="color: #ffffff;" href="{{ route('login.account') }}">
-                                    {{ __('Quay Lại') }}
+                                    {{ __('display_lang.come_back') }}
                                 </a>
                             </div>
                         </li>

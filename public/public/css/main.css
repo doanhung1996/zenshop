@@ -3571,7 +3571,8 @@ header nav {
 	background: #fff;
 }
 .cate-bar-in ul li.sub-menu ul li a {
-	line-height: 39px;
+	line-height: 38px;
+	border-top:1px solid #33333312;
 }
 .cate-bar-in ul li.sub-menu:hover ul {
 	display: block;

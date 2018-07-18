@@ -37,6 +37,11 @@ return [
     'add_to_cart'=>'Add To Cart',
     'product_detail'=>'Product Detail',
     'related_products'=>'Related Products',
+    'forget_password'=>'Forget Password !',
+    'come_back'=>'Come back',
+    'send_email'=>'Send Email',
+    'account_update'=>'Account Update',
+
     //CART
     'my_cart'=>'My Cart',
     'item'=>'items',
@@ -92,13 +97,14 @@ return [
     'order_1'=>"+2 USD",
     'order_2'=>"+4 USD",
 // ACCOUNT UPDATE
+    'update_information'=>'Update information',
     'reset_password'=>'Reset Password',
     'password_new'=>'New Password',
     'confirm_password'=>'Confirm Password',
     'gender'=>'Gender',
     'fullname'=>'Fullname',
-    'update_success'=>'Cập Nhật Thành Công',
-    'update_info'=>'Chúc mừng bạn đã cập nhật thành công thông tin . Mới bạn quay lại trang chủ để tiếp tục mua hàng !',
+    'update_success'=>'Update successful',
+    'update_info'=>'Congratulations, you have successfully updated your information. You return to the home page to continue shopping!',
 
 
 ];
