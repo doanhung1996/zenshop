@@ -102,15 +102,10 @@
                         {{--<li class="col-xs-6">--}}
                             {{--<p><img class="margin-right-20" src="images/visa-card.jpg" alt=""> @lang('display_lang.payment_methods')</p>--}}
                         {{--</li>--}}
-                        @if($data_delivery['pay']==1)
                         <li class="col-xs-6">
-                            <p>@lang('display_lang.home_payment')</p>
+                            <p>{{$data_delivery['pay']}}</p>
                         </li>
-                        @elseif($data_delivery['pay']==2)
-                        <li class="col-xs-6">
-                            <p>@lang('display_lang.payment_card')</p>
-                        </li>
-                        @endif
+
                     </ul>
 
                     <!-- Delivery infomation -->
@@ -137,21 +132,9 @@
 
                     <!-- Information -->
                     <ul class="row check-item infoma exp">
-                        @if(isset($data_delivery))
+                        @if(isset($delivery))
                             <li class="col-sm-3"> <span>@lang('display_lang.select_your_transportation')</span> </li>
-                        @if($data_delivery['delivery']==1)
-                                <li class="col-sm-6"> <span>@lang('display_lang.free_delivery') : 7 - 12 @lang('display_lang.day')</span> </li>
-                                {{--<li class="col-sm-3">--}}
-                                    {{--<h6>Thời gian giao hàng : 7 - 12 @lang('display_lang.day')</h6>--}}
-                                {{--</li>--}}
-                                {{--<li class="col-sm-4">--}}
-                                    {{--<h6>+0 đ</h6>--}}
-                                {{--</li>--}}
-                            @elseif($data_delivery['delivery']==2)
-                            <li class="col-sm-6"> <span>@lang('display_lang.fast_delivery') : 3 - 5 @lang('display_lang.day') ( +30.000 đ )</span> </li>
-                             @elseif($data_delivery['delivery']==3)
-                                <li class="col-sm-6"> <span>@lang('display_lang.expert_delivery') : 24 - 48 @lang('display_lang.hour') ( +60.000 đ )</span> </li>
-                             @endif
+                            <li class="col-sm-6"> <span>{{$delivery['title']}} : {{$delivery['date_info']}} (+ @php echo number_format($delivery['price'],0) @endphp đ )</span> </li>
                         @endif
                     </ul>
 

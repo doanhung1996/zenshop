@@ -18,9 +18,11 @@
                             <input type="text" name="product_name" value="{{$product['product_name']}}" id="product-name">
                             <label for="product-code">Mã sản phẩm (Product Code)</label>
                             <input type="text" name="product_code" value="{{$product['product_code']}}" id="product-code">
-                            <label for="price">Giá sản phẩm</label>
+                            <label for="price">Giá nhập (Product Purchase)</label>
+                            <input type="text" value="{{$product['product_purchase']}}" name="product_purchase" id="product_purchase">
+                            <label for="price">Giá (Price)</label>
                             <input type="text" value="{{$product['price']}}" name="price" id="price">
-                            <label for="price">Giảm giá</label>
+                            <label for="price">Giảm giá (Product Discount)</label>
                             <input type="text" value="{{$product['product_discount']}}" name="product_discount" id="price">
                             <label for="desc">Mô tả ngắn</label>
                             <textarea name="description" id="editor">{{$product['description']}}</textarea>
@@ -40,8 +42,8 @@
                             </select>
                             <label>Trạng thái</label>
                             <select name="status">
-                                <option value="-1">Chờ duyệt</option>
-                                <option value="1">Đã đăng</option>
+                                <option value="-1" @if(old('status')=='-1') selected @endif {{$product['status']=='-1' ? 'selected' : ""}}>Chờ duyệt</option>
+                                <option value="1" @if(old('status')=='1') selected @endif  {{$product['status']=='1' ? 'selected' : ""}}>Đã đăng</option>
                             </select>
                             <button type="submit" name="btn-submit" id="btn-submit">Thêm mới</button>
                         </form>

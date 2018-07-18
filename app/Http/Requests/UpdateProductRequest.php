@@ -26,10 +26,11 @@ class UpdateProductRequest extends FormRequest
         return [
             'product_name'=>'required',
             'product_code'=>'required',
-            'price'=>'numeric',
+            'price'=>'required|numeric',
+            'product_purchase'=>'required|numeric',
             'description'=>'required',
             'detail'=>'required',
-            'fileUpload'=>'required',
+//            'fileUpload'=>'required',
             'product_cat_id'=>'required',
             'status'=>'required',
             'product_discount'=>'numeric|min:0|max:100'

@@ -6,8 +6,10 @@ use App\Models\Admin\Post_cat;
 use App\Models\Admin\Product_cat;
 use Cache;
 use Cart;
+use Hash;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
+use Validator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -39,6 +41,11 @@ class AppServiceProvider extends ServiceProvider
             $total =  Cart::total(0);
             $data_cart=Cart::content()->take(2);
             $view->with(['qty'=>$qty,'total'=>$total,'data_cart'=>$data_cart,'data_cart_count'=>$data_cart_count]);
+        });
+        Validator::extend('old_password', function ($attribute, $value, $parameters, $validator) {
+
+            return Hash::check($value, current($parameters));
+
         });
     }
 

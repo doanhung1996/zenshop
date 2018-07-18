@@ -9,6 +9,7 @@ use App\Http\Requests\CofirmSuccessRequest;
 use App\Http\Requests\ConfirmRequestCart;
 use App\Models\Admin\Customer;
 use App\Models\Admin\Delivery;
+use App\Models\Admin\Method_delivery;
 use App\Models\Admin\Order;
 use App\Models\Admin\Order_detail;
 use App\Models\Admin\Product;
@@ -80,8 +81,12 @@ class CartController extends Controller
      */
     public function delivery()
     {
-       $provincial=Provincial::get_provincial();
-        return view('display.cart.delivery_cart',compact('provincial'));
+        if (Cart::count()<1){
+            return redirect()->route('home');
+        }
+        $provincial=Provincial::get_provincial();
+        $delivery=Method_delivery::where('status','1')->get();
+        return view('display.cart.delivery_cart',compact('provincial','delivery'));
     }
 
     /**
@@ -92,34 +97,24 @@ class CartController extends Controller
      */
     public function add_delivery(AddDeliveryCartRequest $request)
     {
-         $data_delivery=[
+        $data_delivery=[
                 'name'      =>$request->name,
                 'phone'     =>$request->phone,
                 'provincial'=> $request->provincial,
                 'city'      =>$request->city,
                 'address'   =>$request->address,
                 'email'     =>$request->email,
-                'delivery'  =>base64_decode($request->delivery),
-                'pay'       =>base64_decode($request->pay),
+                'delivery'  =>$request->delivery,
+                'pay'       =>$request->pay,
         ];
          $cart=Cart::content();
          $qty = Cart::count();
          $total = Cart::total(0);
          $total_change=(int)str_replace(',','',$total);
-         if($data_delivery['delivery']==1){
-             $total_all = number_format($total_change,0);
-         }elseif ($data_delivery['delivery']==2){
-             $total_all = number_format($total_change + 30000,0);
-         }elseif ($data_delivery['delivery']==3){
-             $total_all = number_format($total_change + 60000,0);
-         }
-         return view('display.cart.confirm',compact('cart','qty','total','total_all','data_delivery'));
-//        session()->push('delivery',$data_delivery);
-//        Session::put('delivery',$data_delivery);
-//        $value = Session::all();
-//        echo '<pre>';
-//        print_r($value); die;
-//        Delivery::create($data_delivery);
+         $price_ship=Method_delivery::whereId($request->delivery)->first()->price;
+         $total_all = number_format($total_change + $price_ship,0);
+        $delivery=Method_delivery::whereId($request->delivery)->first();
+        return view('display.cart.confirm',compact('cart','qty','total','total_all','data_delivery','delivery'));
     }
 
     /**
@@ -135,8 +130,7 @@ class CartController extends Controller
         foreach ($provincial as $k => $v){
             if(($v['name']==$provincial_name)){
                 foreach ($v['cities']  as $k_city => $v_city) {
-//                   $city[$v['cities'][$k_city]]=$v['cities'][$k_city];
-                     echo "<option value='" . $v['cities'][$k_city] . "'>" . $v['cities'][$k_city] . "</option>";
+                    echo '<option value="'.$v['cities'][$k_city].'" '.((old('city')==$v['cities'][$k_city])?'selected':"").'>'.$v['cities'][$k_city].'</option>';
                 }
             }
         }
@@ -154,7 +148,7 @@ class CartController extends Controller
         $product_id=$request->product_id;
         $qty=$request->qty;
         $product=Product::whereId($product_id)->first();
-        $new_cart = Cart::add("$product->id","$product->product_name","$qty",$product->price);
+        $new_cart =Cart::add("$product->id","$product->product_name","$qty",$product->price);
         $new_cart->associate('App\Models\Admin\Product');
         return redirect()->route('cart.detail');
     }
@@ -198,25 +192,12 @@ class CartController extends Controller
         $total_qty = Cart::count();
         $total = Cart::total(0);
         $total_change=(int)str_replace(',','',$total);
-        if($request->delivery==1){
-            $total_sale = (int)$total_change;
-            $delivery='Miễn Phí Vận Chuyển 7 - 12 Ngày';
-            $date=7;
-        }elseif ($request->delivery==2){
-            $total_sale = (int) ($total_change + 30000);
-            $delivery='Chuyển Phát Nhanh 3 - 5 Ngày ( +30.000 đ )';
-            $date=3;
-        }elseif ($request->delivery==3){
-            $total_sale = (int)($total_change + 60000);
-            $delivery='Nhanh Chóng 24 - 48 Giờ ( +60.000 đ )';
-            $date=1;
-        }
-//        return $total_cost;
-        if ($request->pay == 1){
-            $pay='Tại Nhà';
-        }elseif ($request->pay==2){
-            $pay='Chuyển Khoản';
-        }
+        $method_delivery=Method_delivery::whereId($request->delivery)->first();
+             $total_sale = (int)$total_change+$method_delivery['price'];
+             $delivery=$method_delivery['title'].' '.$method_delivery['date_info'];
+             $date=$method_delivery['date'];
+        $pay=$request->pay;
+
         $order_date=date('d/m/Y - H:i:s',strtotime('now'));
         $date_transport=date('d/m/Y - H:i:s',strtotime("now + $date days"));
         $order_code = 'HD'.strtoupper(str_random(16));
@@ -257,6 +238,7 @@ class CartController extends Controller
                     'subtotal'    =>$v->subtotal,
                     'profit'      =>$profit,
                     'order_code'  =>$order_code,
+                    'image'       =>$v->model->image,
                 ];
                 $order_detail_insert=Order_detail::create($order_detail);
                 if ($order_detail_insert==false){
@@ -266,12 +248,11 @@ class CartController extends Controller
         }else{
             return redirect()->route('home');
         }
-        $customer_insert;
-        $cart_content;
-        $total_sale;
-        $total_qty;
-
-        event(new CartSuccess($customer_insert, $cart_content, $total_sale, $total_qty));
+//        return $customer_insert;
+//        return $cart_content;
+//        return $total_sale;
+//        $total_qty;
+        event(new CartSuccess($customer_insert, $cart_content, $total_sale, $total_qty,$order_date,$date_transport));
         Cart::destroy();
         return redirect()->route('cart.confirm_sc');
     }
@@ -284,6 +265,9 @@ class CartController extends Controller
      */
     public function confirm()
     {
+        if (Cart::count()<1){
+            return redirect()->route('home');
+        }
         return view('display.cart.confirm');
     }
 

@@ -2424,6 +2424,7 @@ section {
 .login-sec .btn-round {
 	border: none;
 	margin-top: 10px;
+	margin-left: 96px;
 }
 .login-sec .checkbox {
 	margin: 0px;
@@ -3302,7 +3303,7 @@ footer .social p a {
 ========================================================*/
 .order-success {
 	max-width: 550px;
-	margin: 120px auto;
+	margin: 50px auto;
 	text-align: center;
 }
 .order-success .btn-round {

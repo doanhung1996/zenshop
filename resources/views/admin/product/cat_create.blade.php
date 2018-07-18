@@ -15,12 +15,12 @@
                     <form method="POST" action="{{route('product.cat.store')}}">
                         @csrf
                         <label for="title">Tiêu đề</label>
-                        <input type="text" name="title" id="title">
+                        <input type="text" name="title" value="{{old('title')}}" id="title">
                         <label>Danh mục cha</label>
                         <select name="parent_id">
                             <option value="0">-- Danh mục cha --</option>
                             @foreach($parent_id as $parent)
-                            <option value="{{$parent->id}}">{{$parent->title}}</option>
+                            <option value="{{$parent->id}}" {{old('parent_id')==$parent->id ? 'selected' :""}}>{{$parent->title}}</option>
                             @endforeach
                         </select>
                         <button type="submit" name="btn-submit" id="btn-submit">Cập nhật</button>

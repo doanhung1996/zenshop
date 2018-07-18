@@ -21,12 +21,32 @@ class PostController extends Controller
      */
     public function index()
     {
-        $post=Post::latest()->with(['user','post_cat'])->withCount('user')->paginate(5);
+        if(request()->has('status')){
+            $status=request()->status;
+            $post=Post::latest()->where('status',$status)->with(['user','post_cat'])->withCount('user')->paginate(8);
+//            $query->where('status',$status);
+        }else{
+            $post=Post::latest()->with(['user','post_cat'])->withCount('user')->paginate(8);
+        }
         $post_all= Post::all()->count();
         $post_active=Post::where('status','1')->get()->count();
         $post_pending=Post::where('status','-1')->count();
         return view('admin.post.post',compact('post','post_all','post_active','post_pending'));
     }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+//    public function post_get_status($status)
+//    {
+//        $post=Post::latest()->with(['user','post_cat'])->withCount('user')->where('status',$status)->paginate(8);
+//        $post_all= Post::all()->count();
+//        $post_active=Post::where('status','1')->get()->count();
+//        $post_pending=Post::where('status','-1')->count();
+//        return view('admin.post.post',compact('post','post_all','post_active','post_pending'));
+//    }
 
     /**
      * Show the form for creating a new resource.
@@ -134,14 +154,17 @@ class PostController extends Controller
     public  function search(SearchPostRequest $request){
         $value=$request->value;
         $search=$request->search;
-        $post=Post::with(['user'=>function($user) use($value){
-            $user->orwhere('name','like',"%$value%");
-        },'post_cat'=>function($post_cat)use($value){
-            $post_cat->orwhere('title','like',"%$value%");
-        }])->orwhere('title','like',"%$value%")->paginate(5);
+        $post=Post::orwhereHas('user',function($user) use($value){
+            $user->where('name','like',"%$value%");
+        })->orwhereHas('post_cat',function($post_cat) use($value){
+            $post_cat->where('title','like',"%$value%");
+        })->orwhere('title','like',"%$value%")->paginate(8);
         $post->withPath("?value="."$value"."&search="."$search");
-        $post_all=count($post);
-        return view('admin.post.search_post',compact('post','value','search','post_all'));
+        $post_count=count($post);
+        $post_all=Post::count();
+        $post_active=Post::where('status','1')->get()->count();
+        $post_pending=Post::where('status','-1')->count();
+        return view('admin.post.post',compact('post','value','post_count','post_active','post_pending','post_all'));
     }
     /**
      * Remove the specified resource from storage.

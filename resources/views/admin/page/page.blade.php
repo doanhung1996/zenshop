@@ -15,12 +15,18 @@
                 <div class="section-detail">
                     <div class="filter-wp clearfix">
                         <ul class="post-status fl-left">
-                            <li class="all"><a href="">Tất cả <span class="count">{{$pages_all}}</span></a> |</li>
-                            <li class="publish"><a href="">Đã đăng <span class="count">{{$pages_active}}</span></a> |</li>
-                            <li class="pending"><a href="">Đang Chờ <span class="count">{{$pages_pending}}</span></a></li>
+                            @if(isset($pages_count))
+                                <li class="all"><a href="">Tìm thấy <span class="count"> ({{$pages_count}})</span></a> |</li>
+                                <li class="all"><a href="{{route('page.list')}}">Tất cả <span class="count"> ({{$pages_all}})</span></a> </li>
+                            @else
+                                <li class="all"><a href="{{route('page.list')}}">Tất cả <span class="count">{{$pages_all}}</span></a> |</li>
+                                <li class="publish"><a href="{{url('admin/page?status=1')}}">Đã đăng <span class="count">{{$pages_active}}</span></a> |</li>
+                                <li class="pending"><a href="{{url('admin/page?status=-1')}}">Đang Chờ <span class="count">{{$pages_pending}}</span></a></li>
+                                @endif
+
                         </ul>
                         <form method="GET" action="{{route('page.search')}}" class="form-s fl-right">
-                            <input type="text" name="value" id="s">
+                            <input type="text" name="value" value="{{old('value')}}" id="s">
                             <input type="submit" name="search" value="Tìm kiếm">
                         </form>
                     </div>
@@ -59,17 +65,16 @@
                                             <a href="" title="">{{ $page->title }}</a>
                                         </div>
                                         <ul class="list-operation fl-right">
-                                            <li><a href="{{url("admin/page/update/$page->id.html" )}}" title="Sửa" class="edit"><i class="fa fa-pencil" aria-hidden="true"></i></a></li>
+                                            <li><a href="{{route('page.edit',$page->id)}}" title="Sửa" class="edit"><i class="fa fa-pencil" aria-hidden="true"></i></a></li>
                                         </ul>
                                     </td>
                                     <td><span class="tbody-text">@php echo substr($page->slug,0,13); @endphp...</span></td>
-                                    <td><span class="tbody-text">
+                                    <td>
                                             @if ($page->status == '1')
-                                                Đã Đăng
-                                            @else
-                                                Đang Chờ
-                                            @endif
-                                        </span>
+                                            <span class="tbody-text" style="color: red;">Đã Đăng</span>
+                                        @else
+                                            <span class="tbody-text" style="color: #0f9a87">Đang chờ</span>
+                                        @endif
                                     </td>
                                     <td><span class="tbody-text">{{ $page->name }}</span></td>
                                     <td><span class="tbody-text">@php echo date('d/m/Y - H:i:s',strtotime($page->created_at)); @endphp</span></td>

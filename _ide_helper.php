@@ -15496,7 +15496,11 @@ namespace  {
 
     class Response extends \Illuminate\Support\Facades\Response {}
 
-    class Route extends \Illuminate\Support\Facades\Route {}
+    class Route extends \Illuminate\Support\Facades\Route {
+        public static function middleware($array)
+        {
+        }
+    }
 
     class Schema extends \Illuminate\Support\Facades\Schema {}
 

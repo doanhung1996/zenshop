@@ -13,12 +13,12 @@
             <div id="content" class="fl-right">
                 <div class="section" id="detail-page">
                     <div class="section-detail">
-                        <form method="POST" action="{{url("admin/page/update/$pages->id.html" )}}">
+                        <form method="POST" action="{{route('page.update',$pages->id)}}">
                             @csrf
                             <label for="title">Tiêu Đề ( Title)</label>
                             <input type="text" name="title" id="title" value="{{$pages->title}}">
                             <label for="content">Nội Dung (Content Page)</label>
-                            <textarea name="content_page" class="ckeditor" id="editor">
+                            <textarea name="content_page" value="{{$pages->content_page}}" class="ckeditor" id="editor">
                                 {{$pages->content_page}}
                             </textarea>
                             <button type="submit" id="btn-submit">Cập nhật</button>

@@ -35,6 +35,8 @@ class User extends Authenticatable
 {
     use Notifiable;
     CONST ADMIN = 'admin';
+    CONST ACTIVE = 'active';
+    CONST PENDING = 'pending';
     CONST CUSTOMER = 'customer';
     /**
      * The attributes that are mass assignable.
@@ -42,7 +44,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'verified'
+        'name', 'email', 'password', 'verified','phone','address','gender','image'
     ];
 
     /**
@@ -66,6 +68,10 @@ class User extends Authenticatable
     public function isAdmin()
     {
         return $this->account == User::ADMIN;
+    }
+    public function isVerified()
+    {
+        return $this->verified == User::ACTIVE;
     }
 
     public function pages()

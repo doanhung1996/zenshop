@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers\Admin\Cart;
 
+use App\Http\Requests\DeleteCustomerRequest;
+use App\Http\Requests\SearchCustomerRequest;
+use App\Models\Admin\Customer;
+use App\Models\Admin\Order;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -14,7 +18,37 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        return view('admin.cart.customer');
+        $customer=Customer::latest()->paginate(8);
+        $customer_all=Customer::count();
+        return view('admin.cart.customer',compact('customer','customer_all'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function delete(DeleteCustomerRequest $request)
+    {
+        $actions=$request->actions;
+        $checkItem=$request->checkItem;
+        if ($actions == 'delete'){
+            foreach ($checkItem as $k =>$v){
+                $check_order=Order::where('customer_id',$v)->get();
+                if (count($check_order)>0){
+                    session()->flash('success_status', 'Chưa Xóa Đơn Hàng !');
+                }else{
+                    $delete=Customer::where('id', $v)->delete();
+                    if($delete){
+                        session()->flash('success_status', 'Xóa thành công !');
+                    }
+                }
+            }
+        }
+        return back();
+//        $customer=Customer::latest()->paginate(8);
+//        $customer_all=Customer::count();
+//        return view('admin.cart.customer',compact('customer','customer_all'));
     }
 
     /**
@@ -23,14 +57,38 @@ class CustomerController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function customer_detail()
-    {
-        return view('admin.cart.customer_detail');
-    }
-
     public function create()
     {
         //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function search(SearchCustomerRequest $request)
+    {
+        $value=$request->value;
+        $search=$request->search;
+        $customer=Customer::orwhere('fullname','like',"%$value%")
+            ->orWhere('email','like',"%$value%")
+            ->orWhere('phone','like',"%$value%")
+            ->orWhere('address','like',"%$value%")
+            ->orWhere('city','like',"%$value%")
+            ->orWhere('province','like',"%$value%")
+            ->paginate(8);
+        $customer_count=Customer::orwhere('fullname','like',"%$value%")
+            ->orWhere('email','like',"%$value%")
+            ->orWhere('phone','like',"%$value%")
+            ->orWhere('address','like',"%$value%")
+            ->orWhere('city','like',"%$value%")
+            ->orWhere('province','like',"%$value%")
+            ->count();
+        $customer->withPath("?value="."$value"."&search="."$search");
+        $customer_all=Customer::count();
+        return view('admin.cart.customer',compact('customer','customer_count','customer_all'));
     }
 
     /**

@@ -23,7 +23,7 @@ class CreateOrderDetailsTable extends Migration
             $table->integer('subtotal');
             $table->integer('profit');
             $table->text('order_code');
-            $table->enum('status', ['-1','1']);
+            $table->enum('status', ['-1','1','2','3']);
             $table->timestamps();
         });
     }

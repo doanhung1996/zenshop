@@ -19,17 +19,21 @@ class CartSuccess
     public $cart_content;
     public $total_sale;
     public $total_qty;
+    public $order_date;
+    public $date_transport;
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(Customer $customer_insert, $cart_content, $total_sale, $total_qty)
+    public function __construct(Customer $customer_insert, $cart_content, $total_sale, $total_qty,$order_date,$date_transport)
     {
         $this->customer_insert=$customer_insert;
         $this->cart_content=$cart_content;
         $this->total_sale=$total_sale;
         $this->total_qty=$total_qty;
+        $this->order_date=$order_date;
+        $this->date_transport=$date_transport;
 
     }
 

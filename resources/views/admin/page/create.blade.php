@@ -18,7 +18,7 @@
                         <label for="title">Tiêu Đề ( Title)</label>
                         <input type="text" name="title" id="title" value="{{ old('title') }}">
                         <label for="content">Nội Dung (Content Page)</label>
-                        <textarea name="content_page" class="ckeditor" id="editor" value="{{ old('content_page') }}"></textarea>
+                        <textarea name="content_page" class="ckeditor" id="editor" value="{{ old('content_page') }}">{{ old('content_page') }}</textarea>
                         <button type="submit" id="btn-submit">Thêm Mới</button>
                     </form>
                 </div>

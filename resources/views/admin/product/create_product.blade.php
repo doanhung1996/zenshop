@@ -15,17 +15,19 @@
                     <form method="POST" action="{{route('product.store')}}" enctype="multipart/form-data">
                         @csrf
                         <label for="product-name">Tên sản phẩm (Product Name)</label>
-                        <input type="text" name="product_name" id="product-name">
+                        <input type="text" name="product_name" value="{{old('product_name')}}" id="product-name">
                         <label for="product-code">Mã sản phẩm (Product Code)</label>
-                        <input type="text" name="product_code" id="product-code">
-                        <label for="price">Giá sản phẩm</label>
-                        <input type="text" name="price" id="price">
-                        <label for="price">Giảm giá</label>
-                        <input type="text" name="product_discount" id="price">
+                        <input type="text" name="product_code" value="{{old('product_code')}}" id="product-code">
+                        <label for="product_purchase">Giá Nhập (Product Purchase)</label>
+                        <input type="text" name="product_purchase" value="{{old('product_purchase')}}" id="product_purchase">
+                        <label for="price">Giá (Price)</label>
+                        <input type="text" name="price" value="{{old('price')}}" id="price">
+                        <label for="price">Giảm giá (Product Discount %)</label>
+                        <input type="text" name="product_discount" value="{{old('product_discount')}}" id="price">
                         <label for="desc">Mô tả ngắn</label>
-                        <textarea name="description" id="editor"></textarea>
+                        <textarea name="description" id="editor" value="{{old('description')}}"></textarea>
                         <label for="desc">Chi tiết</label>
-                        <textarea name="detail" id="editor1"></textarea>
+                        <textarea name="detail" id="editor1" value="{{old('description')}}"></textarea>
                         <label>Hình ảnh</label>
                         <div id="uploadFile">
                             <img id="blah" src="{{asset('admin/public/images/img-thumb.png')}}" alt="your image" width="400" height="400" />
@@ -35,13 +37,13 @@
                         <select name="product_cat_id">
                         <option value="">-- Chọn danh mục --</option>
                             @foreach($parent_id as $item)
-                                <option value="{{$item->id}}">{{$item->title}}</option>
+                                <option value="{{$item->id}}" {{old('product_cat_id')==$item->id ? 'selected':""}}>{{$item->title}}</option>
                             @endforeach
                         </select>
                         <label>Trạng thái</label>
                         <select name="status">
-                            <option value="-1">Chờ duyệt</option>
-                            <option value="1">Đã đăng</option>
+                            <option value="-1" @if(old('status')==-1) selected @endif>Chờ duyệt</option>
+                            <option value="1" @if(old('status')==1) selected @endif>Đã đăng</option>
                         </select>
                         <button type="submit" name="btn-submit" id="btn-submit">Thêm mới</button>
                     </form>

@@ -77,7 +77,7 @@
                                                 <select onchange="get_city(this)" class="selectpicker" name="provincial">
                                                     <option value="">@lang('display_lang.select_provincial')</option>
                                                     @foreach($provincial as $k_provincial => $v_provincial)
-                                                    <option value="{{$v_provincial['name']}}">{{$v_provincial['name']}}</option>
+                                                    <option value="{{$v_provincial['name']}}" @if(old('provincial')==$v_provincial['name']) selected @endif>{{$v_provincial['name']}}</option>
                                                     @endforeach
                                                 </select>
                                                 <span style="color: red;">@php if($errors->has('provincial'))echo $errors->first('provincial');@endphp</span>
@@ -115,19 +115,19 @@
 
                                     <div class="col-sm-6"style=" margin-top: 20px; !important;">
                                             <label> @lang('display_lang.select_your_transportation') </label>
-                                            <select class="selectpicker" name="delivery">
-                                                <option value="@php echo base64_encode(1); @endphp">@lang('display_lang.free_delivery')</option>
-                                                <option value="@php echo base64_encode(2); @endphp">@lang('display_lang.fast_delivery')</option>
-                                                <option value="@php echo base64_encode(3); @endphp">@lang('display_lang.rapid_fire')</option>
+                                            <select class="selectpicker" id="delivery_2" name="delivery">
+                                                @foreach($delivery as $item_delivery_cart)
+                                                <option value="{{$item_delivery_cart->id}}" @if(old('delivery')==$item_delivery_cart->id) selected @endif>{{$item_delivery_cart->title}}</option>
+                                                @endforeach
                                             </select>
                                         <span style="color: red;">@php if($errors->has('delivery'))echo $errors->first('delivery');@endphp</span>
                                     </div>
                                     <div class="col-sm-6"style=" margin-top: 20px; !important;">
-                                            <label> @lang('display_lang.payment_methods') </label>
-                                            <select class="selectpicker" name="pay">
-                                                <option value="@php echo base64_encode(1); @endphp">@lang('display_lang.home_payment')</option>
-                                                <option value="@php echo base64_encode(2); @endphp">@lang('display_lang.payment_card')</option>
-                                            </select>
+                                        <label> @lang('display_lang.payment_methods') </label>
+                                        <select class="selectpicker" name="pay" id="pay">
+                                            <option value="Thanh toán tại nhà" @if(old('pay')=='Thanh toán tại nhà') selected @endif>@lang('display_lang.home_payment')</option>
+                                            <option value="Thông qua chuyển khoản" @if(old('pay')=='Thông qua chuyển khoản') selected @endif>@lang('display_lang.payment_card')</option>
+                                        </select>
                                         <span style="color: red;">@php if($errors->has('pay'))echo $errors->first('pay');@endphp</span>
                                     </div>
                                 </div>
