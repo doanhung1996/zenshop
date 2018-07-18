@@ -44,6 +44,7 @@
             <section class="shopping-cart padding-bottom-60">
                 {{--<form action="{{route('cart.update')}}" method="POST">--}}
                     {{--@csrf--}}
+                @if(count($data_cart)>0)
                     <div class="container" id="content_cart">
                     <table class="table list-table-wp">
                         <thead>
@@ -104,6 +105,12 @@
                         <a href="{{route('cart.delivery')}}" class="btn-round">@lang('display_lang.delivery_methods')</a>
                     </div>
                 </div>
+                @else
+                    <div class="pro-btn">
+                        <h6>@lang('display_lang.cart_no_value')</h6>
+                        <a href="{{route('home')}}" class="btn-round btn-light">@lang('display_lang.continue_shopping')</a>
+                    </div>
+                @endif
                 {{--</form>--}}
             </section>
             <!-- Clients img -->

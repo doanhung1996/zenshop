@@ -29,7 +29,7 @@ class CreateOrdersTable extends Migration
             $table->string('order_date');
             $table->string('date_transport');
             $table->integer('customer_id');
-            $table->enum('status', ['-1','1']);
+            $table->enum('status', ['-1','1','2','3']);
             $table->timestamps();
         });
     }

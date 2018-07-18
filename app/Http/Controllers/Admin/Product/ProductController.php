@@ -21,12 +21,37 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $product=Product::latest()->with(['user','product_cat'])->paginate(5);
+        if(request()->has('status')){
+            $status=request()->status;
+             $product=Product::latest()->where('status',$status)->with(['user','product_cat'])->where('status',$status)->paginate(5);
+        }else{
+            $product=Product::latest()->with(['user','product_cat'])->paginate(5);
+        }
         $product_all=Product::all()->count();
         $product_active=Product::where('status','1')->count();
         $product_pending=Product::where('status','-1')->count();
         return view('admin.product.product',compact('product','product_all','product_active','product_pending'));
     }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+//    public function product_get_status($status)
+//    {
+//        if(request()->has('status')){
+//            $status=request()->status;
+//            return $product=Product::latest()->where('status',$status)->with(['user','product_cat'])->where('status',$status)->paginate(5);
+////            $query->where('status',$status);
+//        }else{
+//            $product=Product::latest()->with(['user','product_cat'])->where('status',$status)->paginate(5);
+//        }
+//        $product_all=Product::all()->count();
+//        $product_active=Product::where('status','1')->count();
+//        $product_pending=Product::where('status','-1')->count();
+//        return view('admin.product.product',compact('product','product_all','product_active','product_pending'));
+//    }
 
     /**
      * Show the form for creating a new resource.
@@ -111,20 +136,30 @@ class ProductController extends Controller
      public function search(SearchProductRequest $request){
          $value=$request->value;
          $search=$request->search;
-         $product=Product::with(['user'=>function($user) use($value){
-             $user->orwhere('name','like',"%$value%");
-         },'product_cat'=>function($product_cat)use($value){
-             $product_cat->orwhere('title','like',"%$value%");
-         }])->orwhere('product_name','like',"%$value%")->paginate(5);
+//         Slider::whereHas('user',function($user) use($value){
+//             $user->where('name','like',"%$value%");
+//         })
+        $product=Product::orwhereHas('user',function($user) use($value){
+             $user->where('name','like',"%$value%");
+         })->orwhereHas('product_cat',function($product_cat) use($value){
+             $product_cat->where('title','like',"%$value%");
+         })->orwhere('product_name','like',"%$value%")
+             ->orwhere('product_code','like',"%$value%")
+             ->paginate(5);
          $product->withPath("?value="."$value"."&search="."$search");
 
-         $product_count=Product::with(['user'=>function($user) use ($value){
-             $user->orwhere('name','like',"%$value");
-         },'product_cat'=>function($product_cat)use($value){
-             $product_cat->orwhere('title','like',"%$value%");
-         }])->orwhere('product_name','like',"%$value%")->get();
-         $product_all=count($product_count);
-         return view('admin.product.search_product',compact('product','value','search','product_all'));
+         $product_count=Product::whereHas('user',function($user) use($value){
+             $user->where('name','like',"%$value%");
+         })->whereHas('product_cat',function($product_cat) use($value){
+             $product_cat->where('title','like',"%$value%");
+         })->orwhere('product_name','like',"%$value%")
+             ->orwhere('product_code','like',"%$value%")
+             ->get();
+         $product_all=Product::all()->count();
+         $product_count=count($product_count);
+         $product_active=Product::where('status','1')->count();
+         $product_pending=Product::where('status','-1')->count();
+         return view('admin.product.product',compact('product','value','product_all','product_count','product_total','product_active','product_pending'));
      }
     /**
      * Show the form for editing the specified resource.

@@ -29,7 +29,7 @@
                         <select name="post_cat_id">
                             <option value="">-- Chọn danh mục --</option>
                             @foreach($parent_cat as $cat)
-                            <option value="{{$cat->id}}">{{$cat->title}}</option>
+                            <option value="{{$cat->id}}" {{old('post_cat_id')==$cat->id ? 'selected':""}}>{{$cat->title}}</option>
                             @endforeach
                         </select>
                         <button type="submit" name="btn-submit" id="btn-submit">Thêm mới</button>

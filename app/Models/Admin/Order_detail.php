@@ -30,7 +30,7 @@ use Illuminate\Database\Eloquent\Model;
 class Order_detail extends Model
 {
     protected  $table="order_details";
-    protected $fillable=['id','order_id','product_id','name','quantity','price','subtotal','profit','order_code','status'];
+    protected $fillable=['id','order_id','product_id','name','quantity','price','subtotal','profit','order_code','status','image'];
     public function product(){
         return $this->belongsTo('App\Models\Admin\Product','product_id','id');
     }

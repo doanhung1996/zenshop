@@ -27,7 +27,27 @@ class PageController extends Controller
      */
     public function index()
     {
-        $pages= Page::join('users', 'pages.user_id', '=', 'users.id')->select('pages.id as id','pages.title as title','pages.slug as slug','pages.status as status','pages.created_at as created_at','users.name as name')->orderBy('pages.id', 'desc')->paginate(5);
+        if(request()->has('status')){
+            $status=request()->status;
+            $pages= Page::join('users', 'pages.user_id', '=', 'users.id')->where('status',$status)->select('pages.id as id','pages.title as title','pages.slug as slug','pages.status as status','pages.created_at as created_at','users.name as name')->orderBy('pages.id', 'desc')->paginate(5);
+//            $query->where('status',$status);
+        }else{
+            $pages= Page::join('users', 'pages.user_id', '=', 'users.id')->select('pages.id as id','pages.title as title','pages.slug as slug','pages.status as status','pages.created_at as created_at','users.name as name')->orderBy('pages.id', 'desc')->paginate(5);
+        }
+        $pages_all= Page::all()->count();
+        $pages_active=Page::where('status','1')->get()->count();
+        $pages_pending=Page::where('status','-1')->count();
+        return view('admin.page.page',compact('pages','pages_all','pages_active','pages_pending'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function page_get_status($status)
+    {
+        $pages= Page::join('users', 'pages.user_id', '=', 'users.id')->select('pages.id as id','pages.title as title','pages.slug as slug','pages.status as status','pages.created_at as created_at','users.name as name')->where('status',$status)->orderBy('pages.id', 'desc')->paginate(5);
         $pages_all= Page::all()->count();
         $pages_active=Page::where('status','1')->get()->count();
         $pages_pending=Page::where('status','-1')->count();
@@ -116,12 +136,10 @@ class PageController extends Controller
             'slug'=>str_slug($request->title),
             'content_page'=>$request->content_page
         ]);
-        $pages=DB::select('select * from pages where id = :id', ['id' => $id]);
-        $pages=$pages['0'];
         if($update){
             session()->flash('success_update', 'Cập Nhật thành công !');
         }
-        return view('admin.page.update',compact('pages'));
+        return back();
     }
 
     /**
@@ -140,12 +158,15 @@ class PageController extends Controller
             ->orwhere('name','like',"%$value%")
             ->orderBy('pages.id', 'desc')->paginate(5);
         $pages->withPath("?value="."$value"."&search="."$search");
-        $pages_all= Page::join('users', 'pages.user_id', '=', 'users.id')
+        $pages_count= Page::join('users', 'pages.user_id', '=', 'users.id')
             ->select('pages.id as id','pages.title as title','pages.slug as slug','pages.status as status','pages.created_at as created_at','users.name as name')
             ->where('title','like',"%$value%")
             ->orwhere('slug','like',"%$value%")
             ->orwhere('name','like',"%$value%")->count();
-        return view('admin.page.search',compact('pages','pages_all','value'));
+        $pages_all= Page::all()->count();
+        $pages_active=Page::where('status','1')->get()->count();
+        $pages_pending=Page::where('status','-1')->count();
+        return view('admin.page.page',compact('pages','pages_all','pages_count','pages_active','pages_pending','value'));
     }
     public function destroy($id)
     {

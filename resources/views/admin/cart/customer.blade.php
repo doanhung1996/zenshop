@@ -3,7 +3,8 @@
 <div id="main-content-wp" class="list-product-page">
     <div class="section" id="title-page">
         <div class="clearfix">
-            <h3 id="index" class="fl-left">Đơn hàng</h3>
+            <a href="http://localhost/zenshop/public" title="Zenshop" id="add-new" class="fl-left">Zenshop</a>
+            <h3 id="index" class="fl-left">Thông Tin Khách Hàng</h3>
         </div>
     </div>
     <div class="wrap clearfix">
@@ -13,26 +14,25 @@
                 <div class="section-detail">
                     <div class="filter-wp clearfix">
                         <ul class="post-status fl-left">
-                            <li class="all"><a href="">Tất cả <span class="count">(69)</span></a> |</li>
-                            <li class="publish"><a href="">Đã đăng <span class="count">(51)</span></a> |</li>
-                            <li class="pending"><a href="">Chờ xét duyệt<span class="count">(0)</span></a></li>
-                            <li class="pending"><a href="">Thùng rác<span class="count">(0)</span></a></li>
+                            @if(isset($customer_count))
+                                <li class="all"><a href="">Tìm thấy<span class="count">({{$customer_count}})</span></a></li>
+                            @endif
+                            <li class="all"><a href="{{route('customer')}}">Tất cả <span class="count">({{$customer_all}})</span></a></li>
                         </ul>
-                        <form method="GET" class="form-s fl-right">
-                            <input type="text" name="s" id="s">
-                            <input type="submit" name="sm_s" value="Tìm kiếm">
+                        <form method="GET" action="{{route('customer.search')}}" class="form-s fl-right">
+                            @csrf
+                            <input type="text" name="value" id="s">
+                            <input type="submit" name="search" value="search">
                         </form>
                     </div>
+                    <form method="POST" action="{{route('customer.delete')}}" class="form-actions">
+                        @csrf
                     <div class="actions">
-                        <form method="GET" action="" class="form-actions">
                             <select name="actions">
-                                <option value="0">Tác vụ</option>
-                                <option value="1">Công khai</option>
-                                <option value="1">Chờ duyệt</option>
-                                <option value="2">Bỏ vào thủng rác</option>
+                                <option value="">Tác vụ</option>
+                                <option value="delete" @if(old('actions')=='delete') selected @endif>Xóa</option>
                             </select>
                             <input type="submit" name="sm_action" value="Áp dụng">
-                        </form>
                     </div>
                     <div class="table-responsive">
                         <table class="table list-table-wp">
@@ -40,76 +40,79 @@
                             <tr>
                                 <td><input type="checkbox" name="checkAll" id="checkAll"></td>
                                 <td><span class="thead-text">STT</span></td>
-                                <td><span class="thead-text">Mã đơn hàng</span></td>
                                 <td><span class="thead-text">Họ và tên</span></td>
-                                <td><span class="thead-text">Số sản phẩm</span></td>
-                                <td><span class="thead-text">Tổng giá</span></td>
-                                <td><span class="thead-text">Trạng thái</span></td>
-                                <td><span class="thead-text">Thời gian</span></td>
-                                <td><span class="thead-text">Chi tiết</span></td>
+                                <td><span class="thead-text">Email</span></td>
+                                <td><span class="thead-text">Số điện thoại</span></td>
+                                <td><span class="thead-text">Địa Chỉ</span></td>
+                                <td><span class="thead-text">Quận Huyện/TP</span></td>
+                                <td><span class="thead-text">Tỉnh</span></td>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td><input type="checkbox" name="checkItem" class="checkItem"></td>
-                                <td><span class="tbody-text"><h3>1</h3></span>
-                                <td><span class="tbody-text"><h3>WEB00001</h3></span>
+                            @php $count=0; @endphp
+                            @foreach($customer as $item_customer)
+                                @php $count++; @endphp
+                                <tr>
+                                <td><input type="checkbox" name="checkItem[]" value="{{$item_customer->id}}" class="checkItem"></td>
+                                <td><span class="tbody-text"><h3>{{$count}}</h3></span>
+                                <td><span class="tbody-text"><h3>{{$item_customer->fullname}}</h3></span>
                                 <td>
                                     <div class="tb-title fl-left">
-                                        <a href="" title="">Phan Văn Cương</a>
+                                        <a href="" title="{{$item_customer->email}}">{{$item_customer->email}}</a>
                                     </div>
-                                    <ul class="list-operation fl-right">
-                                        <li><a href="" title="Sửa" class="edit"><i class="fa fa-pencil" aria-hidden="true"></i></a></li>
-                                        <li><a href="" title="Xóa" class="delete"><i class="fa fa-trash" aria-hidden="true"></i></a></li>
-                                    </ul>
+                                    {{--<ul class="list-operation fl-right">--}}
+                                        {{--<li><a href="" title="Sửa" class="edit"><i class="fa fa-pencil" aria-hidden="true"></i></a></li>--}}
+                                        {{--<li><a href="" title="Xóa" class="delete"><i class="fa fa-trash" aria-hidden="true"></i></a></li>--}}
+                                    {{--</ul>--}}
                                 </td>
-                                <td><span class="tbody-text">5</span></td>
-                                <td><span class="tbody-text">1.500.000 VNĐ</span></td>
-                                <td><span class="tbody-text">Hoạt động</span></td>
-                                <td><span class="tbody-text">12-07-2016</span></td>
-                                <td><a href="{{route('customer.detail')}}" title="" class="tbody-text">Khách Hàng</a></td>
+                                <td><span class="tbody-text">{{$item_customer->phone}}</span></td>
+                                <td><span class="tbody-text">{{$item_customer->address}}</span></td>
+                                <td><span class="tbody-text">{{$item_customer->city}}</span></td>
+                                <td><span class="tbody-text">{{$item_customer->province}}</span></td>
                             </tr>
+                                @endforeach
                             </tbody>
                             <tfoot>
                             <tr>
                                 <td><input type="checkbox" name="checkAll" id="checkAll"></td>
                                 <td><span class="thead-text">STT</span></td>
-                                <td><span class="thead-text">Mã đơn hàng</span></td>
                                 <td><span class="thead-text">Họ và tên</span></td>
-                                <td><span class="thead-text">Số sản phẩm</span></td>
-                                <td><span class="thead-text">Tổng giá</span></td>
-                                <td><span class="thead-text">Trạng thái</span></td>
-                                <td><span class="thead-text">Thời gian</span></td>
-                                <td><span class="thead-text">Chi tiết</span></td>
+                                <td><span class="thead-text">Email</span></td>
+                                <td><span class="thead-text">Số điện thoại</span></td>
+                                <td><span class="thead-text">Địa Chỉ</span></td>
+                                <td><span class="thead-text">Quận Huyện/TP</span></td>
+                                <td><span class="thead-text">Tỉnh</span></td>
                             </tr>
                             </tfoot>
                         </table>
                     </div>
+                    </form>
                 </div>
             </div>
             <div class="section" id="paging-wp">
                 <div class="section-detail clearfix">
-                    <p id="desc" class="fl-left">Chọn vào checkbox để lựa chọn tất cả</p>
-                    <ul id="list-paging" class="fl-right">
-                        <li>
-                            <a href="" title=""><</a>
-                        </li>
-                        <li>
-                            <a href="" title="">1</a>
-                        </li>
-                        <li>
-                            <a href="" title="">2</a>
-                        </li>
-                        <li>
-                            <a href="" title="">3</a>
-                        </li>
-                        <li>
-                            <a href="" title="">></a>
-                        </li>
-                    </ul>
+                    {{ $customer->links() }}
                 </div>
             </div>
         </div>
     </div>
 </div>
-    @endsection('content')
+@if (count($errors) > 0)
+    <div>
+        <ul>
+            @foreach ($errors->all() as $error)
+                <script>
+                    $( document ).ready(function() {
+                        toastr.error("{{$error}}");
+                    });
+                </script>
+            @endforeach
+        </ul>
+    </div>
+@endif
+<script>
+    @if(session()->get('success_status'))
+    toastr.success( "{{ session()->get('success_status') }}",{timeOut: 5000});
+    @endif
+</script>
+@endsection('content')

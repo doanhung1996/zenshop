@@ -36,7 +36,7 @@
         </li>
         <li class="nav-item">
             <a href="" title="" class="nav-link nav-toggle">
-                <span class="fa fa-product-hunt icon"></span>
+                <span class="fa fa-shopping-cartwe"></span>
                 <span class="title">Sản phẩm</span>
             </a>
             <ul class="sub-menu">
@@ -56,7 +56,7 @@
         </li>
         <li class="nav-item">
             <a href="{{route('order')}}" title="" class="nav-link nav-toggle">
-                <span class="fa fa-database icon"></span>
+                <span class="fa fa-shopping-basket"></span>
                 <span class="title">Bán hàng</span>
             </a>
             <ul class="sub-menu">
@@ -65,6 +65,45 @@
                 </li>
                 <li class="nav-item">
                     <a href="{{route('customer')}}" title="" class="nav-link">Danh sách khách hàng</a>
+                </li>
+            </ul>
+        </li>
+        <li class="nav-item">
+            <a href="{{route('slider') }}" title="" class="nav-link nav-toggle">
+                <span class="fa fa-picture-o"></span>
+                <span class="title">Slider</span>
+            </a>
+            <ul class="sub-menu">
+                <li class="nav-item">
+                    <a href="{{route('slider.create') }}" title="" class="nav-link">Thêm slider</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{route('slider') }}" title="" class="nav-link">Danh sách slider</a>
+                </li>
+            </ul>
+        </li>
+        <li class="nav-item">
+            <a href="{{route('delivery') }}" title="" class="nav-link nav-toggle">
+                <span class="fa fa-rocket"></span>
+                <span class="title">Vận Chuyển</span>
+            </a>
+            <ul class="sub-menu">
+                <li class="nav-item">
+                    <a href="{{route('delivery.create') }}" title="" class="nav-link">Thêm Vận Chuyển</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{route('delivery') }}" title="" class="nav-link">Danh sách Vận Chuyển</a>
+                </li>
+            </ul>
+        </li>
+        <li class="nav-item">
+            <a href="{{route('account') }}" title="" class="nav-link nav-toggle">
+                <span class="fa fa-user circle"></span>
+                <span class="title">Quản lý tài khoản</span>
+            </a>
+            <ul class="sub-menu">
+                <li class="nav-item">
+                    <a href="{{route('account') }}" title="" class="nav-link">Danh sách tài khoản</a>
                 </li>
             </ul>
         </li>

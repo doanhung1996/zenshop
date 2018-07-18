@@ -27,7 +27,7 @@ class UpdatePostRequest extends FormRequest
                 'title'=>'required|unique:posts,title,' . $this->post->id,
                 'description'=>'required',
                 'content'=>'required',
-                'fileUpload'=>'required',
+//                'fileUpload'=>'required',
                 'post_cat_id'=>'required'
         ];
     }

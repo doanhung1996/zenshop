@@ -86,12 +86,18 @@ return [
     'total_quantity'=>"Tổng Số Lượng",
     'total_cost'=>"Tổng chi phí",
     'congratulation'=>"Chúc mừng ! Đơn hàng  của Bạn đang được xử lý ",
-    'info'=>"Đơn hàng của bạn đã được gửi đi thành công , Chúng tôi sẽ gọi điện thoại lại cho bạn trong thời gian sớm nhất, Cám ơn bạn !",
+    'info'=>"Đơn hàng của bạn đã được gửi đi thành công , Chúng tôi sẽ liên lạc với bạn trong thời gian sớm nhất, Cám ơn bạn !",
     'return_to_shop'=>"Quay lại Trang Chủ",
+    'cart_no_value'=>"Không Có sản phẩm nào trong giỏ hàng !",
     'confirm'=>"Xác Nhận",
     'order_1'=>"+30.000 đ",
     'order_2'=>"+60.000 đ",
-
-
-
+// ACCOUNT UPDATE
+    'reset_password'=>'Cập nhật mật khẩu',
+    'password_new'=>'Nhập mật khẩu Mới',
+    'confirm_password'=>'Nhập lại mật khẩu',
+    'gender'=>'Giới Tính',
+    'fullname'=>'Họ Và Tên',
+    'update_success'=>'Cập Nhật Thành Công',
+    'update_info'=>'Chúc mừng bạn đã cập nhật thành công thông tin . Mới bạn quay lại trang chủ để tiếp tục mua hàng !',
 ];

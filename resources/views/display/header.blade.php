@@ -17,10 +17,11 @@
                         <li><a class="nav-link" href="{{ route('register') }}">{{ __('Đăng Ký') }}</a></li>
                     @else
                         <li class="nav-link ">
-                            <a style="text-transform: uppercase;">
-                                Tài Khoản: {{ Auth::user()->name }} !
+                            <a style="text-transform: none;">
+                                Chào {{ Auth::user()->name }}
                             </a>
                         </li>
+                        <li><a href="{{route('information.account')}}">Cập Nhật Thông Tin</a></li>
                     <li>
                         <a class="nav-link" href="{{ route('logout') }}"
                            onclick="event.preventDefault();

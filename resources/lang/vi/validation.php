@@ -84,15 +84,15 @@ return [
     'min' => [
         'numeric' => 'Nhập Tối thiểu là :min.',
         'file' => 'Dung lượng tập tin trong trường :attribute phải tối thiểu :min kB.',
-        'string' => 'Nhập Tối thiểu :min ký tự.',
-        'array' => 'Nhập tối thiểu :min phần tử.',
+        'string' => 'Trường :attribute nhập tối thiểu :min ký tự.',
+        'array' => 'Trường :attribute nhập tối thiểu :min phần tử.',
     ],
     'not_in' => 'Giá trị đã chọn trong trường :attribute không hợp lệ.',
     'not_regex' => 'Trường :attribute có định dạng không hợp lệ.',
     'numeric' => 'Trường :attribute phải là một số.',
     'present' => 'Trường :attribute phải được cung cấp.',
     'regex' => 'Trường :attribute có định dạng không hợp lệ.',
-    'required' => 'Không thể để trống.',
+    'required' => 'Trường :attribute Không thể để trống.',
     'required_if' => 'Trường :attribute không được bỏ trống khi trường :other là :value.',
     'required_unless' => 'Trường :attribute không được bỏ trống trừ khi :other là :values.',
     'required_with' => 'Trường :attribute không được bỏ trống khi một trong :values có giá trị.',
@@ -111,6 +111,7 @@ return [
     'unique' => 'Trường :attribute đã tồn tại.',
     'uploaded' => 'Trường :attribute tải lên thất bại.',
     'url' => 'Trường :attribute không giống với định dạng một URL.',
+    'old_password' => 'Trường :attribute nhập không đúng mật khẩu.',
 
     /*
     |--------------------------------------------------------------------------

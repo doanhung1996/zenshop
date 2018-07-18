@@ -21,9 +21,11 @@
     <link rel="stylesheet" href="{{asset('public/css/main.css')}}">
     <link rel="stylesheet" href="{{asset('public/css/style.css')}}">
     <link rel="stylesheet" href="{{asset('public/css/responsive.css')}}">
-    <link rel="stylesheet" href="{{asset('public/rs-plugin/css/test.css')}}" rel="stylesheet" type="text/css"/>
-    <link rel="stylesheet" href="{{asset('public/css/toastr.min.css')}}" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="{{asset('public/rs-plugin/css/test.css')}}"  type="text/css"/>
+    <link rel="stylesheet" href="{{asset('public/css/toastr.min.css')}}"  type="text/css"/>
     <link href="{{asset('public/lightbox-css/lightbox.css')}}" rel="stylesheet" type="text/css"/>
+    <link href="{{asset('public/select2/select2.min.css')}}" rel="stylesheet" type="text/css"/>
+
     <!-- Fonts Online -->
     <link href="https://fonts.googleapis.com/css?family=Lato:100i,300,400,700,900" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
@@ -32,6 +34,8 @@
     <script src="{{asset('public/rs-plugin/js/jquery-3.3.1.js')}}"></script>
     <script src="{{asset('public/lightbox-js/lightbox.js')}}"></script>
     <script src="{{asset('public/js/vendors/modernizr.js')}}"></script>
+    <!-- SELECT2 -->
+    <script src="{{asset('public/select2/select2.min.js')}}"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

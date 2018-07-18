@@ -14,9 +14,15 @@
                 <div class="section-detail">
                     <div class="filter-wp clearfix">
                         <ul class="post-status fl-left">
-                            <li class="all"><a href="">Tất cả <span class="count">{{$post_all}}</span></a> |</li>
-                            <li class="publish"><a href="">Đã đăng <span class="count">{{$post_active}}</span></a> |</li>
-                            <li class="pending"><a href="">Chờ xét duyệt <span class="count">{{$post_pending}}</span></a></li>
+                            @if(isset($post_count))
+                                <li class="all"><a href="">Tìm thấy <span class="count">{{$post_count}}</span></a> |</li>
+                                <li class="all"><a href="{{route('post.index')}}">Tất cả <span class="count">{{$post_all}}</span></a> |</li>
+                            @else
+                                <li class="all"><a href="{{route('post.index')}}">Tất cả <span class="count">{{$post_all}}</span></a> |</li>
+                                <li class="publish"><a href="{{url('admin/post?status=1')}}">Đã đăng <span class="count">{{$post_active}}</span></a> |</li>
+                                <li class="pending"><a href="{{url('admin/post?status=-1')}}">Chờ xét duyệt <span class="count">{{$post_pending}}</span></a></li>
+                            @endif
+
                         </ul>
                         <form method="GET" action="{{route('post.search')}}" class="form-s fl-right">
                             <input type="text" name="value" id="s">
@@ -62,13 +68,13 @@
                                     </ul>
                                 </td>
                                 <td><span class="tbody-text">{{$item->post_cat->title}}</span></td>
-                                <td><span class="tbody-text">
+                                <td>
                                      @if ($item->status == '1')
-                                            Đã Đăng
+                                        <span class="tbody-text" style="color:red;">Đã Đăng</span>
                                         @else
-                                            Đang Chờ
+                                        <span class="tbody-text" style="color: #0f9a87;">Đang Chờ</span>
                                         @endif
-                                    </span></td>
+                                 </td>
                                 <td><span class="tbody-text">{{$item->user->name}}</span></td>
                                 <td><span class="tbody-text">@php echo date('d/m/Y - H:i:s',strtotime($item->created_at)); @endphp</span></td>
                             </tr>

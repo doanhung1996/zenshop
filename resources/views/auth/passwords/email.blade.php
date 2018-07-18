@@ -22,16 +22,13 @@
                             @endif
                         </li>
                         <li class="col-sm-12 text-left">
-                            <button style="width: 177px;" type="submit" class="btn-round">Gửi Email</button>
-                        </li>
-                        <li>
-                            <div style="margin-left: 15px;">
-                                <a href="{{ route('login.account') }}">
+                            <button style="width: 150px; margin-left: 20px !important;" type="submit" class="btn-round">Gửi Email</button>
+                            <div  class="btn-round" style="margin-left: 0px !important;    ">
+                                <a style="color: #ffffff;" href="{{ route('login.account') }}">
                                     {{ __('Quay Lại') }}
                                 </a>
                             </div>
                         </li>
-
                     </ul>
                 </form>
             </div>

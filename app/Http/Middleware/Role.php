@@ -15,7 +15,10 @@ class Role
      */
     public function handle($request, Closure $next)
     {
-        if(!auth()->user()->isAdmin()){
+        if (empty(auth()->user())){
+            return redirect()->route('home');
+        }
+        if(!auth()->user()->isAdmin() || !auth()->user()->isVerified()){
             return redirect()->route('home');
         }
         return $next($request);
