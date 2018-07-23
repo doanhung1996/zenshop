@@ -42,6 +42,7 @@
                                 <td><span class="thead-text">STT</span></td>
                                 <td><span class="thead-text">Họ và tên</span></td>
                                 <td><span class="thead-text">Email</span></td>
+                                <td><span class="thead-text">Tài Khoản</span></td>
                                 <td><span class="thead-text">Số điện thoại</span></td>
                                 <td><span class="thead-text">Địa Chỉ</span></td>
                                 <td><span class="thead-text">Quận Huyện/TP</span></td>
@@ -65,6 +66,7 @@
                                         {{--<li><a href="" title="Xóa" class="delete"><i class="fa fa-trash" aria-hidden="true"></i></a></li>--}}
                                     {{--</ul>--}}
                                 </td>
+                                <td><span class="tbody-text">{{optional($item_customer->user)->name}}</span></td>
                                 <td><span class="tbody-text">{{$item_customer->phone}}</span></td>
                                 <td><span class="tbody-text">{{$item_customer->address}}</span></td>
                                 <td><span class="tbody-text">{{$item_customer->city}}</span></td>
@@ -78,6 +80,7 @@
                                 <td><span class="thead-text">STT</span></td>
                                 <td><span class="thead-text">Họ và tên</span></td>
                                 <td><span class="thead-text">Email</span></td>
+                                <td><span class="thead-text">Tài Khoản</span></td>
                                 <td><span class="thead-text">Số điện thoại</span></td>
                                 <td><span class="thead-text">Địa Chỉ</span></td>
                                 <td><span class="thead-text">Quận Huyện/TP</span></td>

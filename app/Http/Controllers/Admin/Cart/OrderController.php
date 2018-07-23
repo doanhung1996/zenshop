@@ -21,9 +21,9 @@ class OrderController extends Controller
         $status=0;
         if(request()->has('status')){
             $status=request()->status;
-            $order=Order::latest()->where('status',$status)->paginate(8);
+            $order=Order::latest()->with('user')->where('status',$status)->paginate(8);
         }else{
-            $order=Order::latest()->whereNotIn('status',['3'])->paginate(8);
+            $order=Order::latest()->with('user')->whereNotIn('status',['3'])->paginate(8);
         }
         $id=$status;
         $order_all=Order::whereNotIn('status',['3'])->count();
@@ -101,7 +101,7 @@ class OrderController extends Controller
 
     public function order_detail($id=0){
         $order=Order::latest()->whereId($id)->first();
-        $order_detail=Order_detail::latest()->where('order_id',$id)->get();
+        $order_detail=Order_detail::latest()->with('user')->where('order_id',$id)->get();
         $total_profit=Order_detail::where('order_id',$id)->sum('profit');
         if (count($order_detail)<1){
             return redirect()->route('order');
@@ -141,7 +141,9 @@ class OrderController extends Controller
     {
         $value=$request->value;
         $search=$request->search;
-        $order=Order::orwhere('fullname','like',"%$value%")
+        $order=Order::latest()->orwhereHas('user',function($user) use($value){
+            $user->where('name','like',"%$value%");
+        })->orwhere('fullname','like',"%$value%")
             ->orWhere('order_code','like',"%$value%")
             ->orWhere('email','like',"%$value%")
             ->orWhere('phone','like',"%$value%")
@@ -151,7 +153,9 @@ class OrderController extends Controller
             ->orWhere('total_sale','like',"%$value%")
             ->orWhere('total_sale','like',"%$value%")
             ->paginate(8);
-        $order_count=Order::orwhere('fullname','like',"%$value%")
+        $order_count=Order::orwhereHas('user',function($user) use($value){
+            $user->where('name','like',"%$value%");
+        })->orwhere('fullname','like',"%$value%")
             ->orWhere('order_code','like',"%$value%")
             ->orWhere('email','like',"%$value%")
             ->orWhere('phone','like',"%$value%")

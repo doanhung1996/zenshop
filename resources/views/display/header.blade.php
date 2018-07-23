@@ -1,3 +1,4 @@
+{{--{{dd($header_home)}}--}}
 <!-- Page Wrapper -->
 <div id="wrap" class="layout-4 red">
 
@@ -21,7 +22,7 @@
                                 Chào {{ Auth::user()->name }}
                             </a>
                         </li>
-                        <li><a href="{{route('information.account')}}">Cập Nhật Thông Tin</a></li>
+                        <li><a href="{{route('information.account')}}">@lang('display_lang.account_update')</a></li>
                     <li>
                         <a class="nav-link" href="{{ route('logout') }}"
                            onclick="event.preventDefault();
@@ -98,6 +99,10 @@
             </div>
         </div>
         <!-- Nav -->
+        {{--@php--}}
+                {{--echo '<pre>';--}}
+                {{--print_r($header_home);--}}
+                {{--@endphp--}}
         <nav class="navbar ownmenu">
             <div class="container">
                 <!-- Categories -->
@@ -105,12 +110,12 @@
                     <div class="cate-bar-in">
                         <div id="cater" class="collapse">
                             <ul>
-                            @foreach($header_home as $item_header_home)
-                                    <li class="sub-menu"><a href="#."> {{$item_header_home->title}}</a>
+                            @foreach($category_product_header as $item_category_product_header)
+                                    <li class="sub-menu"><a href="{{route('product.category',$item_category_product_header->slug)}}"> {{$item_category_product_header->title}}</a>
                                         <ul>
-                                            @if(count($item_header_home->childs)>0)
-                                                @foreach($item_header_home->childs as $item_childs)
-                                                    <li><a href="{{route('product.display',[$item_header_home->slug,$item_childs->slug])}}"> {{$item_childs->title}}</a>
+                                            @if(count($item_category_product_header->childs)>0)
+                                                @foreach($item_category_product_header->childs as $item_category_product_header_childs)
+                                                    <li><a href="{{route('product.display',[$item_category_product_header->slug,$item_category_product_header_childs->slug])}}"> {{$item_category_product_header_childs->title}}</a></li>
                                                 @endforeach
                                             @endif
                                         </ul>
@@ -132,55 +137,50 @@
                             <div class="dropdown-menu animated-2s fadeInUpHalf">
                                 <div class="mega-inside">
                                     <div class="top-lins">
+                                        @foreach($category_product_header as $item2_category_product_header)
                                         <ul>
-                                            <li><a href="#."> Cell Phones & Accessories </a></li>
-                                            <li><a href="#."> Carrier Phones </a></li>
+                                            <li><a href="{{route('product.category',$item2_category_product_header->slug)}}"> {{$item2_category_product_header->title}} </a></li>
                                         </ul>
+                                        @endforeach
                                     </div>
+
                                     <div class="row">
+                                        @foreach($category_product_header as $item3_category_product_header)
                                         <div class="col-sm-3">
-                                            <h6>Electronics</h6>
+                                            <h6>{{$item3_category_product_header->title}}</h6>
+                                            @if(count($item3_category_product_header->childs)>0)
+                                                @foreach($item3_category_product_header->childs as $item3_category_product_header_childs)
                                             <ul>
-                                                <li><a href="#."> Cell Phones & Accessories </a></li>
-                                                <li><a href="#."> Carrier Phones </a></li>
+                                                <li><a href="{{route('product.display',[$item3_category_product_header->slug,$item3_category_product_header_childs->slug])}}"> {{$item3_category_product_header_childs->title}} </a></li>
                                             </ul>
+                                                @endforeach
+                                                @endif
                                         </div>
-                                        <div class="col-sm-3">
-                                            <h6>Computers</h6>
-                                            <ul>
-                                                <li><a href="#."> Computers & Tablets</a></li>
-                                                <li><a href="#."> Monitors</a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-sm-2">
-                                            <h6>Home Appliances</h6>
-                                            <ul>
-                                                <li><a href="#."> Refrigerators</a></li>
-                                                <li><a href="#."> Wall Ovens</a></li>
-                                            </ul>
-                                        </div>
+                                        @endforeach
                                         <div class="col-sm-4"> <img class=" nav-img" src="{{asset('public/images/navi-img.png')}}" alt="" > </div>
                                     </div>
                                 </div>
                             </div>
                         </li>
-                        <li> <a href="{{route('home')}}">Xu Hướng</a></li>
-                        <li> <a href="{{route('home')}}">Bán Chạy</a></li>
-                        <li> <a href="{{route('home')}}">Khuyến Mại</a></li>
-                        <li class="dropdown"> <a href="blog.html" class="dropdown-toggle" data-toggle="dropdown">Đời Sống</a>
+
+                        <li class="dropdown"> <a  class="dropdown-toggle" data-toggle="dropdown">Đời Sống</a>
                             <ul class="dropdown-menu multi-level animated-2s fadeInUpHalf">
-                                <li class="dropdown-submenu"><a>Phong Cách Sống</a>
+                                @foreach($category_post_header as $item_category_post_header)
+                                <li class="dropdown-submenu"><a>{{$item_category_post_header->title}}</a>
+                                    @if(count($item_category_post_header->childs)>0)
                                     <ul class="dropdown-menu animated-2s fadeInRight">
-                                        <li><a href="{{route('post.display',['phong-cach-song','tinh-yeu'])}}">Tình Yêu</a></li>
+                                        @foreach($item_category_post_header->childs as $item_category_post_header_childs)
+                                        <li><a href="{{route('post.display',[$item_category_post_header->slug,$item_category_post_header_childs->slug])}}">{{$item_category_post_header_childs->title}}</a></li>
+                                        @endforeach
                                     </ul>
+                                        @endif
                                 </li>
-                                <li><a href="Blog_details.html"> Thời Trang </a></li>
-                                <li><a href="Blog_details.html"> Giới Trẻ </a></li>
-                                <li><a href="Blog_details.html"> Tâm Linh </a></li>
-                                <li><a href="Blog_details.html"> Tử Vi </a></li>
+                                @endforeach
                             </ul>
                         </li>
-                        <li><a href="{{route('page','ve-chung-toi')}}">Về Chúng Tôi </a></li>
+                        @foreach($category_page_header as $item_category_page_header)
+                            <li> <a href="{{route('page',$item_category_page_header->slug)}}">{{$item_category_page_header->title}}</a></li>
+                        @endforeach
                     </ul>
                 </div>
                 <!-- NAV RIGHT -->

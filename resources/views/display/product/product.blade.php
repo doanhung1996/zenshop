@@ -5,7 +5,7 @@
         <div class="container">
             <ol class="breadcrumb">
                 <li><a href="{{route('home')}}">Home</a></li>
-                <li class="active">{{$check_category->title}}</li>
+                <li class="active"><a href="{{route('product.category',$check_category->slug)}}">{{$check_category->title}}</a></li>
                 <li class="active"><a href="{{route('product.display',[$check_category->slug,$check_parent->slug])}}">{{$check_parent->title}}</a></li>
             </ol>
         </div>
@@ -286,7 +286,6 @@
                     <!-- Product -->
                     <div class="product">
                         <article> <img class="img-responsive" src="{{asset('public/images/item-img-1-8.jpg')}}" alt="" > <span class="new-tag">New</span>
-
                             <!-- Content -->
                             <span class="tag">Accessories</span> <a href="#." class="tittle">Teclado Inalambrico Bluetooth Con Air Mouse</a>
                             <!-- Reviews -->

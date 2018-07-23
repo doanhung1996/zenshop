@@ -7,7 +7,7 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class MailResetPasswordToken extends Notification
+class MailResetPasswordToken extends Notification implements ShouldQueue
 {
     use Queueable;
     public $token;
@@ -42,7 +42,8 @@ class MailResetPasswordToken extends Notification
     {
         $email=base64_encode($notifiable['email']);
         return (new MailMessage)
-            ->subject("Reset your password")
+            ->from("hungngu1996@gmail.com","Zenshop")
+            ->subject("Lấy lại mật khẩu")
             ->line("Hey, did you forget your password? Click the button to reset it.")
             ->action('Reset Password', url("password/reset/$this->token/$email.html" ))
             ->line('Thankyou for being a friend');

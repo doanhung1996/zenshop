@@ -471,7 +471,7 @@
                                         </table>
                                     </div>
                                     <div>
-                                        <h2 style="color: #27bdb1; font-size: 17px; margin-left: 18px;">Chi Tiết Đơn Hàng</h2>
+                                        <h2 style="color: #27bdb1; font-size: 17px; margin-left: 18px;">Chi Tiết Đơn Hàng<p style="display: inline; font-size: 13px; text-align: center; line-height: 1.4; color: #8c8c8c;"> ( Mã đơn hàng: {{$order_code}}  )</p></h2>
                                         <hr style="background: red">
                                         <table id="customer" style="width:100%;" class="table table-small-font" style="margin-bottom: 0">
                                             <thead>
@@ -528,7 +528,7 @@
                                                 <td>
                                                     <div class='contentEditableContainer contentImageEditable'>
                                                         <div class="contentEditable">
-                                                            <a href="http://localhost/zenshop/public"><img class="banner" src="http://tevo.asia/Media/Sliders/5a13d0d87f116224101aaba5/dsOzHcCZ.png" alt='What we do' data-default="placeholder" data-max-width="600" width='600' height='180' ></a>
+                                                            <a href="http://localhost/zenshop/public"><img class="banner" src="http://tevo.asia/Media/Sliders/5a13d0d87f116224101aaba5/dsOzHcCZ.png" alt='What we do' data-default="placeholder" data-max-width="100%" width='100%' height='180' ></a>
                                                         </div>
                                                     </div>
                                                 </td>

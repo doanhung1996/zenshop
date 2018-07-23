@@ -37,6 +37,11 @@ return [
     'add_to_cart'=>'Add To Cart',
     'product_detail'=>'Product Detail',
     'related_products'=>'Related Products',
+    'forget_password'=>'Forget Password !',
+    'come_back'=>'Come back',
+    'send_email'=>'Send Email',
+    'account_update'=>'Account Update',
+
     //CART
     'my_cart'=>'My Cart',
     'item'=>'items',
@@ -92,13 +97,18 @@ return [
     'order_1'=>"+2 USD",
     'order_2'=>"+4 USD",
 // ACCOUNT UPDATE
+    'update_information'=>'Update information',
     'reset_password'=>'Reset Password',
     'password_new'=>'New Password',
     'confirm_password'=>'Confirm Password',
     'gender'=>'Gender',
     'fullname'=>'Fullname',
-    'update_success'=>'Cập Nhật Thành Công',
-    'update_info'=>'Chúc mừng bạn đã cập nhật thành công thông tin . Mới bạn quay lại trang chủ để tiếp tục mua hàng !',
-
-
+    'update_success'=>'Update successful',
+    'update_info'=>'Congratulations, you have successfully updated your information. You return to the home page to continue shopping!',
+// ACCOUNT RESETPASSWORD
+    'email_check1'=>'Please check your <a href="https://mail.google.com" style="color: #27bdb1;">email</a> your !',
+    'email_check2'=>'Please check your <a href="https://mail.google.com" style="color: #27bdb1;">email</a> in next few minute to confirm and retrieve password',
+    'email_check3'=>'Thank you for using their service in the last time .',
+    'email_reset1'=>'Password update successful!',
+    'email_reset2'=>'Password update successful! , please return your home and continue shopping!',
 ];

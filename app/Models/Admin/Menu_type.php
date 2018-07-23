@@ -23,8 +23,14 @@ use Illuminate\Database\Eloquent\Model;
 class Menu_type extends Model
 {
     protected  $table="menu_types";
+    protected  $fillable=['id','name','user_id'];
 
     public function  menu_item(){
         return $this->hasMany('App\Models\Admin\Menu_item','menu_type_id','id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('App\User', 'user_id', 'id');
     }
 }

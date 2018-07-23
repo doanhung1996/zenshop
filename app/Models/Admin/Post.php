@@ -29,15 +29,19 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Post extends Model
 {
-    protected $fillable=['title','image','description','content','post_cat_id','user_id','slug'];
+    protected $fillable=['title','image','description','content','post_cat_id','user_id','slug','category_id'];
     protected  $table="posts";
 //    protected $casts=['status'=>'int'];
-    public static function lastest()
-    {
-    }
+//    public static function lastest()
+//    {
+//    }
 
     public function post_cat(){
         return $this->belongsTo('App\Models\Admin\Post_cat','post_cat_id','id');
+    }
+
+    public function category(){
+        return $this->belongsTo('App\Models\Admin\Post_cat','category_id','id');
     }
 
     public function user(){

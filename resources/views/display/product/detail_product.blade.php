@@ -4,7 +4,7 @@
     <div class="container">
         <ol class="breadcrumb">
             <li><a href="{{route('home')}}">Home</a></li>
-            <li>{{$check_category->title}}</li>
+            <li><a href="{{route('product.category',$check_category->slug)}}">{{$check_category->title}}</a></li>
             <li><a href="{{route('product.display',[$check_category->slug,$check_parent->slug])}}">{{$check_parent->title}}</a></li>
             <li><a href="{{route('product.display.show',[$check_category->slug,$check_parent->slug,$product->slug])}}">{{$product->product_name}}</a></li>
         </ol>

@@ -18,8 +18,22 @@ class PostController extends Controller
     {
         $check_category=Post_cat::where('slug',$category)->firstOrFail();
         $check_parent = $check_category->childs()->where('slug', $slug)->firstOrFail();
-        $post=Post_cat::where('slug',$slug)->firstOrFail()->post()->paginate(5);
+        $post=Post_cat::latest()->where('slug',$slug)->firstOrFail()->post()->paginate(5);
         return view('display.post.post',compact('post','check_category','check_parent'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function category($category)
+    {
+        $category_id=Post_cat::where('slug',$category)->first();
+        $category_post=Post::with('category','post_cat')->where('status','1')->where('category_id',$category_id['id'])->paginate(5);
+        $category_post_count=Post::with('category','post_cat')->where('status','1')->where('category_id',$category_id['id'])->paginate(5)->count();
+        $category_count_all=Post::with('category','post_cat')->where('status','1')->where('category_id',$category_id['id'])->count();
+        return view('display.post.category',compact('category_id','category_post','category_post_count','category_count_all'));
     }
 
     /**

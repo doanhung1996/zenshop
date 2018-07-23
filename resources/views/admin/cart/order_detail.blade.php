@@ -65,6 +65,7 @@
                             <td class="thead-text">Số lượng</td>
                             <td class="thead-text">Thành tiền</td>
                             <td class="thead-text">Tiền Lãi</td>
+                            <td class="thead-text">Tài Khoản</td>
                             <td class="thead-text">Xóa</td>
                         </tr>
                         </thead>
@@ -84,6 +85,7 @@
                             <td class="thead-text">{{$item_order_detail->quantity}}</td>
                             <td class="thead-text">@php echo number_format($item_order_detail->subtotal,0) .' đ' @endphp</td>
                             <td class="thead-text">@php echo number_format($item_order_detail->profit,0) .' đ' @endphp</td>
+                            <td class="thead-text">{{optional($item_order_detail->user)->name}}</td>
                             <td class="thead-text">
                                 <a href="{{route('delete.order_cart',$item_order_detail->id)}}" title="Xóa" class="delete"><i class="fa fa-trash" aria-hidden="true"></i></a>
                             </td>

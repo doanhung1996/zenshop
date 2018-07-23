@@ -38,15 +38,15 @@
 <script src="{{asset('plugins/ckeditor/ckeditor.js')}}">
 
 </script>
-<script> CKEDITOR.replace('editor',{
-        filebrowserBrowseUrl: '{{ asset('plugins/ckfinder/ckfinder.html') }}',
-        filebrowserImageBrowseUrl: '{{ asset('plugins/ckfinder/ckfinder.html?type=Images') }}',
-        filebrowserFlashBrowseUrl: '{{ asset('plugins/ckfinder/ckfinder.html?type=Flash') }}',
-        filebrowserUploadUrl: '{{ asset('plugins/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files') }}',
-        filebrowserImageUploadUrl: '{{ asset('plugins/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images') }}',
-        filebrowserFlashUploadUrl: '{{ asset('plugins/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash') }}'
-    });
-</script>
+{{--<script> CKEDITOR.replace('editor',{--}}
+        {{--filebrowserBrowseUrl: '{{ asset('plugins/ckfinder/ckfinder.html') }}',--}}
+        {{--filebrowserImageBrowseUrl: '{{ asset('plugins/ckfinder/ckfinder.html?type=Images') }}',--}}
+        {{--filebrowserFlashBrowseUrl: '{{ asset('plugins/ckfinder/ckfinder.html?type=Flash') }}',--}}
+        {{--filebrowserUploadUrl: '{{ asset('plugins/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files') }}',--}}
+        {{--filebrowserImageUploadUrl: '{{ asset('plugins/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images') }}',--}}
+        {{--filebrowserFlashUploadUrl: '{{ asset('plugins/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash') }}'--}}
+    {{--});--}}
+{{--</script>--}}
 <script> CKEDITOR.replace('editor1',{
         filebrowserBrowseUrl: '{{ asset('plugins/ckfinder/ckfinder.html') }}',
         filebrowserImageBrowseUrl: '{{ asset('plugins/ckfinder/ckfinder.html?type=Images') }}',

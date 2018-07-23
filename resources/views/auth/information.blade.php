@@ -58,7 +58,7 @@
                             @endif
                         </li>
                         <li class="col-sm-12 text-left">
-                            <button type="submit" class="btn-round">{{ __('Cập Nhật Thông Tin') }}</button>
+                            <button type="submit" class="btn-round">{{ __('display_lang.update_information') }}</button>
                             <br>
                         </li>
                     </ul>

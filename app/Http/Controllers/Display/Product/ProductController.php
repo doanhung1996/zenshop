@@ -29,6 +29,21 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function category($category)
+    {
+         $category_id=Product_cat::where('slug',$category)->first();
+         $category_product=Product_cat::where('slug',$category)->first();
+         $category_all=Product::with('category','product_cat')->where('status','1')->where('category_id',$category_id['id'])->paginate(20);
+         $category_count=Product::with('category','product_cat')->where('status','1')->where('category_id',$category_id['id'])->paginate(20)->count();
+         $category_count_all=Product::with('category','product_cat')->where('status','1')->where('category_id',$category_id['id'])->count();
+         return view('display.product.category',compact('category_product','category_all','category_count','category_count_all'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function create()
     {
         //

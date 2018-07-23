@@ -47,6 +47,7 @@
                                 <td><span class="thead-text">STT</span></td>
                                 <td><span class="thead-text">Tiêu đề</span></td>
                                 <td><span class="thead-text">Danh mục</span></td>
+                                <td><span class="thead-text">Danh mục gốc</span></td>
                                 <td><span class="thead-text">Trạng thái</span></td>
                                 <td><span class="thead-text">Người tạo</span></td>
                                 <td><span class="thead-text">Thời gian</span></td>
@@ -68,6 +69,7 @@
                                     </ul>
                                 </td>
                                 <td><span class="tbody-text">{{$item->post_cat->title}}</span></td>
+                                <td><span class="tbody-text">{{$item->category->title}}</span></td>
                                 <td>
                                      @if ($item->status == '1')
                                         <span class="tbody-text" style="color:red;">Đã Đăng</span>
@@ -86,6 +88,7 @@
                                 <td><span class="thead-text">STT</span></td>
                                 <td><span class="thead-text">Tiêu đề</span></td>
                                 <td><span class="thead-text">Danh mục</span></td>
+                                <td><span class="thead-text">Danh mục gốc</span></td>
                                 <td><span class="thead-text">Trạng thái</span></td>
                                 <td><span class="thead-text">Người tạo</span></td>
                                 <td><span class="thead-text">Thời gian</span></td>

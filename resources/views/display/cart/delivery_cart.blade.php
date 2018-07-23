@@ -6,10 +6,11 @@
                 <ul class="row">
                     <!-- Step 1 -->
                     <li class="col-sm-3">
-                        <div class="media-left"> <i class="flaticon-shopping"></i> </div>
+                        <a href="{{route('cart.detail')}}"><div class="media-left"> <i class="flaticon-shopping"></i> </div>
                         <div class="media-body"> <span>@lang('display_lang.step_1')</span>
                             <h6>@lang('display_lang.shopping_cart')</h6>
                         </div>
+                        </a>
                     </li>
                     <!-- Step 2-->
                     <li class="col-sm-3 current">
@@ -142,37 +143,22 @@
                             </div>
                             <div class="transportation">
                                 <div class="row">
-                                    <!-- Free Delivery -->
-                                    <div class="col-sm-6">
-                                        <div class="charges">
-                                            <h6>@lang('display_lang.free_delivery')</h6>
-                                            <br>
-                                            <span>7 - 12 @lang('display_lang.day')</span> |
-                                            <span> +0đ</span></div>
-                                    </div>
-
-                                    <!-- Free Delivery -->
-                                    <div class="col-sm-6">
-                                        <div class="charges ">
-                                            <h6>@lang('display_lang.fast_delivery')</h6>
-                                            <br>
-                                            <span>3 - 5 @lang('display_lang.day')  </span> |
-                                            <span> +30.000 đ</span> </div>
-                                    </div>
-                                    <!-- Expert Delivery -->
-                                    <div class="col-sm-6">
-                                        <div class="charges">
-                                            <h6>@lang('display_lang.rapid_fire')</h6>
-                                            <br>
-                                            <span>24 - 48 giờ  </span> | <span>  +60.000 đ </span> </div>
-                                    </div>
+                                    @foreach($delivery as $i_delivery)
+                                        <div class="col-sm-6">
+                                            <div class="charges">
+                                                <h6>{{$i_delivery->title}}</h6>
+                                                <br>
+                                                <span>{{$i_delivery->date_info}}</span> |
+                                                <span> +@php echo number_format($i_delivery->price,0); @endphp đ</span></div>
+                                        </div>
+                                        @endforeach
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <!-- Button -->
-                <div class="pro-btn" style="margin-top:15px; !important;"> <a href="{{route('cart.detail')}}" class="btn-round btn-light">@lang('display_lang.shopping_cart')</a> <button class="btn-round" style=" border: 0px; !important;">@lang('display_lang.confirmation')</button></div>
+                <div class="pro-btn" style="margin-top:15px; !important;"> <a href="{{route('cart.detail')}}" class="btn-round btn-light">@lang('display_lang.shopping_cart')</a> <button class="btn-round" style=" border: 0px; !important;">@lang('display_lang.confirm')</button></div>
             </div>
             </form>
         </section>
@@ -180,11 +166,11 @@
         <section class="light-gry-bg clients-img">
             <div class="container">
                 <ul>
-                    <li><img src="images/c-img-1.png" alt="" ></li>
-                    <li><img src="images/c-img-2.png" alt="" ></li>
-                    <li><img src="images/c-img-3.png" alt="" ></li>
-                    <li><img src="images/c-img-4.png" alt="" ></li>
-                    <li><img src="images/c-img-5.png" alt="" ></li>
+                    <li><img src="" alt="" ></li>
+                    <li><img src="" alt="" ></li>
+                    <li><img src="" alt="" ></li>
+                    <li><img src="" alt="" ></li>
+                    <li><img src="" alt="" ></li>
                 </ul>
             </div>
         </section>

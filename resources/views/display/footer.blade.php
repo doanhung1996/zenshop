@@ -74,31 +74,43 @@
         <div class="row">
 
             <!-- Contact -->
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <h4>@lang('display_lang.contact_us')</h4>
                 <p>@lang('display_lang.address'): @lang('display_lang.address_contact')</p>
                 <p>@lang('display_lang.phone'): @lang('display_lang.phone_contact')</p>
                 <p>@lang('display_lang.email'): @lang('display_lang.email_contact')</p>
-                <div class="social-links"> <a href="https://www.facebook.com/zenzen1996"><i class="fa fa-facebook"></i></a> <a href="#."><i class="fa fa-twitter"></i></a> <a href="#."><i class="fa fa-linkedin"></i></a> <a href="#."><i class="fa fa-pinterest"></i></a> <a href="#."><i class="fa fa-instagram"></i></a> <a href="#."><i class="fa fa-google"></i></a> </div>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/zenzen1996"><i class="fa fa-facebook"></i></a>
+                    <a href="#."><i class="fa fa-twitter"></i></a>
+                    <a href="#."><i class="fa fa-linkedin"></i></a>
+                    <a href="#."><i class="fa fa-pinterest"></i></a>
+                    <a href="#."><i class="fa fa-instagram"></i></a>
+                    <a href="#."><i class="fa fa-google"></i></a>
+                </div>
             </div>
 
             <!-- Categories -->
             <div class="col-md-2">
-                <h4>Categories</h4>
-                <ul class="links-footer">
-                    <li><a href="#."> Home Audio & Theater</a></li>
-                    <li><a href="#."> TV & Video</a></li>
-                    <li><a href="#."> Camera, Photo & Video</a></li>
-                    <li><a href="#."> Cell Phones & Accessories</a></li>
-                    <li><a href="#."> Headphones</a></li>
-                    <li><a href="#."> Video Games</a></li>
-                    <li><a href="#."> Bluetooth & Wireless</a></li>
-                </ul>
+                <h4>Sản Phẩm</h4>
+                    <ul class="links-footer">
+                        @foreach($category_product_footer as $item_category_product_footer)
+                            <li><a href="{{route('product.category',$item_category_product_footer->slug)}}"> {{$item_category_product_footer->title}}</a></li>
+                        @endforeach
+                    </ul>
             </div>
 
             <!-- Categories -->
-            <div class="col-md-3">
-                <h4>Customer Services</h4>
+            <div class="col-md-2">
+                <h4>Bài Viết</h4>
+                <ul class="links-footer">
+                    @foreach($category_post_footer as $item_category_post_footer)
+                        <li><a href="{{route('post.category',$item_category_post_footer->slug)}}"> {{$item_category_post_footer->title}}</a></li>
+                    @endforeach
+                </ul>
+            </div>
+
+            <div class="col-md-2">
+                <h4>Hình Thức</h4>
                 <ul class="links-footer">
                     <li><a href="#.">Shipping & Returns</a></li>
                     <li><a href="#."> Secure Shopping</a></li>

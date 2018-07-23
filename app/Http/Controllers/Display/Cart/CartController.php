@@ -56,6 +56,20 @@ class CartController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function change_cart()
+    {
+        $data_cart_count = count(Cart::content());
+        $qty = Cart::count();
+        $total =  Cart::total(0);
+        $data_cart=Cart::content()->take(2);
+        return response()->view('display.cart.home', compact('data_cart', 'qty', 'total','data_cart_count') );
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function create()
     {
     //
@@ -176,14 +190,26 @@ class CartController extends Controller
             return redirect()->route('home');
         }
         //ADD CUSTOMER
-        $customer=[
-            'fullname'    =>$request->name,
-            'email'       =>$request->email,
-            'phone'       =>$request->phone,
-            'province'    =>$request->province,
-            'city'        =>$request->city,
-            'address'     =>$request->address,
-        ];
+        if (isset(auth()->user()->id)) {
+            $customer = [
+                'fullname' => $request->name,
+                'email' => $request->email,
+                'phone' => $request->phone,
+                'province' => $request->province,
+                'city' => $request->city,
+                'address' => $request->address,
+                'user_id' => auth()->user()->id,
+            ];
+        }else{
+            $customer = [
+                'fullname' => $request->name,
+                'email' => $request->email,
+                'phone' => $request->phone,
+                'province' => $request->province,
+                'city' => $request->city,
+                'address' => $request->address,
+            ];
+        }
         $customer_insert=Customer::create($customer);
         if ($customer_insert==false){
             return redirect()->route('home');
@@ -202,22 +228,42 @@ class CartController extends Controller
         $date_transport=date('d/m/Y - H:i:s',strtotime("now + $date days"));
         $order_code = 'HD'.strtoupper(str_random(16));
         $customer_id=Customer::where('fullname',$request->name)->max('id');
-        $order=[
-            'fullname'        =>$request->name,
-            'email'           =>$request->email,
-            'phone'           =>$request->phone,
-            'province'        =>$request->province,
-            'city'            =>$request->city,
-            'address'         =>$request->address,
-            'pay'             =>$pay,
-            'delivery'        =>$delivery,
-            'order_code'      =>$order_code,
-            'total_qty'       =>$total_qty,
-            'total_sale'      =>$total_sale,
-            'order_date'      =>$order_date,
-            'date_transport'  =>$date_transport,
-            'customer_id'     =>$customer_id,
-        ];
+        if (isset(auth()->user()->id)) {
+            $order = [
+                'fullname' => $request->name,
+                'email' => $request->email,
+                'phone' => $request->phone,
+                'province' => $request->province,
+                'city' => $request->city,
+                'address' => $request->address,
+                'pay' => $pay,
+                'delivery' => $delivery,
+                'order_code' => $order_code,
+                'total_qty' => $total_qty,
+                'total_sale' => $total_sale,
+                'order_date' => $order_date,
+                'date_transport' => $date_transport,
+                'customer_id' => $customer_id,
+                'user_id' => auth()->user()->id,
+            ];
+        }else{
+            $order = [
+                'fullname' => $request->name,
+                'email' => $request->email,
+                'phone' => $request->phone,
+                'province' => $request->province,
+                'city' => $request->city,
+                'address' => $request->address,
+                'pay' => $pay,
+                'delivery' => $delivery,
+                'order_code' => $order_code,
+                'total_qty' => $total_qty,
+                'total_sale' => $total_sale,
+                'order_date' => $order_date,
+                'date_transport' => $date_transport,
+                'customer_id' => $customer_id,
+            ];
+        }
         $order_insert=Order::create($order);
         if ($order_insert==false){
             return redirect()->route('home');
@@ -229,17 +275,33 @@ class CartController extends Controller
             foreach($cart_content as $k => $v){
                $purchase=Product::whereId($v->id)->first(['product_purchase'])->product_purchase;
                $profit=$v->price-$purchase;
-             $order_detail=[
-                    'order_id'    =>$order_id,
-                    'product_id'  =>$v->id,
-                    'name'        =>$v->name,
-                    'quantity'    =>$v->qty,
-                    'price'       =>$v->price,
-                    'subtotal'    =>$v->subtotal,
-                    'profit'      =>$profit,
-                    'order_code'  =>$order_code,
-                    'image'       =>$v->model->image,
-                ];
+               if (isset(auth()->user()->id)){
+                   $order_detail=[
+                       'order_id'    =>$order_id,
+                       'product_id'  =>$v->id,
+                       'name'        =>$v->name,
+                       'quantity'    =>$v->qty,
+                       'price'       =>$v->price,
+                       'subtotal'    =>$v->subtotal,
+                       'profit'      =>$profit,
+                       'order_code'  =>$order_code,
+                       'image'       =>$v->model->image,
+                       'user_id'     =>auth()->user()->id,
+                   ];
+               }else{
+                   $order_detail=[
+                       'order_id'    =>$order_id,
+                       'product_id'  =>$v->id,
+                       'name'        =>$v->name,
+                       'quantity'    =>$v->qty,
+                       'price'       =>$v->price,
+                       'subtotal'    =>$v->subtotal,
+                       'profit'      =>$profit,
+                       'order_code'  =>$order_code,
+                       'image'       =>$v->model->image,
+                   ];
+               }
+
                 $order_detail_insert=Order_detail::create($order_detail);
                 if ($order_detail_insert==false){
                     return redirect()->route('home');
@@ -248,11 +310,7 @@ class CartController extends Controller
         }else{
             return redirect()->route('home');
         }
-//        return $customer_insert;
-//        return $cart_content;
-//        return $total_sale;
-//        $total_qty;
-        event(new CartSuccess($customer_insert, $cart_content, $total_sale, $total_qty,$order_date,$date_transport));
+        event(new CartSuccess($customer_insert, $cart_content, $total_sale, $total_qty,$order_date,$date_transport,$order_code));
         Cart::destroy();
         return redirect()->route('cart.confirm_sc');
     }

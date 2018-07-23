@@ -52,20 +52,22 @@ class AccountController extends Controller
     /**
      * Show the form for creating a new resource.
      *
+     * @param EditStatusAccountRequest $request
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
     public function status(EditStatusAccountRequest $request)
     {
-        $actions=$request->actions;
-        $checkItem=$request->checkItem;
+        $actions = $request->actions;
+        $checkItem = $request->checkItem;
         if ($actions == 'delete'){
             foreach ($checkItem as $k =>$v){
-                $user=User::whereId($v)->get();
-                if (count($user)>0){
-                    session()->flash('success_status', 'Tài Khoản đang đăng nhập !');
+                $user=User::whereId($v)->first()->account;
+                if ($user=='admin'){
+                    session()->flash('success_status', 'Tài Khoản cấp admin !');
                     return back();
                 }else{
-                    $delete=User::where('id', $v)->delete();
+                    $delete = User::where('id', $v)->delete();
                 }
             }
             if($delete){
@@ -202,8 +204,8 @@ class AccountController extends Controller
             $file->move(public_path('uploads'),$fileName);
             $data['image']='uploads/'.$fileName;
         }
-        $user->update($data);
-        if ($user){
+         $user=$user->update($data);
+        if ($user==true){
             session()->flash('success_update','Cập nhật thành công');
         }else{
             session()->flash('success_update', 'Đã chỉnh sửa !');
