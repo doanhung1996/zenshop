@@ -45,7 +45,7 @@
                 <div class="order-success"> <i class="fa fa-check"></i>
                     <h6>@lang('display_lang.confirmation')</h6>
                     <p>@lang('display_lang.info')</p>
-                    <a href="{{route('home')}}" class="btn-round">@lang('display_lang.return_to_shop')</a> </div>
+                    <a href="{{route('home')}}" style="margin-top: 20px !important;" class="btn-round">@lang('display_lang.return_to_shop')</a> </div>
             </div>
         </section>
 

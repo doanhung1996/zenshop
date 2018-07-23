@@ -105,6 +105,10 @@ return [
     'fullname'=>'Fullname',
     'update_success'=>'Update successful',
     'update_info'=>'Congratulations, you have successfully updated your information. You return to the home page to continue shopping!',
-
-
+// ACCOUNT RESETPASSWORD
+    'email_check1'=>'Please check your <a href="https://mail.google.com" style="color: #27bdb1;">email</a> your !',
+    'email_check2'=>'Please check your <a href="https://mail.google.com" style="color: #27bdb1;">email</a> in next few minute to confirm and retrieve password',
+    'email_check3'=>'Thank you for using their service in the last time .',
+    'email_reset1'=>'Password update successful!',
+    'email_reset2'=>'Password update successful! , please return your home and continue shopping!',
 ];

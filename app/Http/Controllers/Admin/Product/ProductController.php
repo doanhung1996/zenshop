@@ -23,9 +23,9 @@ class ProductController extends Controller
     {
         if(request()->has('status')){
             $status=request()->status;
-             $product=Product::latest()->where('status',$status)->with(['user','product_cat'])->where('status',$status)->paginate(5);
+             $product=Product::latest()->where('status',$status)->with(['user','product_cat','category'])->where('status',$status)->paginate(5);
         }else{
-            $product=Product::latest()->with(['user','product_cat'])->paginate(5);
+             $product=Product::latest()->with(['user','product_cat','category'])->paginate(5);
         }
         $product_all=Product::all()->count();
         $product_active=Product::where('status','1')->count();
@@ -80,6 +80,7 @@ class ProductController extends Controller
             $data['slug']=str_slug($data['product_name']);
             $data['image']='uploads/'.$fileName;
             $data['user_id']=Auth::user()->id;
+            $data['category_id']=Product_cat::where('id', $request->product_cat_id)->first()->parent_id;
         }
         Product::create($data);
         session()->flash('success', 'Thêm mới thành công !');
@@ -139,24 +140,26 @@ class ProductController extends Controller
 //         Slider::whereHas('user',function($user) use($value){
 //             $user->where('name','like',"%$value%");
 //         })
-        $product=Product::orwhereHas('user',function($user) use($value){
+        $product=Product::latest()->orwhereHas('user',function($user) use($value){
              $user->where('name','like',"%$value%");
          })->orwhereHas('product_cat',function($product_cat) use($value){
              $product_cat->where('title','like',"%$value%");
+         })->orwhereHas('category',function($category_id) use($value){
+            $category_id->where('title','like',"%$value%");
          })->orwhere('product_name','like',"%$value%")
              ->orwhere('product_code','like',"%$value%")
              ->paginate(5);
          $product->withPath("?value="."$value"."&search="."$search");
 
-         $product_count=Product::whereHas('user',function($user) use($value){
+         $product_count=Product::orwhereHas('user',function($user) use($value){
              $user->where('name','like',"%$value%");
-         })->whereHas('product_cat',function($product_cat) use($value){
+         })->orwhereHas('product_cat',function($product_cat) use($value){
              $product_cat->where('title','like',"%$value%");
+         })->orwhereHas('category',function($category_id) use($value){
+             $category_id->where('title','like',"%$value%");
          })->orwhere('product_name','like',"%$value%")
-             ->orwhere('product_code','like',"%$value%")
-             ->get();
+             ->orwhere('product_code','like',"%$value%")->count();
          $product_all=Product::all()->count();
-         $product_count=count($product_count);
          $product_active=Product::where('status','1')->count();
          $product_pending=Product::where('status','-1')->count();
          return view('admin.product.product',compact('product','value','product_all','product_count','product_total','product_active','product_pending'));
@@ -191,7 +194,9 @@ class ProductController extends Controller
             $data['slug']=str_slug($data['product_name']);
             $data['image']='uploads/'.$fileName;
             $data['user_id']=Auth::user()->id;
+            $data['category_id']=Product_cat::where('id', $request->product_cat_id)->first()->parent_id;
         }
+        $data['category_id']=Product_cat::where('id', $request->product_cat_id)->first()->parent_id;
         $product->update($data);
         session()->flash('success_update', 'Cập Nhật thành công !');
         return back();

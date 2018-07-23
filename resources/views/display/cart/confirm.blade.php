@@ -7,17 +7,21 @@
                 <ul class="row">
                     <!-- Step 1 -->
                     <li class="col-sm-3">
+                        <a href="{{route('cart.detail')}}">
                         <div class="media-left"> <i class="flaticon-shopping"></i> </div>
                         <div class="media-body"> <span>@lang('display_lang.step_1')</span>
                             <h6>@lang('display_lang.shopping_cart')</h6>
                         </div>
+                        </a>
                     </li>
                     <!-- Step 2-->
                     <li class="col-sm-3">
+                        <a href="{{route('cart.delivery')}}">
                         <div class="media-left"> <i class="flaticon-delivery-truck"></i> </div>
                         <div class="media-body"> <span>@lang('display_lang.step_2')</span>
                             <h6>@lang('display_lang.delivery_methods')</h6>
                         </div>
+                        </a>
                     </li>
                     <!-- Step 3 -->
                     <li class="col-sm-3 current">
@@ -154,7 +158,7 @@
                 <input type="hidden" value="{{$data_delivery['delivery']}}" name="delivery">
                 @endif
                 <!-- Button -->
-                <div class="pro-btn"> <a href="{{route('cart.delivery')}}" class="btn-round btn-light">@lang('display_lang.confirmation')</a> <button class="btn-round" style=" border: 0px; !important;">@lang('display_lang.confirm')</button> </div>
+                <div class="pro-btn"> <a href="{{route('cart.delivery')}}" class="btn-round btn-light">@lang('display_lang.confirm')</a> <button class="btn-round" style=" border: 0px; !important;">@lang('display_lang.confirm')</button> </div>
             </div>
             </form>
         </section>
@@ -162,13 +166,13 @@
         <!-- Clients img -->
         <section class="light-gry-bg clients-img">
             <div class="container">
-                <ul>
-                    <li><img src="images/c-img-1.png" alt="" ></li>
-                    <li><img src="images/c-img-2.png" alt="" ></li>
-                    <li><img src="images/c-img-3.png" alt="" ></li>
-                    <li><img src="images/c-img-4.png" alt="" ></li>
-                    <li><img src="images/c-img-5.png" alt="" ></li>
-                </ul>
+                {{--<ul>--}}
+                    {{--<li><img src="images/c-img-1.png" alt="" ></li>--}}
+                    {{--<li><img src="images/c-img-2.png" alt="" ></li>--}}
+                    {{--<li><img src="images/c-img-3.png" alt="" ></li>--}}
+                    {{--<li><img src="images/c-img-4.png" alt="" ></li>--}}
+                    {{--<li><img src="images/c-img-5.png" alt="" ></li>--}}
+                {{--</ul>--}}
             </div>
         </section>
 

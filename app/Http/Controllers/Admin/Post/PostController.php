@@ -23,10 +23,10 @@ class PostController extends Controller
     {
         if(request()->has('status')){
             $status=request()->status;
-            $post=Post::latest()->where('status',$status)->with(['user','post_cat'])->withCount('user')->paginate(8);
+            $post=Post::latest()->where('status',$status)->with(['user','post_cat','category'])->withCount('user')->paginate(8);
 //            $query->where('status',$status);
         }else{
-            $post=Post::latest()->with(['user','post_cat'])->withCount('user')->paginate(8);
+            $post=Post::latest()->with(['user','post_cat','category'])->withCount('user')->paginate(8);
         }
         $post_all= Post::all()->count();
         $post_active=Post::where('status','1')->get()->count();
@@ -75,6 +75,7 @@ class PostController extends Controller
             $data['slug']=str_slug($data['title']);
             $data['image']='uploads/'.$fileName;
             $data['user_id']=Auth::user()->id;
+            $data['category_id']=Post_cat::where('id', $request->post_cat_id)->first()->parent_id;
         }
         Post::create($data);
         session()->flash('success', 'Thêm mới thành công !');
@@ -122,7 +123,9 @@ class PostController extends Controller
             $data['slug']=str_slug($data['title']);
             $data['image']='uploads/'.$fileName;
             $data['user_id']=Auth::user()->id;
+            $data['category_id']=Post_cat::where('id', $request->post_cat_id)->first()->parent_id;
         }
+        $data['category_id']=Post_cat::where('id', $request->post_cat_id)->first()->parent_id;
         $post->update($data);
         session()->flash('update_success', 'Chỉnh sửa thành công !');
         return back();
@@ -158,6 +161,8 @@ class PostController extends Controller
             $user->where('name','like',"%$value%");
         })->orwhereHas('post_cat',function($post_cat) use($value){
             $post_cat->where('title','like',"%$value%");
+        })->orwhereHas('category',function($category_id) use($value){
+            $category_id->where('title','like',"%$value%");
         })->orwhere('title','like',"%$value%")->paginate(8);
         $post->withPath("?value="."$value"."&search="."$search");
         $post_count=count($post);

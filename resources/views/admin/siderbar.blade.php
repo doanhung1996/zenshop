@@ -36,7 +36,7 @@
         </li>
         <li class="nav-item">
             <a href="" title="" class="nav-link nav-toggle">
-                <span class="fa fa-shopping-cartwe"></span>
+                <span class="fa fa-shopping-cart"></span>
                 <span class="title">Sản phẩm</span>
             </a>
             <ul class="sub-menu">

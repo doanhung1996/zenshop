@@ -1,21 +1,18 @@
 @extends('display.index')
 @section('content')
     <div id="wrap">
-
         <!-- Top bar -->
-
         <!-- Header -->
-
         <!-- Content -->
         <div id="content">
-
             <!-- Linking -->
             <div class="linking">
                 <div class="container">
                     <ol class="breadcrumb">
                         <li><a href="{{route('home')}}">@lang('display_lang.home')</a></li>
-                        <li class="active">{{$check_category->title}}</li>
-                        <li><a href="{{route('post.display.show',[$check_category->slug,$check_parent->slug,$post->slug])}}">{{$check_parent->title}}</a></li>
+                        <li><a href="{{route('post.category',$check_category->slug)}}">{{$check_category->title}}</a></li>
+                        <li><a href="{{route('post.display',[$check_category->slug,$check_parent->slug])}}">{{$check_parent->title}}</a></li>
+                        <li><a href="{{route('post.display.show',[$check_category->slug,$check_parent->slug,$post->slug])}}">{{$post->title}}</a></li>
                     </ol>
                 </div>
             </div>

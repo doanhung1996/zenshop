@@ -51,6 +51,7 @@
                                 <td><span class="thead-text">STT</span></td>
                                 <td><span class="thead-text">Mã đơn hàng</span></td>
                                 <td><span class="thead-text">Họ tên</span></td>
+                                <td><span class="thead-text">Tài Khoản</span></td>
                                 <td><span class="thead-text">Số Lượng</span></td>
                                 <td><span class="thead-text">Tổng Chi Phí</span></td>
                                 <td><span class="thead-text">Trạng thái</span></td>
@@ -76,6 +77,7 @@
                                         {{--<li><a href="" title="Xóa" class="delete"><i class="fa fa-trash" aria-hidden="true"></i></a></li>--}}
                                     {{--</ul>--}}
                                 </td>
+                                <td><span class="tbody-text">{{optional($item_order->user)->name}}</span></td>
                                 <td><span class="tbody-text">{{$item_order->total_qty}}</span></td>
                                 <td><span class="tbody-text">@php echo number_format($item_order->total_sale,0).'đ'@endphp</span></td>
                                 <td>
@@ -109,6 +111,7 @@
                                 <td><span class="thead-text">STT</span></td>
                                 <td><span class="thead-text">Mã đơn hàng</span></td>
                                 <td><span class="thead-text">Họ Tên</span></td>
+                                <td><span class="thead-text">Tài Khoản</span></td>
                                 <td><span class="thead-text">Số Lượng</span></td>
                                 <td><span class="thead-text">Tổng Chi Phí</span></td>
                                 <td><span class="thead-text">Trạng thái</span></td>

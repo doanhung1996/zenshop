@@ -31,6 +31,10 @@ class Product_cat extends Model
         return $this->hasMany('App\Models\Admin\Product','product_cat_id','id');
     }
 
+    public function category_product(){
+        return $this->hasMany('App\Models\Admin\Product','category_id','id');
+    }
+
     public function user(){
         return $this->belongsTo('App\User','user_id','id');
     }
@@ -39,6 +43,7 @@ class Product_cat extends Model
     {
         return $this->hasMany('App\Models\Admin\Product_cat', 'parent_id','id');
     }
+
     public function product_multi_cat($data='',$parent_id=0,$level=0){
         $result=[];
         if(!empty($data)){

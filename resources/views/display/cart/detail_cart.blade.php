@@ -135,6 +135,18 @@
                    },
                });
            }
+           function load_change_cart() {
+               $.ajax({
+                   url:'{{route('cart.change_cart')}}',
+                   method:'GET',
+                   data:{},
+                   processData:true,
+                   dataType:'html',
+                   success:function(data){
+                       $('#home-cart').html(data);
+                   },
+               });
+           }
         function update(obj) {
             var rowId=$(obj).attr('rowId');
             var qty=$(obj).val();
@@ -151,6 +163,7 @@
                 dataType:'text',
                 success:function(data){
                   load_cart();
+                  load_change_cart();
                 },
             });
         }
@@ -168,6 +181,7 @@
                 dataType:'html',
                 success:function(data){
                     load_cart();
+                    load_change_cart();
                 },
             });
         }

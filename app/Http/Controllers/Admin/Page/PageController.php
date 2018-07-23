@@ -29,10 +29,10 @@ class PageController extends Controller
     {
         if(request()->has('status')){
             $status=request()->status;
-            $pages= Page::join('users', 'pages.user_id', '=', 'users.id')->where('status',$status)->select('pages.id as id','pages.title as title','pages.slug as slug','pages.status as status','pages.created_at as created_at','users.name as name')->orderBy('pages.id', 'desc')->paginate(5);
+            $pages= Page::latest()->join('users', 'pages.user_id', '=', 'users.id')->where('status',$status)->select('pages.id as id','pages.title as title','pages.slug as slug','pages.status as status','pages.created_at as created_at','users.name as name')->orderBy('pages.id', 'desc')->paginate(5);
 //            $query->where('status',$status);
         }else{
-            $pages= Page::join('users', 'pages.user_id', '=', 'users.id')->select('pages.id as id','pages.title as title','pages.slug as slug','pages.status as status','pages.created_at as created_at','users.name as name')->orderBy('pages.id', 'desc')->paginate(5);
+            $pages= Page::latest()->join('users', 'pages.user_id', '=', 'users.id')->select('pages.id as id','pages.title as title','pages.slug as slug','pages.status as status','pages.created_at as created_at','users.name as name')->orderBy('pages.id', 'desc')->paginate(5);
         }
         $pages_all= Page::all()->count();
         $pages_active=Page::where('status','1')->get()->count();
@@ -47,7 +47,7 @@ class PageController extends Controller
      */
     public function page_get_status($status)
     {
-        $pages= Page::join('users', 'pages.user_id', '=', 'users.id')->select('pages.id as id','pages.title as title','pages.slug as slug','pages.status as status','pages.created_at as created_at','users.name as name')->where('status',$status)->orderBy('pages.id', 'desc')->paginate(5);
+        $pages= Page::latest()->join('users', 'pages.user_id', '=', 'users.id')->select('pages.id as id','pages.title as title','pages.slug as slug','pages.status as status','pages.created_at as created_at','users.name as name')->where('status',$status)->orderBy('pages.id', 'desc')->paginate(5);
         $pages_all= Page::all()->count();
         $pages_active=Page::where('status','1')->get()->count();
         $pages_pending=Page::where('status','-1')->count();
@@ -151,14 +151,14 @@ class PageController extends Controller
     public function search(SearchPageRequest $request){
         $search=$request->search;
         $value=$request->value;
-        $pages= Page::join('users', 'pages.user_id', '=', 'users.id')
+        $pages= Page::latest()->join('users', 'pages.user_id', '=', 'users.id')
             ->select('pages.id as id','pages.title as title','pages.slug as slug','pages.status as status','pages.created_at as created_at','users.name as name')
             ->where('title','like',"%$value%")
             ->orwhere('slug','like',"%$value%")
             ->orwhere('name','like',"%$value%")
             ->orderBy('pages.id', 'desc')->paginate(5);
         $pages->withPath("?value="."$value"."&search="."$search");
-        $pages_count= Page::join('users', 'pages.user_id', '=', 'users.id')
+        $pages_count= Page::latest()->join('users', 'pages.user_id', '=', 'users.id')
             ->select('pages.id as id','pages.title as title','pages.slug as slug','pages.status as status','pages.created_at as created_at','users.name as name')
             ->where('title','like',"%$value%")
             ->orwhere('slug','like',"%$value%")

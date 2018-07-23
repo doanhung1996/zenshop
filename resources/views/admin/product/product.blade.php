@@ -49,6 +49,7 @@
                                 <td><span class="thead-text">Ảnh</span></td>
                                 <td><span class="thead-text">Giá</span></td>
                                 <td><span class="thead-text">Danh Mục</span></td>
+                                <td><span class="thead-text">Danh Mục Gốc</span></td>
                                 <td><span class="thead-text">Trạng Thái</span></td>
                                 <td><span class="thead-text">Tài Khoản</span></td>
                                 <td><span class="thead-text">Thời Gian</span></td>
@@ -69,13 +70,14 @@
                                 </td>
                                 <td class="clearfix">
                                     <div class="tb-title fl-left">
-                                        <a href="" title="">{{$item->price}} .đ</a>
+                                        <a href="{{route('product.edit',$item->id)}}" title="">{{$item->price}} .đ</a>
                                     </div>
                                     <ul class="list-operation fl-right">
                                         <li><a href="{{route('product.edit',$item->id)}}" title="Sửa" class="edit"><i class="fa fa-pencil" aria-hidden="true"></i></a></li>
                                     </ul>
                                 </td>
                                 <td><span class="tbody-text">{{$item->product_cat->title}}</span></td>
+                                <td><span class="tbody-text">{{$item->category->title}}</span></td>
                                 <td>@if ($item->status == '1')
                                         <span class="tbody-text" style="color:red;">Đã Đăng</span>
                                     @else
@@ -94,6 +96,7 @@
                             <td><span class="thead-text">Ảnh</span></td>
                             <td><span class="thead-text">Giá</span></td>
                             <td><span class="thead-text">Danh Mục</span></td>
+                            <td><span class="thead-text">Danh Mục Gốc</span></td>
                             <td><span class="thead-text">Trạng Thái</span></td>
                             <td><span class="thead-text">Tài Khoản</span></td>
                             <td><span class="thead-text">Thời Gian</span></td>

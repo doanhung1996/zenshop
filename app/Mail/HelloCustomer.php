@@ -8,7 +8,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class HelloCustomer extends Mailable
+class HelloCustomer extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
     /**
@@ -34,6 +34,6 @@ class HelloCustomer extends Mailable
      */
     public function build()
     {
-        return $this->view('mail.HelloCustomer')->with('user', $this->user);
+        return $this->from("hungngu1996@gmail.com","Zenshop")->subject("Zenshop")->view('mail.HelloCustomer')->with('user', $this->user);
     }
 }

@@ -37,8 +37,34 @@ use Illuminate\Database\Eloquent\Model;
 class Menu_item extends Model
 {
     protected  $table="menu_items";
+    protected  $fillable=['id','title','slug','type','parent_id','menu_type_id','order','user_id'];
 
     public function  menu_type(){
         return $this->belongsTo('App\Models\Admin\Menu_type','menu_type_id','id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('App\User', 'user_id', 'id');
+    }
+
+    public function childs()
+    {
+        return $this->hasMany('App\Models\Admin\Menu_item', 'parent_id','id');
+    }
+
+    public function menu_item_multi_cat($data='',$parent_id=0,$level=0){
+        $result=[];
+        if(!empty($data)){
+            foreach ($data as $item){
+                if($item->parent_id==$parent_id){
+                    $item['level']=$level;
+                    $result[]=$item;
+                    $child=$this->menu_item_multi_cat($data,$item->id,$level+1);
+                    $result=array_merge($result,$child);
+                }
+            }
+        }
+        return $result;
     }
 }

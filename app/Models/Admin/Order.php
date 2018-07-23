@@ -32,12 +32,16 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     protected  $table="orders";
-    protected $fillable=['id','fullname','email','phone','province','city','address','pay','delivery','order_code','total_qty','total_sale','order_date','date_transport','customer_id'];
+    protected $fillable=['id','fullname','email','phone','province','city','address','pay','delivery','order_code','total_qty','total_sale','order_date','date_transport','customer_id','user_id'];
     public function  order_detail(){
         return $this->hasMany('App\Models\Admin\Order_detail','order_id','id');
     }
 
     public function  customer(){
         return $this->belongsTo('App\Models\Admin\Customer','customer_id','id');
+    }
+
+    public function user(){
+        return $this->belongsTo('App\User','user_id','id');
     }
 }

@@ -18,7 +18,7 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        $customer=Customer::latest()->paginate(8);
+        $customer=Customer::latest()->with('user')->paginate(8);
         $customer_all=Customer::count();
         return view('admin.cart.customer',compact('customer','customer_all'));
     }
@@ -72,14 +72,18 @@ class CustomerController extends Controller
     {
         $value=$request->value;
         $search=$request->search;
-        $customer=Customer::orwhere('fullname','like',"%$value%")
+        $customer=Customer::latest()->orwhereHas('user',function($user) use($value){
+            $user->where('name','like',"%$value%");
+            })->orwhere('fullname','like',"%$value%")
             ->orWhere('email','like',"%$value%")
             ->orWhere('phone','like',"%$value%")
             ->orWhere('address','like',"%$value%")
             ->orWhere('city','like',"%$value%")
             ->orWhere('province','like',"%$value%")
             ->paginate(8);
-        $customer_count=Customer::orwhere('fullname','like',"%$value%")
+        $customer_count=Customer::orwhereHas('user',function($user) use($value){
+            $user->where('name','like',"%$value%");
+        })->orwhere('fullname','like',"%$value%")
             ->orWhere('email','like',"%$value%")
             ->orWhere('phone','like',"%$value%")
             ->orWhere('address','like',"%$value%")

@@ -94,9 +94,19 @@ Route::group(['prefix' => 'admin','middleware' => 'auth','middleware' => 'isadmi
     Route::post('delivery/update/{method_delivery}','Admin\MethodDelivery\MethodDeliveryController@update')->name('delivery.update');
     Route::get('delivery/search','Admin\MethodDelivery\MethodDeliveryController@search')->name('delivery.search');
 
-    //////ADMIN MENU
+    //////ADMIN MENU TYPE
     Route::get('menu/type','Admin\Menu\MenuTypeController@index')->name('menu.type');
+    Route::post('menu/store','Admin\Menu\MenuTypeController@store')->name('menu.store');
+    Route::get('menu/edit/{menu_type}','Admin\Menu\MenuTypeController@edit')->name('menu.edit');
+    Route::post('menu/update/{menu_type}','Admin\Menu\MenuTypeController@update')->name('menu.update');
+    Route::post('menu/status','Admin\Menu\MenuTypeController@status')->name('menu.status');
+    // ADMIN MENU ITEM
     Route::get('menu/item','Admin\Menu\MenuItemController@index')->name('menu.item');
+    Route::get('menu/item/get_cat','Admin\Menu\MenuItemController@get_cat')->name('menu.item.cat');
+    Route::post('menu/item/store','Admin\Menu\MenuItemController@store')->name('menu.item.store');
+    Route::post('menu/item/status','Admin\Menu\MenuItemController@status')->name('menu.item.status');
+    Route::get('menu/item/edit/{menu_item}','Admin\Menu\MenuItemController@edit')->name('menu.item.edit');
+    Route::post('menu/item/update/{menu_item}','Admin\Menu\MenuItemController@update')->name('menu.item.update');
 });
     //DISPLAY HOME
     Route::get('/','Display\Home\HomeController@index');
@@ -122,9 +132,11 @@ Route::group(['prefix' => 'admin','middleware' => 'auth','middleware' => 'isadmi
 //DISPLAY PAGE
     Route::get('page/{slug}','Display\Page\PageController@show')->name('page');
 //DISPLAY POST
+    Route::get('post/{category}','Display\Post\PostController@category')->name('post.category');
     Route::get('post/{category}/{slug}','Display\Post\PostController@index')->name('post.display');
     Route::get('post/{category}/{slug}/{parent_slug}','Display\Post\PostController@show')->name('post.display.show');
 //DISPLAY PRODUCT
+    Route::get('product/{category}','Display\Product\ProductController@category')->name('product.category');
     Route::get('product/{category}/{slug}','Display\Product\ProductController@index')->name('product.display');
     Route::get('product/{category}/{slug}/{parent_slug}','Display\Product\ProductController@show')->name('product.display.show');
 //DISPLAY CART
@@ -132,6 +144,7 @@ Route::group(['prefix' => 'admin','middleware' => 'auth','middleware' => 'isadmi
     Route::post('cart/store','Display\Cart\CartController@store')->name('cart.store');
     Route::get('cart/detail','Display\Cart\CartController@index')->name('cart.detail');
     Route::get('cart/content_cart','Display\Cart\CartController@content_cart')->name('cart.content_cart');
+    Route::get('cart/change_cart','Display\Cart\CartController@change_cart')->name('cart.change_cart');
     Route::post('cart/delete','Display\Cart\CartController@delete')->name('cart.delete');
     Route::get('cart/delivery','Display\Cart\CartController@delivery')->name('cart.delivery');
     Route::post('cart/delivery/get_city','Display\Cart\CartController@get_city')->name('cart.delivery.get_city');
@@ -142,6 +155,9 @@ Route::group(['prefix' => 'admin','middleware' => 'auth','middleware' => 'isadmi
     Route::post('cart/confirm/success','Display\Cart\CartController@confirm_success')->name('cart.confirm_success');
     Route::view('cart/confirm/success','display.cart.success_cart')->name('cart.confirm_sc');
 
+    Route::get('/email/success',function (){
+        return view('auth.passwords.reset_success');
+    });
     Route::get('ok',function (){
         return Cart::content();
     });
