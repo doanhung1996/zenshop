@@ -111,4 +111,9 @@ return [
     'email_check3'=>'Cám ơn bạn đã sử dụng dịch vụ của chúng tôi trong thời gian qua ! .',
     'email_reset1'=>'Cập nhật mật khẩu thành công !',
     'email_reset2'=>'Bạn đã cập nhật mật khẩu thành công , vui lòng quay lại trang chủ và tiếp tục mua sắm !',
-    ];
+    //Email customer
+    'confirm_email_success'=>'Đăng ký thành công',
+    'confirm_email_info'=>'<a href="https://mail.google.com" style="color: #27bdb1;">Email</a> của bạn đã đăng ký dịch vụ nhận thông tin về sản phẩm và thông tin khuyến mãi. Hãy kiểm tra <a href="https://mail.google.com" style="color: #27bdb1;">email</a> hàng tháng để nhận thông tin .',
+    'category'=>'Danh mục sản phẩm',
+
+];

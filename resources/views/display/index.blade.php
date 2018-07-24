@@ -23,6 +23,11 @@
     <link rel="stylesheet" href="{{asset('public/css/responsive.css')}}">
     <link rel="stylesheet" href="{{asset('public/rs-plugin/css/test.css')}}"  type="text/css"/>
     <link rel="stylesheet" href="{{asset('public/css/toastr.min.css')}}"  type="text/css"/>
+
+    <link rel="stylesheet" href="{{asset('public/fancybox/fb/jquery.fancybox.css')}}"  type="text/css"/>
+    <link rel="stylesheet" href="{{asset('public/fancybox/fb/jquery.fancybox-buttons.css')}}"  type="text/css"/>
+    <link rel="stylesheet" href="{{asset('public/fancybox/fb/jquery.fancybox-thumbs.css')}}"  type="text/css"/>
+
     <link href="{{asset('public/lightbox-css/lightbox.css')}}" rel="stylesheet" type="text/css"/>
     <link href="{{asset('public/select2/select2.min.css')}}" rel="stylesheet" type="text/css"/>
 
@@ -49,6 +54,12 @@
             crossorigin="anonymous">
     </script>
     <script src="{{asset('public/js/toastr.min.js')}}"></script>
+    <!-- Optionally add helpers - button, thumbnail and/or media -->
+    {{--<link rel="stylesheet" href="{{asset('public/fancybox-css/jquery.fancybox.min.css')}}" type="text/css" media="screen" />--}}
+    {{--<link rel="stylesheet" href="{{asset('public/fancybox-css/fancybox-thumbs.css')}}" type="text/css" media="screen" />--}}
+    {{--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.0/jquery.fancybox.min.css" />--}}
+    {{--<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.0/jquery.fancybox.min.js"></script>--}}
+    {{--<script type="text/javascript" src="/fancybox/source/helpers/jquery.fancybox-thumbs.js?v=1.0.7"></script>--}}
     <style>
         body{
             font-family: 'Open Sans', sans-serif;

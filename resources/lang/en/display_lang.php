@@ -111,4 +111,9 @@ return [
     'email_check3'=>'Thank you for using their service in the last time .',
     'email_reset1'=>'Password update successful!',
     'email_reset2'=>'Password update successful! , please return your home and continue shopping!',
-];
+    //Email customer
+    'confirm_email_success'=>'Register successfully',
+    'confirm_email_info'=>'Your <a href="https://mail.google.com" style="color: #27bdb1;">email</a> has been registered for product information and promotional information. Check your <a href="https://mail.google.com" style="color: #27bdb1;">email</a> monthly for information.',
+    //Product Display
+    'category'=>'Categories',
+    ];

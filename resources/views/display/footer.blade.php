@@ -41,8 +41,9 @@
                 <h3> <i class="fa fa-envelope-o"></i>@lang('display_lang.email_subscribe')<small>@lang('display_lang.sale')</small></h3>
             </div>
             <div class="col-md-5">
-                <form>
-                    <input type="email" placeholder="@lang('display_lang.enter_email')">
+                <form action="{{route('email.customer.store')}}" method="post">
+                    @csrf()
+                    <input type="email" name="email" placeholder="@lang('display_lang.enter_email')" required>
                     <button type="submit">@lang('display_lang.subscribe') !</button>
                 </form>
             </div>
@@ -164,6 +165,13 @@
 <script src="{{asset('public/js/vendors/jquery.sticky.js')}}"></script>
 <script src="{{asset('public/js/vendors/owl.carousel.min.js')}}"></script>
 
+<script src="{{asset('public/fancybox/fb/jquery.fancybox.js')}}"></script>
+<script src="{{asset('public/fancybox/fb/jquery.fancybox.pack.js')}}"></script>
+<script src="{{asset('public/fancybox/fb/jquery.fancybox-buttons.js')}}"></script>
+<script src="{{asset('public/fancybox/fb/jquery.fancybox-media.js')}}"></script>
+<script src="{{asset('public/fancybox/fb/jquery.fancybox-thumbs.js')}}"></script>
+<script src="{{asset('public/fancybox/fb/jquery.mousewheel.pack.js')}}"></script>
+
 <!-- SLIDER REVOLUTION 4.x SCRIPTS  -->
 <script type="text/javascript" src="{{asset('public/rs-plugin/js/jquery.tp.t.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('public/rs-plugin/js/jquery.tp.min.js')}}"></script>
@@ -179,6 +187,20 @@
         });
     })(jQuery);
 </script>
+
+@if (count($errors) > 0)
+    <div>
+        <ul>
+            @foreach ($errors->all() as $error)
+                <script>
+                    $( document ).ready(function() {
+                        toastr.error("{{$error}}");
+                    });
+                </script>
+            @endforeach
+        </ul>
+    </div>
+    @endif
 </body>
 
 <!-- Mirrored from event-theme.com/themes/html/smarttech/index-4.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Jan 2018 03:30:01 GMT -->

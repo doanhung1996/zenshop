@@ -88,6 +88,9 @@
                             <li>
                                 <a href="{{route('account')}}" title="">Tài Khoản</a>
                             </li>
+                            <li>
+                                <a href="{{route('email.store.list')}}" title="">Email Customer</a>
+                            </li>
                         {{--</ul>--}}
                     {{--</li>--}}
                     <li>

@@ -127,7 +127,7 @@ class CartController extends Controller
          $total_change=(int)str_replace(',','',$total);
          $price_ship=Method_delivery::whereId($request->delivery)->first()->price;
          $total_all = number_format($total_change + $price_ship,0);
-        $delivery=Method_delivery::whereId($request->delivery)->first();
+         $delivery=Method_delivery::whereId($request->delivery)->first();
         return view('display.cart.confirm',compact('cart','qty','total','total_all','data_delivery','delivery'));
     }
 
@@ -219,11 +219,11 @@ class CartController extends Controller
         $total = Cart::total(0);
         $total_change=(int)str_replace(',','',$total);
         $method_delivery=Method_delivery::whereId($request->delivery)->first();
+        //Giảm chỗ này . - Thêm discount_id
              $total_sale = (int)$total_change+$method_delivery['price'];
              $delivery=$method_delivery['title'].' '.$method_delivery['date_info'];
              $date=$method_delivery['date'];
         $pay=$request->pay;
-
         $order_date=date('d/m/Y - H:i:s',strtotime('now'));
         $date_transport=date('d/m/Y - H:i:s',strtotime("now + $date days"));
         $order_code = 'HD'.strtoupper(str_random(16));
@@ -274,6 +274,7 @@ class CartController extends Controller
         if (!empty($cart_content)){
             foreach($cart_content as $k => $v){
                $purchase=Product::whereId($v->id)->first(['product_purchase'])->product_purchase;
+               //Giảm ở chỗ này , Giảm profit ,subtotal và thêm discount_id
                $profit=$v->price-$purchase;
                if (isset(auth()->user()->id)){
                    $order_detail=[
@@ -301,7 +302,6 @@ class CartController extends Controller
                        'image'       =>$v->model->image,
                    ];
                }
-
                 $order_detail_insert=Order_detail::create($order_detail);
                 if ($order_detail_insert==false){
                     return redirect()->route('home');
