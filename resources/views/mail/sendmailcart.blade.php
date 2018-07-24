@@ -75,6 +75,7 @@
                 display:block !important;
 
             }
+
             td[class="specbundle1"]
             {
                 width: 100% !important;
@@ -85,6 +86,7 @@
                 padding-bottom:20px !important;
 
             }
+
             td[class="specbundle2"]
             {
                 width:90% !important;
@@ -154,6 +156,7 @@
                 display:block !important;
 
             }
+
             td[class="specbundle1"]
             {
                 width: 100% !important;
@@ -164,6 +167,7 @@
                 padding-bottom:20px !important;
 
             }
+
             td[class="specbundle2"]
             {
                 width:90% !important;
@@ -218,6 +222,7 @@
                 line-height:19px !important;
 
             }
+
         }
         #customer th {
             padding-top: 12px !important;
@@ -484,20 +489,20 @@
                                             </thead>
                                             <tbody>
                                             @foreach($cart_content as $k_cart => $v_cart)
-                                            <tr class='tr'>
-                                                <td>{{$v_cart->name}}</td>
-                                                <td>{{$v_cart->qty}}</td>
-                                                <td>@php echo number_format($v_cart->price,0).'đ'@endphp</td>
-                                                <td>@php echo number_format($v_cart->subtotal,0).'đ'@endphp</td>
-                                            </tr>
-                                                @endforeach
+                                                <tr class='tr'>
+                                                    <td>{{$v_cart->name}}</td>
+                                                    <td>{{$v_cart->qty}}</td>
+                                                    <td>@php echo number_format($v_cart->price,0).'đ'@endphp</td>
+                                                    <td>@php echo number_format($v_cart->subtotal,0).'đ'@endphp</td>
+                                                </tr>
+                                            @endforeach
                                             </tbody>
                                             {{--<tfoot >--}}
                                             {{--<tr class='tr'>--}}
-                                                {{--<td style="font-weight:normal;">Tổng Cộng :@php echo number_format($total_sale,0).'đ'@endphp</td>--}}
-                                                {{--<td class="total_all_qty" >Tổng số lương :{{$total_qty}}</td>--}}
-                                                {{--<td></td>--}}
-                                                {{--<td class="total_all_price" style="color: #27bdb1; font-weight: normal;">Tổng</td>--}}
+                                            {{--<td style="font-weight:normal;">Tổng Cộng :@php echo number_format($total_sale,0).'đ'@endphp</td>--}}
+                                            {{--<td class="total_all_qty" >Tổng số lương :{{$total_qty}}</td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td class="total_all_price" style="color: #27bdb1; font-weight: normal;">Tổng</td>--}}
                                             {{--</tr>--}}
                                             {{--</tfoot >--}}
                                         </table>
@@ -619,7 +624,7 @@
                                                                                     <p>Update</p>
                                                                                     <p>Update</p>
                                                                                     <p>Update</p>
-{{--                                                                                    <p >Địa Chỉ : {{$customer_insert['address']}}, {{$customer_insert['city']}},Tỉnh  {{$customer_insert['province']}} , Việt Nam</p>--}}
+                                                                                    {{--                                                                                    <p >Địa Chỉ : {{$customer_insert['address']}}, {{$customer_insert['city']}},Tỉnh  {{$customer_insert['province']}} , Việt Nam</p>--}}
                                                                                 </div>
                                                                             </div>
                                                                         </td>
@@ -748,4 +753,5 @@
     </tbody>
 </table>
 </body>
+
 </html>
