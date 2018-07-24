@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Display\Product;
 
+use App\Models\Admin\Menu_item;
+use App\Models\Admin\Menu_type;
 use App\Models\Admin\Product;
 use App\Models\Admin\Product_cat;
 use Illuminate\Http\Request;
@@ -21,7 +23,9 @@ class ProductController extends Controller
         $product=Product_cat::where('slug',$slug)->firstOrFail()->product()->paginate(20);
         $product_count_paginate=count($product);
         $product_count=Product_cat::where('slug',$slug)->firstOrFail()->product()->count();
-        return view('display.product.product',compact('product','check_category','check_parent','product_count','product_count_paginate'));
+        $menu_type_id=Menu_type::where('name','Header')->first()->id;
+        $category_category=Menu_item::where('parent_id',0)->where('menu_type_id',$menu_type_id)->where('type','product')->get();
+        return view('display.product.product',compact('product','check_category','check_parent','product_count','product_count_paginate','category_category'));
     }
 
     /**
@@ -36,7 +40,9 @@ class ProductController extends Controller
          $category_all=Product::with('category','product_cat')->where('status','1')->where('category_id',$category_id['id'])->paginate(20);
          $category_count=Product::with('category','product_cat')->where('status','1')->where('category_id',$category_id['id'])->paginate(20)->count();
          $category_count_all=Product::with('category','product_cat')->where('status','1')->where('category_id',$category_id['id'])->count();
-         return view('display.product.category',compact('category_product','category_all','category_count','category_count_all'));
+         $menu_type_id=Menu_type::where('name','Header')->first()->id;
+         $category_category=Menu_item::where('parent_id',0)->where('menu_type_id',$menu_type_id)->where('type','product')->get();
+         return view('display.product.category',compact('category_product','category_all','category_count','category_count_all','category_category'));
     }
 
     /**
@@ -72,7 +78,9 @@ class ProductController extends Controller
         $check_parent = $check_category->childs()->where('slug', $slug)->firstOrFail();
         $product=Product::where(['slug'=>$parent_slug,'status'=> '1'])->firstOrFail();
         $related_products=Product_cat::where('slug',$slug)->latest()->firstOrFail()->product()->get();
-        return view('display.product.detail_product',compact('product','check_category','check_parent','related_products'));
+        $menu_type_id=Menu_type::where('name','Header')->first()->id;
+        $category_category=Menu_item::where('parent_id',0)->where('menu_type_id',$menu_type_id)->where('type','product')->get();
+        return view('display.product.detail_product',compact('product','check_category','check_parent','related_products','category_category'));
     }
 
     /**

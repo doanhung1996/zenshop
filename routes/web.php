@@ -107,6 +107,12 @@ Route::group(['prefix' => 'admin','middleware' => 'auth','middleware' => 'isadmi
     Route::post('menu/item/status','Admin\Menu\MenuItemController@status')->name('menu.item.status');
     Route::get('menu/item/edit/{menu_item}','Admin\Menu\MenuItemController@edit')->name('menu.item.edit');
     Route::post('menu/item/update/{menu_item}','Admin\Menu\MenuItemController@update')->name('menu.item.update');
+    //EMAIL MENU
+    Route::get('email','Admin\Email\Email_customerController@index')->name('email.store.list');
+    Route::get('email/search','Admin\Email\Email_customerController@search')->name('email.search');
+    Route::post('email/status','Admin\Email\Email_customerController@status')->name('email.status');
+
+
 });
     //DISPLAY HOME
     Route::get('/','Display\Home\HomeController@index');
@@ -154,6 +160,8 @@ Route::group(['prefix' => 'admin','middleware' => 'auth','middleware' => 'isadmi
     Route::get('cart/confirm','Display\Cart\CartController@confirm')->name('cart.confirm');
     Route::post('cart/confirm/success','Display\Cart\CartController@confirm_success')->name('cart.confirm_success');
     Route::view('cart/confirm/success','display.cart.success_cart')->name('cart.confirm_sc');
+    //Add email customer
+    Route::post('email/customer/store','Display\Email\Email_customerController@store')->name('email.customer.store');
 
     Route::get('/email/success',function (){
         return view('auth.passwords.reset_success');

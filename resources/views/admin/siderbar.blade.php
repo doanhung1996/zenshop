@@ -97,13 +97,24 @@
             </ul>
         </li>
         <li class="nav-item">
-            <a href="{{route('account') }}" title="" class="nav-link nav-toggle">
+            <a href="{{route('account') }}" title="Quản lý tài khoản" class="nav-link nav-toggle">
                 <span class="fa fa-user circle"></span>
                 <span class="title">Quản lý tài khoản</span>
             </a>
             <ul class="sub-menu">
                 <li class="nav-item">
-                    <a href="{{route('account') }}" title="" class="nav-link">Danh sách tài khoản</a>
+                    <a href="{{route('account') }}" title="Danh sách tài khoản" class="nav-link">Danh sách tài khoản</a>
+                </li>
+            </ul>
+        </li>
+        <li class="nav-item">
+            <a href="{{route('email.store.list') }}" title="Email Customer" class="nav-link nav-toggle">
+                <span class="fa fa-envelope-square"></span>
+                <span class="title">Email Customer</span>
+            </a>
+            <ul class="sub-menu">
+                <li class="nav-item">
+                    <a href="{{route('email.store.list') }}" title="Email Customer" class="nav-link">Email Customer</a>
                 </li>
             </ul>
         </li>

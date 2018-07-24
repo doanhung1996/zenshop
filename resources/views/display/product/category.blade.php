@@ -22,56 +22,17 @@
                         <div class="shop-side-bar">
 
                             <!-- Categories -->
-                            <h6>Categories</h6>
+                            <h6>@lang('display_lang.category')</h6>
                             <div class="checkbox checkbox-primary">
                                 <ul>
+                                    @foreach($category_category as $item_category_category)
+                                        <li>
+                                            <a href="{{route('product.category',$item_category_category->slug)}}"><label for="cate12">{{$item_category_category->title}}</label></a>
+                                        </li>
+                                    @endforeach
                                     <li>
-                                        <input id="cate1" class="styled" type="checkbox" >
-                                        <label for="cate1"> Home Audio & Theater </label>
-                                    </li>
-                                    <li>
-                                        <input id="cate2" class="styled" type="checkbox" >
-                                        <label for="cate2"> TV & Video</label>
-                                    </li>
-                                    <li>
-                                        <input id="cate3" class="styled" type="checkbox" >
-                                        <label for="cate3"> Camera, Photo & Video</label>
-                                    </li>
-                                    <li>
-                                        <input id="cate4" class="styled" type="checkbox" >
-                                        <label for="cate4"> Cell Phones & Accessories</label>
-                                    </li>
-                                    <li>
-                                        <input id="cate5" class="styled" type="checkbox" >
-                                        <label for="cate5"> Headphones</label>
-                                    </li>
-                                    <li>
-                                        <input id="cate6" class="styled" type="checkbox" >
-                                        <label for="cate6"> Video Games</label>
-                                    </li>
-                                    <li>
-                                        <input id="cate7" class="styled" type="checkbox" >
-                                        <label for="cate7"> Bluetooth & Wireless Speakers</label>
-                                    </li>
-                                    <li>
-                                        <input id="cate8" class="styled" type="checkbox" >
-                                        <label for="cate8"> Gaming Console</label>
-                                    </li>
-                                    <li>
-                                        <input id="cate9" class="styled" type="checkbox" >
-                                        <label for="cate9"> Computers & Tablets</label>
-                                    </li>
-                                    <li>
-                                        <input id="cate10" class="styled" type="checkbox" >
-                                        <label for="cate10"> Monitors</label>
-                                    </li>
-                                    <li>
-                                        <input id="cate11" class="styled" type="checkbox" >
-                                        <label for="cate11"> Home Appliances</label>
-                                    </li>
-                                    <li>
-                                        <input id="cate12" class="styled" type="checkbox" >
-                                        <label for="cate12">Office Supplies </label>
+
+
                                     </li>
                                 </ul>
                             </div>
