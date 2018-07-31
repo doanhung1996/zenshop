@@ -310,7 +310,8 @@ class CartController extends Controller
         }else{
             return redirect()->route('home');
         }
-        event(new CartSuccess($customer_insert, $cart_content, $total_sale, $total_qty,$order_date,$date_transport,$order_code));
+         $customer=(object)$customer;
+        event(new CartSuccess($customer,$cart_content, $total_sale, $total_qty,$order_date,$date_transport,$order_code));
         Cart::destroy();
         return redirect()->route('cart.confirm_sc');
     }

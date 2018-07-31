@@ -2,10 +2,10 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <meta name="author" content="Hùng" />
+    <meta name="author" content="Đoàn Văn Hùng" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Document Title -->
-    <title>Shop Bán Hàng</title>
+    <title>ZENZEN Vietnam™ - Mua Hàng Trực Tuyến Giá Tốt</title>
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="{{asset('public/images/download.png')}}" />

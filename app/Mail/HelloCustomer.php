@@ -34,6 +34,6 @@ class HelloCustomer extends Mailable implements ShouldQueue
      */
     public function build()
     {
-        return $this->from("hungngu1996@gmail.com","Zenshop")->subject("Zenshop")->view('mail.HelloCustomer')->with('user', $this->user);
+        return $this->from("hungngu1996@gmail.com","ZENZEN Vietnam™")->subject("Zenshop")->view('mail.HelloCustomer')->with('user', $this->user);
     }
 }

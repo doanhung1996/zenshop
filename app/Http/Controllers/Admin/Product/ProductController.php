@@ -73,12 +73,23 @@ class ProductController extends Controller
     public function store(StoreCreateProductRequest $request)
     {
         $data=$request->all();
-        if ($request->hasFile('fileUpload')) {
+        if ($request->hasFile('fileUpload') && $request->hasFile('images') && $request->hasFile('images_s') ) {
             $file = $request->fileUpload;
             $fileName=$file->getClientOriginalName();
             $file->move(public_path('uploads'),$fileName);
-            $data['slug']=str_slug($data['product_name']);
             $data['image']='uploads/'.$fileName;
+
+            $images = $request->images;
+            $images_name=$images->getClientOriginalName();
+            $images->move(public_path('uploads'),$images_name);
+            $data['images']='uploads/'.$images_name;
+
+            $images_s = $request->images_s;
+            $images_s_name=$images_s->getClientOriginalName();
+            $images_s->move(public_path('image_3'),$images_s_name);
+            $data['images_s']='uploads/'.$images_s_name;
+            $data['slug']=str_slug($data['product_name']);
+            $data['product_name_seal']=str_slug($data['product_name'],' ');
             $data['user_id']=Auth::user()->id;
             $data['category_id']=Product_cat::where('id', $request->product_cat_id)->first()->parent_id;
         }
@@ -187,16 +198,100 @@ class ProductController extends Controller
     public function update(UpdateProductRequest $request,Product $product)
     {
         $data=$request->all();
-        if ($request->hasFile('fileUpload')) {
+        if ($request->hasFile('fileUpload') && $request->hasFile('images') && $request->hasFile('images_s')) {
             $file = $request->fileUpload;
             $fileName=$file->getClientOriginalName();
             $file->move(public_path('uploads'),$fileName);
-            $data['slug']=str_slug($data['product_name']);
             $data['image']='uploads/'.$fileName;
+
+            $images = $request->images;
+            $images_name=$images->getClientOriginalName();
+            $images->move(public_path('uploads'),$images_name);
+            $data['images']='uploads/'.$images_name;
+
+            $images_s = $request->images_s;
+            $images_s_name=$images_s->getClientOriginalName();
+            $images_s->move(public_path('uploads'),$images_s_name);
+            $data['images_s']='uploads/'.$images_s_name;
+
+            $data['slug']=str_slug($data['product_name']);
+            $data['product_name_seal']=str_slug($data['product_name'],' ');
+            $data['user_id']=Auth::user()->id;
+            $data['category_id']=Product_cat::where('id', $request->product_cat_id)->first()->parent_id;
+        }elseif ($request->hasFile('fileUpload') && $request->hasFile('images')){
+            $file = $request->fileUpload;
+            $fileName=$file->getClientOriginalName();
+            $file->move(public_path('uploads'),$fileName);
+            $data['image']='uploads/'.$fileName;
+
+            $images = $request->images;
+            $images_name=$images->getClientOriginalName();
+            $images->move(public_path('uploads'),$images_name);
+            $data['images']='uploads/'.$images_name;
+
+            $data['slug']=str_slug($data['product_name']);
+            $data['product_name_seal']=str_slug($data['product_name'],' ');
+            $data['user_id']=Auth::user()->id;
+            $data['category_id']=Product_cat::where('id', $request->product_cat_id)->first()->parent_id;
+        }elseif ($request->hasFile('images') && $request->hasFile('images_s')){
+            $images = $request->images;
+            $images_name=$images->getClientOriginalName();
+            $images->move(public_path('uploads'),$images_name);
+            $data['images']='uploads/'.$images_name;
+
+            $images_s = $request->images_s;
+            $images_s_name=$images_s->getClientOriginalName();
+            $images_s->move(public_path('uploads'),$images_s_name);
+            $data['images_s']='uploads/'.$images_s_name;
+
+            $data['slug']=str_slug($data['product_name']);
+            $data['product_name_seal']=str_slug($data['product_name'],' ');
+            $data['user_id']=Auth::user()->id;
+            $data['category_id']=Product_cat::where('id', $request->product_cat_id)->first()->parent_id;
+        }elseif ($request->hasFile('fileUpload') && $request->hasFile('images_s')){
+            $file = $request->fileUpload;
+            $fileName=$file->getClientOriginalName();
+            $file->move(public_path('uploads'),$fileName);
+            $data['image']='uploads/'.$fileName;
+
+            $images_s = $request->images_s;
+            $images_s_name=$images_s->getClientOriginalName();
+            $images_s->move(public_path('uploads'),$images_s_name);
+            $data['images_s']='uploads/'.$images_s_name;
+
+            $data['slug']=str_slug($data['product_name']);
+            $data['product_name_seal']=str_slug($data['product_name'],' ');
+            $data['user_id']=Auth::user()->id;
+            $data['category_id']=Product_cat::where('id', $request->product_cat_id)->first()->parent_id;
+        }elseif($request->hasFile('fileUpload')){
+            $file = $request->fileUpload;
+            $fileName=$file->getClientOriginalName();
+            $file->move(public_path('uploads'),$fileName);
+            $data['image']='uploads/'.$fileName;
+            $data['slug']=str_slug($data['product_name']);
+            $data['product_name_seal']=str_slug($data['product_name'],' ');
+            $data['user_id']=Auth::user()->id;
+            $data['category_id']=Product_cat::where('id', $request->product_cat_id)->first()->parent_id;
+        }elseif ($request->hasFile('images')){
+            $images = $request->images;
+            $images_name=$images->getClientOriginalName();
+            $images->move(public_path('uploads'),$images_name);
+            $data['images']='uploads/'.$images_name;
+            $data['slug']=str_slug($data['product_name']);
+            $data['product_name_seal']=str_slug($data['product_name'],' ');
+            $data['user_id']=Auth::user()->id;
+            $data['category_id']=Product_cat::where('id', $request->product_cat_id)->first()->parent_id;
+        }elseif ($request->hasFile('images_s')){
+            $images_s = $request->images_s;
+            $images_s_name=$images_s->getClientOriginalName();
+            $images_s->move(public_path('uploads'),$images_s_name);
+            $data['images_s']='uploads/'.$images_s_name;
+            $data['slug']=str_slug($data['product_name']);
+            $data['product_name_seal']=str_slug($data['product_name'],' ');
             $data['user_id']=Auth::user()->id;
             $data['category_id']=Product_cat::where('id', $request->product_cat_id)->first()->parent_id;
         }
-        $data['category_id']=Product_cat::where('id', $request->product_cat_id)->first()->parent_id;
+//        $data['category_id']=Product_cat::where('id', $request->product_cat_id)->first()->parent_id;
         $product->update($data);
         session()->flash('success_update', 'Cập Nhật thành công !');
         return back();

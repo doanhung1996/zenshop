@@ -29,7 +29,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Post extends Model
 {
-    protected $fillable=['title','image','description','content','post_cat_id','user_id','slug','category_id'];
+    protected $fillable=['id','title','title_seal','image','description','content','post_cat_id','user_id','slug','category_id'];
     protected  $table="posts";
 //    protected $casts=['status'=>'int'];
 //    public static function lastest()

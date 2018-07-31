@@ -161,7 +161,11 @@ Route::group(['prefix' => 'admin','middleware' => 'auth','middleware' => 'isadmi
     Route::post('cart/confirm/success','Display\Cart\CartController@confirm_success')->name('cart.confirm_success');
     Route::view('cart/confirm/success','display.cart.success_cart')->name('cart.confirm_sc');
     //Add email customer
-    Route::post('email/customer/store','Display\Email\Email_customerController@store')->name('email.customer.store');
+    Route::post('email/customer/store','Display\Email\Email_customerController@store')->name('email.customer.store')->middleware('throttle:2,1');
+    //Search Category -Product
+    Route::get('search','Display\Home\HomeController@search')->name('search');
+    //Search Category -Post
+    Route::get('search/post','Display\Post\PostController@search')->name('search.post');
 
     Route::get('/email/success',function (){
         return view('auth.passwords.reset_success');
@@ -188,4 +192,7 @@ Route::group(['prefix' => 'admin','middleware' => 'auth','middleware' => 'isadmi
     Route::get('updatcard/{id}', function($id){
        Cart::update($id, 5);
 
+    });
+    Route::get('/test123', function(){
+        dispatch(new App\Jobs\TestJob());
     });

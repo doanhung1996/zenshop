@@ -25,7 +25,7 @@
                                 <ul>
                                     @foreach($category_category as $item_category_category)
                                         <li>
-                                            <a href="{{route('product.category',$item_category_category->slug)}}"><label for="cate12">{{$item_category_category->title}}</label></a>
+                                            <a href="{{route('product.category',$item_category_category->slug)}}">{{$item_category_category->title}}</a>
                                         </li>
                                     @endforeach
                                     {{--<li>--}}
@@ -163,7 +163,7 @@
                                     <!-- Item Content -->
                                     <div class="col-xs-7"> <span class="tags">{{$check_parent->title}}</span>
                                         <h5>{{$product->product_name}}</h5>
-                                        <p class="rev"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> <i class="fa fa-star-o"></i> <span class="margin-left-10">5 Review(s)</span></p>
+                                        <p class="rev"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> <i class="fa fa-star-o"></i> <span class="margin-left-10">{{$product->viewer}} view(s)</span></p>
                                         <div class="row">
                                             <div class="col-sm-6"><span class="price">@php echo number_format($product->price) @endphp đ</span></div>
                                             <div class="col-sm-6">
@@ -307,7 +307,7 @@
                                                 <!-- Content -->
                                                 <span class="tag">{{$check_parent->title}}</span> <a href="{{route('product.display.show',[$check_category->slug,$check_parent->slug,$item_related_products->slug])}}" class="tittle">@php echo substr($item_related_products->product_name,0,40) @endphp</a>
                                                 <!-- Reviews -->
-                                                <p class="rev"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> <i class="fa fa-star-o"></i> <span class="margin-left-10">5 Review(s)</span></p>
+                                                <p class="rev"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> <i class="fa fa-star-o"></i> <span class="margin-left-10">{{$item_related_products->viewer}} view(s)</span></p>
                                                 <div class="price"><p>@php echo number_format($item_related_products->price) @endphp .đ</p></div>
                                                 <a href="javascript:void(0)" onclick="addtocart({{$item_related_products->id}})" id = "item-{{$item_related_products->id}}" data_cart="{{$item_related_products->id}}" class="cart-btn"><i class="icon-basket-loaded"></i></a> </article>
 

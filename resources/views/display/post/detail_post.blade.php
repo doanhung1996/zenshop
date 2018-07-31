@@ -43,87 +43,41 @@
 
                                 <!-- Search -->
                                 <div class="search">
-                                    <form>
+                                    <form action="{{route('search.post')}}" method="GET">
                                         <label>
-                                            <input type="email" placeholder="Search here">
+                                            <input type="text" value="@if(isset($search)) {{$search}} @endif" name="search" placeholder="Tìm kiếm ...">
                                         </label>
                                         <button type="submit"><i class="fa fa-search"></i></button>
                                     </form>
                                 </div>
-
                                 <!-- Categories -->
-                                <h6>Categories</h6>
+                                <h6>Danh Mục Bài Viết</h6>
                                 <div class="checkbox checkbox-primary">
                                     <ul>
-                                        <li>
-                                            <input id="cate1" class="styled" type="checkbox" >
-                                            <label for="cate1"> Home Audio & Theater </label>
-                                        </li>
-                                        <li>
-                                            <input id="cate2" class="styled" type="checkbox" >
-                                            <label for="cate2"> TV & Video</label>
-                                        </li>
-                                        <li>
-                                            <input id="cate3" class="styled" type="checkbox" >
-                                            <label for="cate3"> Camera, Photo & Video</label>
-                                        </li>
-                                        <li>
-                                            <input id="cate4" class="styled" type="checkbox" >
-                                            <label for="cate4"> Cell Phones & Accessories</label>
-                                        </li>
-                                        <li>
-                                            <input id="cate5" class="styled" type="checkbox" >
-                                            <label for="cate5"> Headphones</label>
-                                        </li>
-                                        <li>
-                                            <input id="cate6" class="styled" type="checkbox" >
-                                            <label for="cate6"> Video Games</label>
-                                        </li>
-                                        <li>
-                                            <input id="cate7" class="styled" type="checkbox" >
-                                            <label for="cate7"> Bluetooth & Wireless Speakers</label>
-                                        </li>
-                                        <li>
-                                            <input id="cate8" class="styled" type="checkbox" >
-                                            <label for="cate8"> Gaming Console</label>
-                                        </li>
-                                        <li>
-                                            <input id="cate9" class="styled" type="checkbox" >
-                                            <label for="cate9"> Computers & Tablets</label>
-                                        </li>
-                                        <li>
-                                            <input id="cate10" class="styled" type="checkbox" >
-                                            <label for="cate10"> Monitors</label>
-                                        </li>
-                                        <li>
-                                            <input id="cate11" class="styled" type="checkbox" >
-                                            <label for="cate11"> Home Appliances</label>
-                                        </li>
-                                        <li>
-                                            <input id="cate12" class="styled" type="checkbox" >
-                                            <label for="cate12">Office Supplies </label>
-                                        </li>
+                                        @foreach($category_category as $item_category_category)
+                                            <li>
+                                                {{--<input id="cate1" class="styled" type="checkbox" >--}}
+                                                <a href="{{route('post.category',$item_category_category->slug)}}"> {{$item_category_category->title}} </a>
+                                            </li>
+                                        @endforeach()
                                     </ul>
                                 </div>
 
                                 <!-- Recent Posts -->
                                 <h6>Recent Posts</h6>
                                 <div class="recent-post">
-
                                     <!-- Recent Posts -->
                                     <div class="media">
                                         <div class="media-left"> <a href="#."><img class="img-responsive" src="{{asset('public/images/blog-img-2.jpg')}}" alt=""> </a> </div>
                                         <div class="media-body"> <a href="#.">It’s why there’s
                                                 nothing else like Mac. </a> <span>25 Dec, 2017 </span><span> 86 Comments</span> </div>
                                     </div>
-
                                     <!-- Recent Posts -->
                                     <div class="media">
                                         <div class="media-left"> <a href="#."><img class="img-responsive" src="{{asset('public/images/blog-img-3.jpg')}}" alt=""> </a> </div>
                                         <div class="media-body"> <a href="#.">It’s why there’s
                                                 nothing else like Mac. </a> <span>25 Dec, 2017 </span><span> 86 Comments</span> </div>
                                     </div>
-
                                     <!-- Recent Posts -->
                                     <div class="media">
                                         <div class="media-left"> <a href="#."><img class="img-responsive" src="{{asset('public/images/blog-img-4.jpg')}}" alt=""> </a> </div>

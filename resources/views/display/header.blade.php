@@ -65,12 +65,16 @@
                 <span class="call-mun"><i class="fa fa-phone"></i> <strong>Hotline:</strong><br>096.126.5896</span>
                 <!-- search -->
                 <div class="search-cate">
-                    <select class="selectpicker">
-                        <option> Danh Mục Sản Phẩm</option>
-                        <option> Home Audio & Theater</option>
+                    <form action="{{route('search')}}" method="GET" >
+                    <select class="selectpicker" name="qc">
+                        <option value=""> Danh Mục Sản Phẩm</option>
+                        @foreach($category_product_header as $item_category_product_header_search)
+                        <option value="{{$item_category_product_header_search->slug}}" @if(isset($category)=="$item_category_product_header_search->slug") selected @endif>{{$item_category_product_header_search->title}}</option>
+                        @endforeach
                     </select>
-                    <input type="search" placeholder="Search here...">
+                    <input type="search" name="q" value="@if(isset($value)) {{$value}} @endif" placeholder="Tìm Kiếm ...">
                     <button class="submit" type="submit"><i class="icon-magnifier"></i></button>
+                    </form>
                 </div>
                 <!-- Cart Part -->
                 <ul class="nav navbar-right cart-pop" id="home-cart">

@@ -8,7 +8,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 
-class ProcessPodcast implements ShouldQueue
+class TestJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
@@ -29,6 +29,6 @@ class ProcessPodcast implements ShouldQueue
      */
     public function handle()
     {
-        //
+        \Log::info('chạy được rồi nhá');
     }
 }

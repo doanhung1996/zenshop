@@ -4,8 +4,9 @@
     <div class="linking">
         <div class="container">
             <ol class="breadcrumb">
-                <li><a href="{{route('home')}}">Home</a></li>
-                <li class="active"><a href="{{route('product.category',$category_product['slug'])}}">{{$category_product['title']}}</a></li>
+                <li><a href="{{route('home')}}">Trang Chủ</a></li>
+                {{--<li class="active"><a href="{{route('product.category',$check_category->slug)}}">{{$check_category->title}}</a></li>--}}
+                {{--<li class="active"><a href="{{route('product.display',[$check_category->slug,$check_parent->slug])}}">{{$check_parent->title}}</a></li>--}}
             </ol>
         </div>
     </div>
@@ -30,10 +31,10 @@
                                             <a href="{{route('product.category',$item_category_category->slug)}}">{{$item_category_category->title}}</a>
                                         </li>
                                     @endforeach
-                                    <li>
-
-
-                                    </li>
+                                    {{--<li>--}}
+                                    {{--<input id="cate12" class="styled" type="checkbox" >--}}
+                                    {{--<label for="cate12">Office Supplies </label>--}}
+                                    {{--</li>--}}
                                 </ul>
                             </div>
 
@@ -114,13 +115,13 @@
                             </div>
 
                             <!-- Colors -->
-                            <h6>Size</h6>
-                            <div class="sizes">
-                                <a href="#.">S</a>
-                                <a href="#.">M</a>
-                                <a href="#.">L</a>
-                                <a href="#.">XL</a>
-                            </div>
+                            {{--<h6>Size</h6>--}}
+                            {{--<div class="sizes">--}}
+                                {{--<a href="#.">S</a>--}}
+                                {{--<a href="#.">M</a>--}}
+                                {{--<a href="#.">L</a>--}}
+                                {{--<a href="#.">XL</a>--}}
+                            {{--</div>--}}
                             <!-- Colors -->
                             <h6>Colors</h6>
                             <div class="checkbox checkbox-primary">
@@ -165,12 +166,19 @@
                     <div class="col-md-9">
                         <!-- Short List -->
                         <div class="short-lst">
-                            <h2>{{$category_product['title']}}</h2>
+                            {{--<h2>{{$check_parent->title}}</h2>--}}
                             <ul>
                                 <!-- Short List -->
-                                <li>
-                                    <p>Hiển thị {{$category_count}} trong {{$category_count_all}} sản phẩm trong danh mục {{$category_product['title']}} .</p>
-                                </li>
+                                @if($product_count <1)
+                                    <li>
+                                        <p>Không tìm thấy sản phẩm nào cho từ khóa  "<a>@php if (isset($value)) echo $value; @endphp</a>". Mời bạn quay về <a href="{{route('home')}}" style="color: #27bdb1;">Trang Chủ</a>!</p>
+                                    </li>
+                                @else
+                                    <li>
+                                        <p>Hiển thị {{$product_count}} trong {{$product_count_search}} sản phẩm tìm thấy .</p>
+                                    </li>
+                                @endif
+
                                 <!-- Short  -->
                                 {{--<li >--}}
                                 {{--<select class="selectpicker">--}}
@@ -204,18 +212,20 @@
                         <!-- Items -->
                         <div class="item-col-4">
                             <!-- Product -->
-                            @foreach($category_all as $item_category_all)
-                                <div class="product">
-                                    <article><a href="{{route('product.display.show',[$item_category_all->category->slug,$item_category_all->product_cat->slug,$item_category_all->slug])}}"><img class="img-responsive" style=" min-width: 169.38px; min-height: 169.38px; max-width: 169.38px; max-height: 169.38px;" src="{{asset("$item_category_all->image")}}" alt="" ></a>
-                                        <!-- Content -->
-                                        <span class="sale-tag">{{$item_category_all->product_discount}}%</span>
-                                        <span class="tag">{{$item_category_all->product_cat->title}}</span> <a href="{{route('product.display.show',[$item_category_all->category->slug,$item_category_all->product_cat->slug,$item_category_all->slug])}}" class="tittle">@php echo substr($item_category_all->product_name,0,43)@endphp</a>
-                                        <!-- Reviews -->
-                                        <p class="rev"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> <i class="fa fa-star"></i> <span class="margin-left-10">{{$item_category_all->viewer}} view(s)</span></p>
-                                        <div class="price">{{number_format($item_category_all->price)}}.đ</div>
-                                        <a href="javascript:void(0)" onclick="addtocart({{$item_category_all->id}})" id = "item-{{$item_category_all->id}}" data_cart="{{$item_category_all->id}}" class="cart-btn"><i class="icon-basket-loaded"></i></a> </article>
-                                </div>
-                            @endforeach
+                            @if(!empty($product))
+                                @foreach($product as $item_product)
+                                    <div class="product">
+                                        <article><a href="{{route('product.display.show',[$item_product->category->slug,$item_product->product_cat->slug,$item_product->slug])}}"><img class="img-responsive" style=" min-width: 169.38px; min-height: 169.38px; max-width: 169.38px; max-height: 169.38px;" src="{{asset("$item_product->image")}}" alt="" ></a>
+                                            <!-- Content -->
+                                            <span class="sale-tag">{{$item_product->product_discount}}%</span>
+                                            <span class="tag">{{$item_product->category->title}}</span> <a href="{{route('product.display.show',[$item_product->category->slug,$item_product->product_cat->slug,$item_product->slug])}}" class="tittle">@php echo substr($item_product->product_name,0,43)@endphp</a>
+                                            <!-- Reviews -->
+                                            <p class="rev"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> <i class="fa fa-star"></i> <span class="margin-left-10">{{$item_product->viewer}} view(s)</span></p>
+                                            <div class="price">{{number_format($item_product->price)}}.đ</div>
+                                            <a href="javascript:void(0)" onclick="addtocart({{$item_product->id}})" id = "item-{{$item_product->id}}" data_cart="{{$item_product->id}}" class="cart-btn"><i class="icon-basket-loaded"></i></a> </article>
+                                    </div>
+                                @endforeach
+                            @endif
                         <!-- pagination -->
                             {{--
                                                         {{--<ul class="pagination">--}}
@@ -229,7 +239,7 @@
                     </div>
                 </div>
                 <div class="item-col-3" style="margin-left: 290px">
-                    {{$category_all->links('vendor.pagination.pagination')}}
+                    {{$product->links('vendor.pagination.pagination')}}
                 </div>
             </div>
         </section>
@@ -261,11 +271,11 @@
         <section class="light-gry-bg clients-img">
             <div class="container">
                 <ul>
-                    <li><img src="images/c-img-1.png" alt="" ></li>
-                    <li><img src="images/c-img-2.png" alt="" ></li>
-                    <li><img src="images/c-img-3.png" alt="" ></li>
-                    <li><img src="images/c-img-4.png" alt="" ></li>
-                    <li><img src="images/c-img-5.png" alt="" ></li>
+                    {{--<li><img src="images/c-img-1.png" alt="" ></li>--}}
+                    {{--<li><img src="images/c-img-2.png" alt="" ></li>--}}
+                    {{--<li><img src="images/c-img-3.png" alt="" ></li>--}}
+                    {{--<li><img src="images/c-img-4.png" alt="" ></li>--}}
+                    {{--<li><img src="images/c-img-5.png" alt="" ></li>--}}
                 </ul>
             </div>
         </section>

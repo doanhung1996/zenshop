@@ -56,11 +56,11 @@ return [
 
         'pgsql' => [
             'driver' => 'pgsql',
-            'host' => env('DB_HOST', '127.0.0.1'),
-            'port' => env('DB_PORT', '5432'),
-            'database' => env('DB_DATABASE', 'forge'),
-            'username' => env('DB_USERNAME', 'forge'),
-            'password' => env('DB_PASSWORD', ''),
+            'host' => env('DB_HOST', '123.31.12.122'),
+            'port' => env('DB_PORT', '3333'),
+            'database' => env('DB_DATABASE', 'zenzen_shopping'),
+            'username' => env('DB_USERNAME', 'zenzen_shopping'),
+            'password' => env('DB_PASSWORD', 'shopping'),
             'charset' => 'utf8',
             'prefix' => '',
             'schema' => 'public',

@@ -137,6 +137,7 @@ class AccountController extends Controller
         $search=$request->search;
         $account=User::orwhere('name','like',"%$value%")
             ->orwhere('email','like',"%$value%")
+            ->orwhere('account','like',"%$value%")
             ->orwhere('phone','like',"%$value%")
             ->orwhere('gender','like',"%$value%")
             ->orwhere('address','like',"%$value%")
@@ -144,6 +145,7 @@ class AccountController extends Controller
         $account->withPath("?value="."$value"."&search="."$search");
         $account_count=User::orwhere('name','like',"%$value%")
             ->orwhere('email','like',"%$value%")
+            ->orwhere('account','like',"%$value%")
             ->orwhere('phone','like',"%$value%")
             ->orwhere('gender','like',"%$value%")
             ->orwhere('address','like',"%$value%")

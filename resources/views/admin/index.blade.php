@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Shop Bán Hàng</title>
+    <title>ZENZEN Vietnam™ - Mua Hàng Trực Tuyến Giá Tốt</title>
+    <meta name="author" content="Đoàn Văn Hùng" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="{{asset('admin/public/images/download.png')}}" />

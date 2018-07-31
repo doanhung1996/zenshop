@@ -28,11 +28,24 @@
                         <textarea name="description" id="editor" value="{{old('description')}}"></textarea>
                         <label for="desc">Chi tiết</label>
                         <textarea name="detail" id="editor1" value="{{old('description')}}"></textarea>
-                        <label>Hình ảnh</label>
+                        <label>Hình ảnh 1</label>
                         <div id="uploadFile">
                             <img id="blah" src="{{asset('admin/public/images/img-thumb.png')}}" alt="your image" width="400" height="400" />
                             <input type="file" name="fileUpload" onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])">
                         </div>
+                        <label>Hình ảnh 2</label>
+                        <div id="uploadFile">
+                            <img id="bla" src="{{asset('admin/public/images/img-thumb.png')}}" alt="your image" width="400" height="400" />
+                            <input type="file" name="images" onchange="document.getElementById('bla').src = window.URL.createObjectURL(this.files[0])">
+                        </div>
+
+                        <label>Hình ảnh 3</label>
+                        <div id="uploadFile">
+                            <img id="blahh" src="{{asset('admin/public/images/img-thumb.png')}}" alt="your image" width="400" height="400" />
+                            <input type="file" name="images_s" onchange="document.getElementById('blahh').src = window.URL.createObjectURL(this.files[0])">
+                        </div>
+                        <label for="link_video">Link Video</label>
+                        <input type="text" name="link_video" value="{{old('link_video')}}" id="link_video">
                         <label>Danh mục sản phẩm</label>
                         <select name="product_cat_id">
                         <option value="">-- Chọn danh mục --</option>
