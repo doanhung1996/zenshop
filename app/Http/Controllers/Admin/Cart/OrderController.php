@@ -191,6 +191,18 @@ class OrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public function bill($id)
+    {
+         $order=Order::with('order_detail')->whereId($id)->first();
+         return view('admin.cart.bill',compact('order'));
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function show($id)
     {
         //

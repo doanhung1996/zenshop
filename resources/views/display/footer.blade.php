@@ -163,6 +163,7 @@
 <script src="{{asset('public/js/vendors/bootstrap.min.js')}}"></script>
 <script src="{{asset('public/js/vendors/own-menu.js')}}"></script>
 <script src="{{asset('public/js/vendors/jquery.sticky.js')}}"></script>
+<script src="{{asset('public/js/vendors/modernizr.js')}}"></script>
 <script src="{{asset('public/js/vendors/owl.carousel.min.js')}}"></script>
 
 <script src="{{asset('public/fancybox/fb/jquery.fancybox.js')}}"></script>

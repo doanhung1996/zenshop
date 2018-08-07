@@ -26,6 +26,19 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Post whereStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Post whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Post whereUpdatedAt($value)
+ * @property string $title_seal
+ * @property int $user_id
+ * @property string $slug
+ * @property int $category_id
+ * @property int $viewer
+ * @property-read \App\Models\Admin\Post_cat $category
+ * @property-read \App\Models\Admin\Post_cat $post_cat
+ * @property-read \App\User $user
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Post whereCategoryId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Post whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Post whereTitleSeal($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Post whereUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Post whereViewer($value)
  */
 class Post extends Model
 {

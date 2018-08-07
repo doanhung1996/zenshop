@@ -4,7 +4,7 @@
 <div id="main-content-wp" class="add-cat-page">
     <div class="section" id="title-page">
         <div class="clearfix">
-            <a href="{{env('admin/page/create')}}" title="" id="add-new" class="fl-left">Thêm mới</a>
+            <a href="{{route('page.list')}}" title="" id="add-new" class="fl-left">Danh Sách</a>
             <h3 id="index" class="fl-left">Thêm trang</h3>
         </div>
     </div>

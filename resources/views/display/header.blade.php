@@ -59,49 +59,52 @@
     </div>
     <!-- Header -->
     <header class="header-style-4">
-        <div class="container">
-            <div class="logo"> <a href="{{route('home')}}"><img src="{{asset('public/images/logo.png')}}" alt="Trang Chủ" ></a> </div>
-            <div class="go-right">
-                <span class="call-mun"><i class="fa fa-phone"></i> <strong>Hotline:</strong><br>096.126.5896</span>
-                <!-- search -->
-                <div class="search-cate">
-                    <form action="{{route('search')}}" method="GET" >
-                    <select class="selectpicker" name="qc">
-                        <option value=""> Danh Mục Sản Phẩm</option>
-                        @foreach($category_product_header as $item_category_product_header_search)
-                        <option value="{{$item_category_product_header_search->slug}}" @if(isset($category)=="$item_category_product_header_search->slug") selected @endif>{{$item_category_product_header_search->title}}</option>
-                        @endforeach
-                    </select>
-                    <input type="search" name="q" value="@if(isset($value)) {{$value}} @endif" placeholder="Tìm Kiếm ...">
-                    <button class="submit" type="submit"><i class="icon-magnifier"></i></button>
-                    </form>
-                </div>
-                <!-- Cart Part -->
-                <ul class="nav navbar-right cart-pop" id="home-cart">
-                    @if(Cart::count() == 0)
-                    <li class="dropdown"> <a href="{{route('cart.detail')}}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="itm-cont">0</span> <i class="flaticon-shopping-bag"></i> <strong>@lang('display_lang.my_cart')</strong> <br>
-                            <span>0 item(s) - 0 đ</span></a>
-                    </li>
+        <div class="clearfix-header">
+            <div class="container">
+                <div class="logo"> <a href="{{route('home')}}"><img src="{{asset('public/images/logo.png')}}" alt="Trang Chủ" ></a> </div>
+                <div class="go-right">
+                    <span class="call-mun"><i class="fa fa-phone"></i> <strong>Hotline:</strong><br>096.126.5896</span>
+                    <!-- search -->
+                    <div class="search-cate">
+                        <form action="{{route('search')}}" method="GET" >
+                            <select class="selectpicker" name="qc">
+                                <option value=""> Danh Mục Sản Phẩm</option>
+                                @foreach($category_product_header as $item_category_product_header_search)
+                                    <option value="{{$item_category_product_header_search->slug}}" @if(isset($category)=="$item_category_product_header_search->slug") selected @endif>{{$item_category_product_header_search->title}}</option>
+                                @endforeach
+                            </select>
+                            <input type="search" name="q" value="@if(isset($value)) {{$value}} @endif" placeholder="Tìm Kiếm ...">
+                            <button class="submit" type="submit"><i class="icon-magnifier"></i></button>
+                        </form>
+                    </div>
+                    <!-- Cart Part -->
+                    <ul class="nav navbar-right cart-pop" id="home-cart">
+                        @if(Cart::count() == 0)
+                            <li class="dropdown"> <a href="{{route('cart.detail')}}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="itm-cont">0</span> <i class="flaticon-shopping-bag"></i> <strong>@lang('display_lang.my_cart')</strong> <br>
+                                    <span>0 item(s) - 0 đ</span></a>
+                            </li>
                         @else
-                        <li class="dropdown"> <a href="{{route('cart.detail')}}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="itm-cont">{{ $data_cart_count }}</span> <i class="flaticon-shopping-bag"></i> <strong>@lang('display_lang.my_cart')</strong> <br>
-                                <span>{{ $qty }} item(s) - {{$total}} đ</span></a>
-                            <ul class="dropdown-menu">
-                                {{--{{dd(data_cart)}}--}}
-                                @if(count($data_cart) > 0)
-                                    @foreach($data_cart as $item)
-                                        <li>
-                                            <div class="media-left"> <a href="{{route('cart.detail')}}" class="thumb"> <img src="{{asset($item->model->image)}}" class="img-responsive" alt="{{$item->name}}" > </a> </div>
-                                            <div class="media-body"> <a href="{{route('cart.detail')}}" class="tittle">{{$item->name}}</a> <span>@php echo number_format($item->price); @endphp đ</span> </div>
-                                        </li>
-                                    @endforeach
-                                @endif
-                                <li class="btn-cart"> <a href="{{route('cart.detail')}}" class="btn-round">@lang('display_lang.view_cart')</a> </li>
-                            </ul>
-                        </li>
-                    @endif
-                </ul>
+                            <li class="dropdown"> <a href="{{route('cart.detail')}}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="itm-cont">{{ $data_cart_count }}</span> <i class="flaticon-shopping-bag"></i> <strong>@lang('display_lang.my_cart')</strong> <br>
+                                    <span>{{ $qty }} item(s) - {{$total}} đ</span></a>
+                                <ul class="dropdown-menu">
+                                    {{--{{dd(data_cart)}}--}}
+                                    @if(count($data_cart) > 0)
+                                        @foreach($data_cart as $item)
+                                            <li>
+                                                <div class="media-left"> <a href="{{route('cart.detail')}}" class="thumb"> <img src="{{asset($item->model->image)}}" class="img-responsive" alt="{{$item->name}}" > </a> </div>
+                                                <div class="media-body"> <a href="{{route('cart.detail')}}" class="tittle">{{$item->name}}</a> <span>@php echo number_format($item->price); @endphp đ</span> </div>
+                                            </li>
+                                        @endforeach
+                                    @endif
+                                    <li class="btn-cart"> <a href="{{route('cart.detail')}}" class="btn-round">@lang('display_lang.view_cart')</a> </li>
+                                </ul>
+                            </li>
+                        @endif
+                    </ul>
+                </div>
             </div>
         </div>
+
         <!-- Nav -->
         {{--@php--}}
                 {{--echo '<pre>';--}}
@@ -194,4 +197,24 @@
         <!-- Nav Header -->
 
     </header>
+    <script>
+        $(window).bind('scroll', function () {
+            var screen = $(document).width();
+            if(screen > 768){
+                // console.log(screen);
+                if ($(window).scrollTop() > 97) {
+                    // $('header .navbar').css(
+                    //     'position','fixed'
+                    // );
+                    $('.header-style-4 .clearfix-header').addClass('fixed');
+                } else {
+                    // $('header .navbar').css(
+                    //     'position','static'
+                    // );
+                    $('.header-style-4 .clearfix-header').removeClass('fixed');
+                }
+            }
+
+        });
+    </script>
     <!-- Nav    Header -->

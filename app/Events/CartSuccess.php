@@ -15,6 +15,7 @@ class CartSuccess
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
+    public $order_id;
     public $customer;
     public $cart_content;
     public $total_sale;
@@ -34,8 +35,9 @@ class CartSuccess
      * @param $date_transport
      * @param $order_code
      */
-    public function __construct($customer, $cart_content, $total_sale, $total_qty,$order_date,$date_transport,$order_code)
+    public function __construct($order_id, $customer, $cart_content, $total_sale, $total_qty,$order_date,$date_transport,$order_code)
     {
+        $this->order_id = $order_id;
         $this->customer=$customer;
         $this->cart_content=$cart_content;
         $this->total_sale=$total_sale;

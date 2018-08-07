@@ -3,7 +3,7 @@
     <div id="main-content-wp" class="add-cat-page menu-page">
         <div class="section" id="title-page">
             <div class="clearfix">
-                <a href="{{route('menu.type')}}" title="" id="add-new" class="fl-left">Thêm mới menu</a>
+                <a href="{{route('menu.type')}}" title="" id="add-new" class="fl-left">Thêm mới</a>
                 <h3 id="index" class="fl-left">Menu Type</h3>
             </div>
         </div>

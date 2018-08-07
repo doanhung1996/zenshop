@@ -28,9 +28,7 @@ return [
     | the Mailgun mail service which will provide reliable deliveries.
     |
     */
-
     'host' => env('MAIL_HOST', 'smtp.gmail.com'),
-
     /*
     |--------------------------------------------------------------------------
     | SMTP Host Port
@@ -56,8 +54,8 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-        'name' => env('MAIL_FROM_NAME', 'Example'),
+        'address' => env('MAIL_FROM_ADDRESS', 'hungngu1996@gmail.com'),
+        'name' => env('MAIL_FROM_NAME', 'Zen Zen'),
     ],
 
     /*
@@ -83,10 +81,8 @@ return [
     | connection. You may also set the "password" value below this one.
     |
     */
-
-    'username' => env('MAIL_USERNAME','hungngu1996@gmail.com'), //dm cai con cac gi day ?
-
-    'password' => env('MAIL_PASSWORD', 'Decade1996'),
+    'username' => env('MAIL_USERNAME','hungngu1996@gmail.com'),
+    'password' => env('MAIL_PASSWORD','Decade1996'),
 
     /*
     |--------------------------------------------------------------------------

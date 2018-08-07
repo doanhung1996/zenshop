@@ -11,7 +11,8 @@
 */
 Route::group(['prefix' => 'admin','middleware' => 'auth','middleware' => 'isadmin'], function (){
     App::setLocale('vi');
-    //ADMIN - PAGE cu de dday di . toi sua sau
+    //ADMIN - PAGE
+
     Route::get('page/create', 'Admin\Page\PageController@create')->name('page.create');
     Route::post('page/create', 'Admin\Page\PageController@store')->name('page.store');
     Route::get('page', 'Admin\Page\PageController@index')->name('page.list');
@@ -67,6 +68,7 @@ Route::group(['prefix' => 'admin','middleware' => 'auth','middleware' => 'isadmi
     Route::get('customer','Admin\Cart\CustomerController@index')->name('customer');
     Route::post('customer/delete','Admin\Cart\CustomerController@delete')->name('customer.delete');
     Route::get('customer/search','Admin\Cart\CustomerController@search')->name('customer.search');
+    Route::get('bill/{id}','Admin\Cart\OrderController@bill')->name('bill');
 //    Route::get('customer/detail.html','Admin\Cart\CustomerController@customer_detail')->name('customer.detail');
     //// ADMIN SLIDER
     Route::get('slider/create','Admin\Slider\SliderController@create')->name('slider.create');
@@ -111,9 +113,10 @@ Route::group(['prefix' => 'admin','middleware' => 'auth','middleware' => 'isadmi
     Route::get('email','Admin\Email\Email_customerController@index')->name('email.store.list');
     Route::get('email/search','Admin\Email\Email_customerController@search')->name('email.search');
     Route::post('email/status','Admin\Email\Email_customerController@status')->name('email.status');
-
-
 });
+    Route::get('/admin',function (){
+        return view('errors.404');
+    });
     //DISPLAY HOME
     Route::get('/','Display\Home\HomeController@index');
     Route::get('home.html','Display\Home\HomeController@index')->name('home');
@@ -170,9 +173,13 @@ Route::group(['prefix' => 'admin','middleware' => 'auth','middleware' => 'isadmi
     Route::get('/email/success',function (){
         return view('auth.passwords.reset_success');
     });
+
     Route::get('ok',function (){
-        return Cart::content();
+        return $cart=Cart::content();
+
     });
+
+
 
 
     Route::get('cart',function (){

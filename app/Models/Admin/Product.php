@@ -30,11 +30,40 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Product whereStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Product whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Product whereUpdatedAt($value)
+ * @property string $product_name
+ * @property string $product_name_seal
+ * @property string|null $images
+ * @property string|null $images_s
+ * @property string $link_video
+ * @property int $product_discount
+ * @property string $product_code
+ * @property int $user_id
+ * @property string $slug
+ * @property int $product_purchase
+ * @property int $category_id
+ * @property int $viewer
+ * @property int $cart
+ * @property-read \App\Models\Admin\Product_cat $category
+ * @property-read mixed $price_sale
+ * @property-read \App\User $user
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Product whereCart($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Product whereCategoryId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Product whereImages($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Product whereImagesS($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Product whereLinkVideo($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Product whereProductCode($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Product whereProductDiscount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Product whereProductName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Product whereProductNameSeal($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Product whereProductPurchase($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Product whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Product whereUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Product whereViewer($value)
  */
 class Product extends Model
 {
     protected  $table="products";
-    protected $fillable=['id','product_name','product_name_seal','product_code','description','image','price','product_purchase','detail','product_discount','product_cat_id','user_id','status','slug','category_id','link_video','images','images_s','viewer','cart'];
+    protected $fillable=['id','product_name','product_name_seal','product_code','description','image','price','product_purchase','detail','product_discount','product_cat_id','user_id','status','slug','category_id','link_video','images','images_s','viewer','cart','qty'];
 
     public function product_cat(){
         return $this->belongsTo('App\Models\Admin\Product_cat','product_cat_id','id');
@@ -55,9 +84,16 @@ class Product extends Model
     {
         return "product/{$this->product_cat->parent->slug}/{$this->product_cat->slug}/{$this->slug}";
     }
-    //Update View
+    //Update
     public function updateView($slug)
     {
         return $this->where('slug',$slug)->increment('viewer');
     }
+
+    public function getPriceSaleAttribute()
+    {
+        $price = ((100 - $this->product_discount)/100) * $this->price;
+        return $price;
+    }
+
 }

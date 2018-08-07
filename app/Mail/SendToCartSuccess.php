@@ -48,7 +48,7 @@ class SendToCartSuccess extends Mailable implements ShouldQueue
      */
     public function build()
     {
-        return $this->from("doanvanhung160596@gmail.com","ZENZEN Vietnam™")
+        return $this->from("hungngu1996@gmail.com","ZENZEN Vietnam™")
             ->subject("Thanh Toán Thành Công !")
             ->view('mail.sendmailcart',compact('customer','cart_content','date_transport','total_sale','total_qty','order_code'));
     }

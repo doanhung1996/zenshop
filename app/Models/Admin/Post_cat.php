@@ -10,6 +10,29 @@ namespace App\Models\Admin;
 use Illuminate\Database\Eloquent\Model;
 
 
+/**
+ * App\Models\Admin\Post_cat
+ *
+ * @property int $id
+ * @property string $title
+ * @property string $slug
+ * @property int $parent_id
+ * @property int $user_id
+ * @property \Carbon\Carbon|null $created_at
+ * @property \Carbon\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Admin\Post_cat[] $childs
+ * @property-read \App\Models\Admin\Post_cat $parent
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Admin\Post[] $post
+ * @property-read \App\User $user
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Post_cat whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Post_cat whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Post_cat whereParentId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Post_cat whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Post_cat whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Post_cat whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Post_cat whereUserId($value)
+ * @mixin \Eloquent
+ */
 class Post_cat extends Model
 {
     protected  $table="post_cats";

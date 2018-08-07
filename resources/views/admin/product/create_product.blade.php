@@ -19,11 +19,13 @@
                         <label for="product-code">Mã sản phẩm (Product Code)</label>
                         <input type="text" name="product_code" value="{{old('product_code')}}" id="product-code">
                         <label for="product_purchase">Giá Nhập (Product Purchase)</label>
-                        <input type="text" name="product_purchase" value="{{old('product_purchase')}}" id="product_purchase">
+                        <input type="number" min="0" name="product_purchase" value="{{old('product_purchase')}}" id="product_purchase">
                         <label for="price">Giá Bán Thực (Price)</label>
-                        <input type="text" name="price" value="{{old('price')}}" id="price">
+                        <input type="number" min="0" name="price" value="{{old('price')}}" id="price">
                         <label for="price">Giảm giá (Product Discount %)</label>
-                        <input type="text" name="product_discount" value="{{old('product_discount')}}" id="price">
+                        <input type="number" min="0" name="product_discount" value="{{old('product_discount')}}" id="price">
+                        <label for="qty">Số Lượng (qty)</label>
+                        <input type="number" min="0" name="qty" value="{{old('qty')}}" id="qty">
                         <label for="desc">Mô tả ngắn</label>
                         <textarea name="description" id="editor" value="{{old('description')}}"></textarea>
                         <label for="desc">Chi tiết</label>

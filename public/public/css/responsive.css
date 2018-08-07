@@ -562,8 +562,9 @@ header .navbar {
 	width: 100%;
 }
 .navbar-toggle {
+	z-index: 1000;
 	position: absolute;
-	top: 6px;
+	top: -45px;
 	right: 15px;
 	height: 42px;
 	width: 42px;

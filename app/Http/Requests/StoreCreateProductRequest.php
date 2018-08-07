@@ -24,7 +24,7 @@ class StoreCreateProductRequest extends FormRequest
     public function rules()
     {
         return [
-            'product_name'=>'required',
+            'product_name'=>'required|unique:products',
             'product_code'=>'required',
             'price'=>'required|numeric',
             'product_purchase'=>'required|numeric',

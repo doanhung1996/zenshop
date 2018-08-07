@@ -24,7 +24,7 @@ class AddSliderRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'=>'required',
+            'name'=>'required|unique:sliders',
             'title'=>'required',
             'link'=>'required',
             'price'=>'required|numeric',

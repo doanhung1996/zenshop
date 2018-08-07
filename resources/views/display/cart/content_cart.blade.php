@@ -27,7 +27,7 @@
                 <td class="text-center padding-top-60" style="padding-top: 30px !important;">@php echo number_format($item_cart->price) @endphp đ</td>
                 <td>
                     <div class="quinty padding-top-20 padding-left-40">
-                        <input type="number" rowId="{{$item_cart->rowId}}" value="{{$item_cart->qty}}" onchange="update(this)" id="qty" name="qty" max="10" min="1">
+                        <input type="number"  product_id="{{$item_cart->id}}" rowId="{{$item_cart->rowId}}" value="{{$item_cart->qty}}" onchange="update(this)" id="qty" name="qty" max="5" min="1">
                     </div>
                 </td>
                 <td class="text-center padding-top-60" style="padding-top: 30px !important;">@php echo number_format($item_cart->subtotal) @endphp đ</td>

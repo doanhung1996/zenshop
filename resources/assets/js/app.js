@@ -16,6 +16,7 @@ window.Vue = require('vue');
  */
 
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
+Vue.component('header-notification', require('./components/HeaderNotification.vue'));
 
 const app = new Vue({
     el: '#app'

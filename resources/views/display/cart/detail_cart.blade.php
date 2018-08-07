@@ -73,7 +73,7 @@
                             <td class="text-center padding-top-60" style="padding-top: 30px !important;">@php echo number_format($item_cart->price) @endphp đ</td>
                             <td>
                                 <div class="quinty padding-top-20 padding-left-40">
-                                    <input type="number" rowId="{{$item_cart->rowId}}" value="{{$item_cart->qty}}" onchange="update(this)" id="qty" name="qty" max="10" min="1">
+                                    <input type="number" product_id="{{$item_cart->id}}" rowId="{{$item_cart->rowId}}" max="5" min="1" value="{{$item_cart->qty}}" onchange="update(this)" id="qty" name="qty" >
                                 </div>
                             </td>
                             <td class="text-center padding-top-60" style="padding-top: 30px !important;">@php echo number_format($item_cart->subtotal) @endphp đ</td>
@@ -150,6 +150,7 @@
         function update(obj) {
             var rowId=$(obj).attr('rowId');
             var qty=$(obj).val();
+            var product_id=$(obj).attr('product_id');
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -158,12 +159,21 @@
             $.ajax({
                 url:'{{route('cart.update')}}',
                 method:'POST',
-                data:{rowId:rowId,qty:qty},
+                data:{rowId:rowId,qty:qty,product_id:product_id},
                 processData:true,
                 dataType:'text',
                 success:function(data){
-                  load_cart();
-                  load_change_cart();
+                    // alert(data);
+                    if(data == 'required'){
+                        toastr.error('Số lượng không đúng ');
+                    }
+                    if(data == 'end'){
+                        toastr.error('Số lượng hàng đã hết');
+                    }
+                    if(data != ''){
+                        load_cart();
+                        load_change_cart();
+                    }
                 },
             });
         }

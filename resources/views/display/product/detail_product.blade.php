@@ -201,7 +201,7 @@
                                             @csrf
                                             <div class="quinty">
                                                 <input type="hidden" name="product_id" value="{{$product->id}}">
-                                                <input type="number" name="qty" value="1" min="1" max="10">
+                                                <input type="number" name="qty" value="1" >
                                             </div>
                                             <button name="add_cart" class="btn-round" style="padding:10px 20px !important; border: 0px; !important;">@lang('display_lang.add_to_cart')</button>
                                             {{--<a href="#." class="btn-round" style="padding:0 20px !important;"><i class="icon-basket-loaded margin-right-5"></i></a> </div>--}}
@@ -388,4 +388,17 @@
             })
         })
     </script>
+    @if (count($errors) > 0)
+        <div>
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <script>
+                        $( document ).ready(function() {
+                            toastr.error("{{$error}}");
+                        });
+                    </script>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 @endsection()

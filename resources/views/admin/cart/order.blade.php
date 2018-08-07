@@ -3,7 +3,7 @@
 <div id="main-content-wp" class="list-product-page">
     <div class="section" id="title-page">
         <div class="clearfix">
-            <a href="http://localhost/zenshop/public" title="Zenshop" id="add-new" class="fl-left">Zenshop</a>
+            <a href="{{route('customer')}}" title="Khách Hàng" id="add-new" class="fl-left">Khách Hàng</a>
             <h3 id="index" class="fl-left">Danh sách Đơn Hàng</h3>
         </div>
     </div>

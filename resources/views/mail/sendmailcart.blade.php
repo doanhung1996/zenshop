@@ -324,6 +324,9 @@
                                                     </table>
                                                 </td>
                                             </tr>
+                                            <tr>
+                                                <td height="20"></td>
+                                            </tr>
                                         </table>
                                     </div>
                                     <h2 style="color: #27bdb1; font-size: 17px; margin-left: 18px;">Thông Tin Đơn Hàng<p style="display: inline; font-size: 13px; text-align: center; line-height: 1.4; color: #8c8c8c;"> (Thời gian: {{$order_date}})</p></h2>
@@ -346,7 +349,119 @@
                                     </div>
                                     <div class="movableContent" style="border: 0px; padding-top: 0px; position: relative;">
                                         <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" valign='top'>
-                                            <tr><td height='20'></td></tr>
+                                            <tr>
+                                                <td width='291' class="specbundle2" valign='top'>
+                                                    <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" valign='top'>
+                                                        <tr><td height='15' colspan='3'></td></tr>
+                                                        <tr>
+                                                            <td width='20'></td>
+                                                            <td width='251'>
+                                                                <table width="251" border="0" cellspacing="0" cellpadding="0" align="center" valign='top'>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <div class='contentEditableContainer contentTextEditable'>
+                                                                                <div class='contentEditable' style='color:#555555;font-size:21px;font-weight:normal;'>
+                                                                                    <h2 class='big' >Thông tin thanh toán</h2>
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr><td height='16'></td></tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <div class='contentEditableContainer contentTextEditable'>
+                                                                                <div class='contentEditable' style='color:#999999;font-size:13px;line-height:19px;'>
+                                                                                    <p style="margin-bottom: 3px;">Họ Tên: {{$customer->fullname}}</p>
+                                                                                    <p style="margin-bottom: 3px;">Số Điện Thoại: {{$customer->phone}}</p>
+                                                                                    <p style="margin-bottom: 3px;">Email: {{$customer->email}}</p>
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr><td height='16'></td></tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <div class='contentEditableContainer contentTextEditable'>
+                                                                                <div class='contentEditable'>
+                                                                                    <!-- <a target='_blank' class='link1' href="#" >Read more</a> -->
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                </table>
+                                                            </td>
+                                                            <td width='20'></td>
+                                                        </tr>
+
+                                                        <tr><td height='15' colspan='3'></td></tr>
+                                                    </table>
+                                                </td>
+
+                                                <td width='18' valign="top" class="specbundle2">&nbsp;</td>
+
+                                                <td width='291' class="specbundle2" valign='top'>
+                                                    <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" valign='top'>
+                                                        <tr><td height='15' colspan='3'></td></tr>
+                                                        <tr>
+                                                            <td width='20'></td>
+                                                            <td width='251'>
+                                                                <table width="251" border="0" cellspacing="0" cellpadding="0" align="center" valign='top'>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <div class='contentEditableContainer contentTextEditable'>
+                                                                                <div class='contentEditable' style='color:#555555;font-size:21px;font-weight:normal;'>
+                                                                                    <h2 class='big'>Địa chỉ giao hàng</h2>
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr><td height='16'></td></tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <div class='contentEditableContainer contentTextEditable'>
+                                                                                <div class='contentEditable' style='color:#999999;font-size:13px;line-height:19px;'>
+                                                                                    <p >{{$customer->address}},{{$customer->city}}, {{$customer->province}}, Việt Nam </p>
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr><td height='16'></td></tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <div class='contentEditableContainer contentTextEditable'>
+                                                                                <div class='contentEditable'>
+                                                                                    <!-- <a target='_blank' class='link1' href="#" >Read more</a> -->
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                </table>
+                                                            </td>
+                                                            <td width='20'></td>
+                                                        </tr>
+                                                        <tr><td height='0' colspan='3'></td></tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <div class="movableContent" style="border: 0px; padding-top: 0px; position: relative;">
+                                            <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" valign='top'>
+                                                <tr><td height='0'>
+                                                        <div class='contentEditableContainer contentTextEditable'>
+                                                            <div class='contentEditable' style='color:#999999;font-size:13px;line-height:19px;'>
+                                                                {{--<h2 style="margin-left: 18px; font-size: 15px; display: inline; color: #555555;">Thời Gian Chuyển Hàng: </h2><p style="display: inline;"> 07-07-2018 10:22:46</p>--}}
+                                                            </div>
+                                                            <div class='contentEditable' style='color:#999999;font-size:13px;line-height:19px;'>
+                                                                <!-- <h2 style="margin-left: 18px; font-size: 15px; display: inline; color: #555555;">Lưu ý: </h2><p style="display: inline;">Thời gian: 07-07-2018 10:22:46</p> -->
+                                                            </div>
+                                                        </div>
+                                                    </td></tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="movableContent" style="border: 0px; padding-top: 0px; position: relative;">
+                                        <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" valign='top'>
+                                            <tr><td height='10'></td></tr>
                                         </table>
                                     </div>
                                     <div>
