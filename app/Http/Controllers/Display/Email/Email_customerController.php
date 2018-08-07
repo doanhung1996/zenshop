@@ -37,11 +37,17 @@ class Email_customerController extends Controller
      */
     public function store(AddEmailCustomerRequest $request)
     {
-        if ($request->email){
-            Email_customer::create(['email'=>$request->email]);
-            return view('display.email.email');
-        }else{
+        $email=$request->email;
+        if (empty($email)){
             return redirect()->route('home');
+        }else{
+            $check_exist_email=Email_customer::where('email',$email)->first();
+            if (!empty($check_exist_email)){
+                return view('display.email.error_email');
+            }else{
+                Email_customer::create(['email'=>$request->email]);
+                return view('display.email.email');
+            }
         }
     }
 

@@ -28,6 +28,35 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Order whereStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Order whereTotal($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Order whereUpdatedAt($value)
+ * @property string $fullname
+ * @property string $email
+ * @property string $phone
+ * @property string $province
+ * @property string $city
+ * @property string $address
+ * @property string $pay
+ * @property string $delivery
+ * @property string $order_code
+ * @property int $total_qty
+ * @property int $total_sale
+ * @property string $order_date
+ * @property string $date_transport
+ * @property int|null $user_id
+ * @property-read \App\User|null $user
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Order whereAddress($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Order whereCity($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Order whereDateTransport($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Order whereDelivery($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Order whereEmail($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Order whereFullname($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Order whereOrderCode($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Order whereOrderDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Order wherePay($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Order wherePhone($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Order whereProvince($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Order whereTotalQty($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Order whereTotalSale($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Order whereUserId($value)
  */
 class Order extends Model
 {

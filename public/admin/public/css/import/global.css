@@ -20,7 +20,7 @@ a{ text-decoration: none!important;}
     border-radius: 0;
     -webkit-box-shadow: 0 0px 2px rgba(0,0,0,0.15);
     box-shadow: 0 0px 2px rgba(0,0,0,0.15);
-    -webkit-box-shadow: 0 0px 2px rgba(0,0,0,0.15);
+    -webkit-box-shadow: 0 0px 2px rgba(255, 255, 255, 0.15);
 }
 .dropdown .dropdown-toggle{
     background: none;

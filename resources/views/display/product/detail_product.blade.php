@@ -25,7 +25,7 @@
                                 <ul>
                                     @foreach($category_category as $item_category_category)
                                         <li>
-                                            <a href="{{route('product.category',$item_category_category->slug)}}"><label for="cate12">{{$item_category_category->title}}</label></a>
+                                            <a href="{{route('product.category',$item_category_category->slug)}}">{{$item_category_category->title}}</a>
                                         </li>
                                     @endforeach
                                     {{--<li>--}}
@@ -163,7 +163,7 @@
                                     <!-- Item Content -->
                                     <div class="col-xs-7"> <span class="tags">{{$check_parent->title}}</span>
                                         <h5>{{$product->product_name}}</h5>
-                                        <p class="rev"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> <i class="fa fa-star-o"></i> <span class="margin-left-10">5 Review(s)</span></p>
+                                        <p class="rev"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> <i class="fa fa-star-o"></i> <span class="margin-left-10">{{$product->viewer}} view(s)</span></p>
                                         <div class="row">
                                             <div class="col-sm-6"><span class="price">@php echo number_format($product->price) @endphp đ</span></div>
                                             <div class="col-sm-6">
@@ -201,7 +201,7 @@
                                             @csrf
                                             <div class="quinty">
                                                 <input type="hidden" name="product_id" value="{{$product->id}}">
-                                                <input type="number" name="qty" value="1" min="1" max="10">
+                                                <input type="number" name="qty" value="1" >
                                             </div>
                                             <button name="add_cart" class="btn-round" style="padding:10px 20px !important; border: 0px; !important;">@lang('display_lang.add_to_cart')</button>
                                             {{--<a href="#." class="btn-round" style="padding:0 20px !important;"><i class="icon-basket-loaded margin-right-5"></i></a> </div>--}}
@@ -307,7 +307,7 @@
                                                 <!-- Content -->
                                                 <span class="tag">{{$check_parent->title}}</span> <a href="{{route('product.display.show',[$check_category->slug,$check_parent->slug,$item_related_products->slug])}}" class="tittle">@php echo substr($item_related_products->product_name,0,40) @endphp</a>
                                                 <!-- Reviews -->
-                                                <p class="rev"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> <i class="fa fa-star-o"></i> <span class="margin-left-10">5 Review(s)</span></p>
+                                                <p class="rev"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> <i class="fa fa-star-o"></i> <span class="margin-left-10">{{$item_related_products->viewer}} view(s)</span></p>
                                                 <div class="price"><p>@php echo number_format($item_related_products->price) @endphp .đ</p></div>
                                                 <a href="javascript:void(0)" onclick="addtocart({{$item_related_products->id}})" id = "item-{{$item_related_products->id}}" data_cart="{{$item_related_products->id}}" class="cart-btn"><i class="icon-basket-loaded"></i></a> </article>
 
@@ -388,4 +388,17 @@
             })
         })
     </script>
+    @if (count($errors) > 0)
+        <div>
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <script>
+                        $( document ).ready(function() {
+                            toastr.error("{{$error}}");
+                        });
+                    </script>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 @endsection()

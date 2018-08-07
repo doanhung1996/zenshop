@@ -73,6 +73,7 @@ class PostController extends Controller
             $fileName=$file->getClientOriginalName();
             $file->move(public_path('uploads'),$fileName);
             $data['slug']=str_slug($data['title']);
+            $data['title_seal']=str_slug($data['title'],' ');
             $data['image']='uploads/'.$fileName;
             $data['user_id']=Auth::user()->id;
             $data['category_id']=Post_cat::where('id', $request->post_cat_id)->first()->parent_id;
@@ -121,6 +122,7 @@ class PostController extends Controller
             $fileName=$file->getClientOriginalName();
             $file->move(public_path('uploads'),$fileName);
             $data['slug']=str_slug($data['title']);
+            $data['title_seal']=str_slug($data['title'],' ');
             $data['image']='uploads/'.$fileName;
             $data['user_id']=Auth::user()->id;
             $data['category_id']=Post_cat::where('id', $request->post_cat_id)->first()->parent_id;

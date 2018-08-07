@@ -27,7 +27,7 @@
                                 <ul>
                                     @foreach($category_category as $item_category_category)
                                         <li>
-                                            <a href="{{route('product.category',$item_category_category->slug)}}"><label for="cate12">{{$item_category_category->title}}</label></a>
+                                            <a href="{{route('product.category',$item_category_category->slug)}}">{{$item_category_category->title}}</a>
                                         </li>
                                     @endforeach
                                     <li>
@@ -211,7 +211,7 @@
                                         <span class="sale-tag">{{$item_category_all->product_discount}}%</span>
                                         <span class="tag">{{$item_category_all->product_cat->title}}</span> <a href="{{route('product.display.show',[$item_category_all->category->slug,$item_category_all->product_cat->slug,$item_category_all->slug])}}" class="tittle">@php echo substr($item_category_all->product_name,0,43)@endphp</a>
                                         <!-- Reviews -->
-                                        <p class="rev"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> <i class="fa fa-star"></i> <span class="margin-left-10">5 Review(s)</span></p>
+                                        <p class="rev"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> <i class="fa fa-star"></i> <span class="margin-left-10">{{$item_category_all->viewer}} view(s)</span></p>
                                         <div class="price">{{number_format($item_category_all->price)}}.đ</div>
                                         <a href="javascript:void(0)" onclick="addtocart({{$item_category_all->id}})" id = "item-{{$item_category_all->id}}" data_cart="{{$item_category_all->id}}" class="cart-btn"><i class="icon-basket-loaded"></i></a> </article>
                                 </div>

@@ -22,6 +22,9 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Page whereStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Page whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Page whereUpdatedAt($value)
+ * @property int $user_id
+ * @property-read \App\User $creator
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Page whereUserId($value)
  */
 class Page extends Model
 {

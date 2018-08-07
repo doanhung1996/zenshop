@@ -19,6 +19,9 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Menu_type whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Menu_type whereStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Menu_type whereUpdatedAt($value)
+ * @property int $user_id
+ * @property-read \App\User $user
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Menu_type whereUserId($value)
  */
 class Menu_type extends Model
 {

@@ -1,4 +1,4 @@
-    <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="itm-cont">{{ $data_cart_count }}</span> <i class="flaticon-shopping-bag"></i> <strong>My Cart</strong> <br>
+    <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="itm-cont">{{ $data_cart_count }}</span> <i class="flaticon-shopping-bag"></i> <strong>@lang('display_lang.my_cart')</strong> <br>
             <span>{{ $qty }} item(s) - {{ $total}} đ</span></a>
         <ul class="dropdown-menu">
             @if(count($data_cart) > 0)

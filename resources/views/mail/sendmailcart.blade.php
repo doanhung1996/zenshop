@@ -20,33 +20,26 @@
             display: block !important;
             outline: none !important;
         }
-
         p, h2{
             margin:0;
         }
-
         div,p,ul,h2,h2{
             margin:0;
         }
-
         h2.bigger,h2.bigger{
             font-size: 32px;
             font-weight: normal;
         }
-
         h2.big,h2.big{
             font-size: 21px;
             font-weight: normal;
         }
-
         a.link1{
             color:#DA5454;font-size:13px;font-weight:bold;text-decoration:none;
         }
-
         a.link2{
             padding:8px;background:#DA5454;font-size:13px;color:#ffffff;text-decoration:none;font-weight:bold;
         }
-
         a.link3{
             background:#DA5454; color:#ffffff; padding:8px 10px;text-decoration:none;font-size:13px;
         }
@@ -56,11 +49,8 @@
         .bgItem{
             background: #ffffff;
         }
-
         @media only screen and (max-width:480px)
-
         {
-
             table[class="MainContainer"], td[class="cell"]
             {
                 width: 100% !important;
@@ -73,7 +63,6 @@
                 font-size:13px !important;
                 line-height:17px !important;
                 display:block !important;
-
             }
             td[class="specbundle1"]
             {
@@ -83,7 +72,6 @@
                 line-height:17px !important;
                 display:block !important;
                 padding-bottom:20px !important;
-
             }
             td[class="specbundle2"]
             {
@@ -116,9 +104,7 @@
                 display:block !important;
                 padding-bottom:20px !important;
                 text-align:center !important;
-
             }
-
             td[class="spechide"]
             {
                 display:none !important;
@@ -133,13 +119,9 @@
                 padding-left:15px !important;
                 padding-right:15px !important;
             }
-
         }
-
         @media only screen and (max-width:540px)
-
         {
-
             table[class="MainContainer"], td[class="cell"]
             {
                 width: 100% !important;
@@ -152,7 +134,6 @@
                 font-size:13px !important;
                 line-height:17px !important;
                 display:block !important;
-
             }
             td[class="specbundle1"]
             {
@@ -162,7 +143,6 @@
                 line-height:17px !important;
                 display:block !important;
                 padding-bottom:20px !important;
-
             }
             td[class="specbundle2"]
             {
@@ -195,9 +175,7 @@
                 display:block !important;
                 padding-bottom:20px !important;
                 text-align:center !important;
-
             }
-
             td[class="spechide"]
             {
                 display:none !important;
@@ -212,11 +190,9 @@
                 padding-left:15px !important;
                 padding-right:15px !important;
             }
-
             .font{
                 font-size:15px !important;
                 line-height:19px !important;
-
             }
         }
         #customer th {
@@ -287,7 +263,7 @@
                                                             <td align='left' valign='middle' >
                                                                 <div class="contentEditableContainer contentImageEditable">
                                                                     <div class="contentEditable" >
-                                                                        <a href="http://localhost/zenshop/public/"><img src="http://tevo.asia/Media/WebSetting/logo_cam.png" style="margin: 10px auto;" alt='Zenshop' data-default="placeholder" data-max-width="136px" width='136px' height='68px'></a>
+                                                                        <a href="http://zenzen.com.vn"><img src="http://tevo.asia/Media/WebSetting/logo_cam.png" style="margin: 10px auto;" alt='Zenshop' data-default="placeholder" data-max-width="136px" width='136px' height='68px'></a>
                                                                     </div>
                                                                 </div>
                                                             </td>
@@ -324,20 +300,19 @@
                                                             <td  align='center' width='530'>
                                                                 <div class='contentEditableContainer contentTextEditable'>
                                                                     <div class="contentEditable" style='font-size:32px;color:#555555;font-weight:normal;'>
-                                                                        <h2 style='font-size:17px;'>Cảm ơn quý khách {{$customer_insert['fullname']}} đã đặt hàng tại <a style="text-decoration: none; color:#27bdb1" href="http://zenshop/">Zenshop .</a></h2>
+                                                                        <h2 style='font-size:17px;'>Quý khách {{$customer->fullname}} đã đặt hàng thành công tại <a style="text-decoration: none; color:#27bdb1" href="http://zenzen.com.vn/">Zenzen .</a></h2>
                                                                     </div>
                                                                 </div>
                                                             </td>
                                                             <td  width='70'></td>
                                                         </tr>
-
                                                         <tr><td colspan='3' height='22' ></td></tr>
 
                                                         <tr>
                                                             <td width='70'></td>
                                                             <td  align='center' width='530'>
                                                                 <div class='contentEditableContainer contentTextEditable' style="text-align: left;">
-                                                                    <p style="font-size: 13px; text-align: center; line-height: 1.4; color: #8c8c8c;">Zenshop rất vui thông báo đơn hàng của quý khách đã được tiếp nhận và đang trong quá trình sử lý .Zenshop sẽ thông báo đến quý khách khi hàng chuẩn bị được giao .</p>
+                                                                    <p style="font-size: 13px; text-align: center; line-height: 1.4; color: #8c8c8c;">Zenzen rất vui thông báo đơn hàng của quý khách đã được tiếp nhận và đang trong quá trình sử lý .Zenzen sẽ thông báo đến quý khách khi hàng chuẩn bị được giao .</p>
                                                                     <!-- <div class="contentEditable" style='text-align: left; font-size:13px;color:#99A1A6;line-height:19px;'>
                                                                       <p>ok </p>
                                                                     </div> -->
@@ -349,10 +324,29 @@
                                                     </table>
                                                 </td>
                                             </tr>
+                                            <tr>
+                                                <td height="20"></td>
+                                            </tr>
                                         </table>
                                     </div>
                                     <h2 style="color: #27bdb1; font-size: 17px; margin-left: 18px;">Thông Tin Đơn Hàng<p style="display: inline; font-size: 13px; text-align: center; line-height: 1.4; color: #8c8c8c;"> (Thời gian: {{$order_date}})</p></h2>
                                     <hr style="background: red">
+                                    <div class="movableContent" style="border: 0px; padding-top: 0px; position: relative;">
+                                        <div class="movableContent" style="border: 0px; padding-top: 0px; position: relative;">
+                                            <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" valign='top'>
+                                                <tr><td height='20'>
+                                                        <div class='contentEditableContainer contentTextEditable'>
+                                                            <div class='contentEditable' style='color:#999999;font-size:13px;line-height:19px;'>
+                                                                <h2 style="margin-left: 18px; font-size: 15px; display: inline; color: #555555;">Khoảng thời gian nhận hàng  : </h2><p style="display: inline;"> {{$date_transport}}</p>
+                                                            </div>
+                                                            <div class='contentEditable' style='color:#999999;font-size:13px;line-height:19px;'>
+                                                                <!-- <h2 style="margin-left: 18px; font-size: 15px; display: inline; color: #555555;">Lưu ý: </h2><p style="display: inline;">Thời gian: 07-07-2018 10:22:46</p> -->
+                                                            </div>
+                                                        </div>
+                                                    </td></tr>
+                                            </table>
+                                        </div>
+                                    </div>
                                     <div class="movableContent" style="border: 0px; padding-top: 0px; position: relative;">
                                         <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" valign='top'>
                                             <tr>
@@ -377,9 +371,9 @@
                                                                         <td>
                                                                             <div class='contentEditableContainer contentTextEditable'>
                                                                                 <div class='contentEditable' style='color:#999999;font-size:13px;line-height:19px;'>
-                                                                                    <p >Họ Tên: {{$customer_insert['fullname']}}</p>
-                                                                                    <p >Số Điện Thoại: {{$customer_insert['phone']}}</p>
-                                                                                    <p >Email: {{$customer_insert['email']}}</p>
+                                                                                    <p style="margin-bottom: 3px;">Họ Tên: {{$customer->fullname}}</p>
+                                                                                    <p style="margin-bottom: 3px;">Số Điện Thoại: {{$customer->phone}}</p>
+                                                                                    <p style="margin-bottom: 3px;">Email: {{$customer->email}}</p>
                                                                                 </div>
                                                                             </div>
                                                                         </td>
@@ -426,7 +420,7 @@
                                                                         <td>
                                                                             <div class='contentEditableContainer contentTextEditable'>
                                                                                 <div class='contentEditable' style='color:#999999;font-size:13px;line-height:19px;'>
-                                                                                    <p >Địa Chỉ : {{$customer_insert['address']}}, {{$customer_insert['city']}},Tỉnh  {{$customer_insert['province']}} , Việt Nam</p>
+                                                                                    <p >{{$customer->address}},{{$customer->city}}, {{$customer->province}}, Việt Nam </p>
                                                                                 </div>
                                                                             </div>
                                                                         </td>
@@ -445,17 +439,17 @@
                                                             </td>
                                                             <td width='20'></td>
                                                         </tr>
-                                                        <tr><td height='15' colspan='3'></td></tr>
+                                                        <tr><td height='0' colspan='3'></td></tr>
                                                     </table>
                                                 </td>
                                             </tr>
                                         </table>
                                         <div class="movableContent" style="border: 0px; padding-top: 0px; position: relative;">
                                             <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" valign='top'>
-                                                <tr><td height='20'>
+                                                <tr><td height='0'>
                                                         <div class='contentEditableContainer contentTextEditable'>
                                                             <div class='contentEditable' style='color:#999999;font-size:13px;line-height:19px;'>
-                                                                <h2 style="margin-left: 18px; font-size: 15px; display: inline; color: #555555;">Thời Gian Chuyển Hàng: </h2><p style="display: inline;"> {{$date_transport}}</p>
+                                                                {{--<h2 style="margin-left: 18px; font-size: 15px; display: inline; color: #555555;">Thời Gian Chuyển Hàng: </h2><p style="display: inline;"> 07-07-2018 10:22:46</p>--}}
                                                             </div>
                                                             <div class='contentEditable' style='color:#999999;font-size:13px;line-height:19px;'>
                                                                 <!-- <h2 style="margin-left: 18px; font-size: 15px; display: inline; color: #555555;">Lưu ý: </h2><p style="display: inline;">Thời gian: 07-07-2018 10:22:46</p> -->
@@ -467,7 +461,7 @@
                                     </div>
                                     <div class="movableContent" style="border: 0px; padding-top: 0px; position: relative;">
                                         <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" valign='top'>
-                                            <tr><td height='20'></td></tr>
+                                            <tr><td height='10'></td></tr>
                                         </table>
                                     </div>
                                     <div>
@@ -484,20 +478,20 @@
                                             </thead>
                                             <tbody>
                                             @foreach($cart_content as $k_cart => $v_cart)
-                                            <tr class='tr'>
-                                                <td>{{$v_cart->name}}</td>
-                                                <td>{{$v_cart->qty}}</td>
-                                                <td>@php echo number_format($v_cart->price,0).'đ'@endphp</td>
-                                                <td>@php echo number_format($v_cart->subtotal,0).'đ'@endphp</td>
-                                            </tr>
-                                                @endforeach
+                                                <tr class='tr'>
+                                                    <td>{{$v_cart->name}}</td>
+                                                    <td>{{$v_cart->qty}}</td>
+                                                    <td>@php echo number_format($v_cart->price,0).'đ'@endphp</td>
+                                                    <td>@php echo number_format($v_cart->subtotal,0).'đ'@endphp</td>
+                                                </tr>
+                                            @endforeach
                                             </tbody>
                                             {{--<tfoot >--}}
                                             {{--<tr class='tr'>--}}
-                                                {{--<td style="font-weight:normal;">Tổng Cộng :@php echo number_format($total_sale,0).'đ'@endphp</td>--}}
-                                                {{--<td class="total_all_qty" >Tổng số lương :{{$total_qty}}</td>--}}
-                                                {{--<td></td>--}}
-                                                {{--<td class="total_all_price" style="color: #27bdb1; font-weight: normal;">Tổng</td>--}}
+                                            {{--<td style="font-weight:normal;">Tổng Cộng :@php echo number_format($total_sale,0).'đ'@endphp</td>--}}
+                                            {{--<td class="total_all_qty" >Tổng số lương :{{$total_qty}}</td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td class="total_all_price" style="color: #27bdb1; font-weight: normal;">Tổng</td>--}}
                                             {{--</tr>--}}
                                             {{--</tfoot >--}}
                                         </table>
@@ -528,7 +522,7 @@
                                                 <td>
                                                     <div class='contentEditableContainer contentImageEditable'>
                                                         <div class="contentEditable">
-                                                            <a href="http://localhost/zenshop/public"><img class="banner" src="http://tevo.asia/Media/Sliders/5a13d0d87f116224101aaba5/dsOzHcCZ.png" alt='What we do' data-default="placeholder" data-max-width="100%" width='100%' height='180' ></a>
+                                                            <a href="http://zenzen.com.vn"><img class="banner" src="http://tevo.asia/Media/Sliders/5a13d0d87f116224101aaba5/dsOzHcCZ.png" alt='What we do' data-default="placeholder" data-max-width="100%" width='100%' height='180' ></a>
                                                         </div>
                                                     </div>
                                                 </td>
@@ -537,109 +531,109 @@
                                     </div>
                                     <div class="movableContent" style="border: 0px; padding-top: 0px; position: relative;">
                                         <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" valign='top'>
-                                            <tr><td height='20'></td></tr>
+                                            {{--<tr><td height='20'></td></tr>--}}
                                         </table>
                                     </div>
-                                    <h2 style="color: #27bdb1; font-size: 17px; margin-left: 18px;">Ngành Hàng Khác<p style="display: inline; font-size: 13px; text-align: center; line-height: 1.4; color: #8c8c8c;"></p></h2>
-                                    <hr style="background: red">
+                                    {{--<h2 style="color: #27bdb1; font-size: 17px; margin-left: 18px;">Ngành Hàng Khác<p style="display: inline; font-size: 13px; text-align: center; line-height: 1.4; color: #8c8c8c;"></p></h2>--}}
+                                    {{--<hr style="background: red">--}}
                                     <div class="movableContent" style="border: 0px; padding-top: 0px; position: relative;">
                                         <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" valign='top'>
                                             <tr>
                                                 <td width='291' class="specbundle2" valign='top'>
-                                                    <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" valign='top'>
-                                                        <tr><td height='15' colspan='3'></td></tr>
-                                                        <tr>
-                                                            <td width='20'></td>
-                                                            <td width='251'>
-                                                                <table width="251" border="0" cellspacing="0" cellpadding="0" align="center" valign='top'>
-                                                                    <tr>
-                                                                        <td>
-                                                                            <div class='contentEditableContainer contentTextEditable'>
-                                                                                <div class='contentEditable' style='color:#555555;font-size:21px;font-weight:normal; text-align: center;'>
-                                                                                    <h2 class='big'>Danh Mục Sản Phẩm</h2>
-                                                                                </div>
-                                                                            </div>
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr><td height='16'></td></tr>
-                                                                    <tr>
-                                                                        <td>
-                                                                            <div class='contentEditableContainer contentTextEditable'>
-                                                                                <div class='contentEditable' style='color:#999999;font-size:13px;line-height:19px; text-align: center;'>
-                                                                                    <p >Update</p>
-                                                                                    <p >Update</p>
-                                                                                    <p >Update</p>
+                                                    {{--<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" valign='top'>--}}
+                                                        {{--<tr><td height='15' colspan='3'></td></tr>--}}
+                                                        {{--<tr>--}}
+                                                            {{--<td width='20'></td>--}}
+                                                            {{--<td width='251'>--}}
+                                                                {{--<table width="251" border="0" cellspacing="0" cellpadding="0" align="center" valign='top'>--}}
+                                                                    {{--<tr>--}}
+                                                                        {{--<td>--}}
+                                                                            {{--<div class='contentEditableContainer contentTextEditable'>--}}
+                                                                                {{--<div class='contentEditable' style='color:#555555;font-size:21px;font-weight:normal; text-align: center;'>--}}
+                                                                                    {{--<h2 class='big'>Danh Mục Sản Phẩm</h2>--}}
+                                                                                {{--</div>--}}
+                                                                            {{--</div>--}}
+                                                                        {{--</td>--}}
+                                                                    {{--</tr>--}}
+                                                                    {{--<tr><td height='16'></td></tr>--}}
+                                                                    {{--<tr>--}}
+                                                                        {{--<td>--}}
+                                                                            {{--<div class='contentEditableContainer contentTextEditable'>--}}
+                                                                                {{--<div class='contentEditable' style='color:#999999;font-size:13px;line-height:19px; text-align: center;'>--}}
+                                                                                    {{--<p >Update</p>--}}
+                                                                                    {{--<p >Update</p>--}}
+                                                                                    {{--<p >Update</p>--}}
                                                                                     {{--<p >Email: {{$customer_insert['email']}}</p>--}}
-                                                                                </div>
-                                                                            </div>
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr><td height='16'></td></tr>
-                                                                    <tr>
-                                                                        <td>
-                                                                            <div class='contentEditableContainer contentTextEditable'>
-                                                                                <div class='contentEditable'>
-                                                                                    <!-- <a target='_blank' class='link1' href="#" >Read more</a> -->
-                                                                                </div>
-                                                                            </div>
-                                                                        </td>
-                                                                    </tr>
-                                                                </table>
-                                                            </td>
-                                                            <td width='20'></td>
-                                                        </tr>
+                                                                                {{--</div>--}}
+                                                                            {{--</div>--}}
+                                                                        {{--</td>--}}
+                                                                    {{--</tr>--}}
+                                                                    {{--<tr><td height='16'></td></tr>--}}
+                                                                    {{--<tr>--}}
+                                                                        {{--<td>--}}
+                                                                            {{--<div class='contentEditableContainer contentTextEditable'>--}}
+                                                                                {{--<div class='contentEditable'>--}}
+                                                                                    {{--<!-- <a target='_blank' class='link1' href="#" >Read more</a> -->--}}
+                                                                                {{--</div>--}}
+                                                                            {{--</div>--}}
+                                                                        {{--</td>--}}
+                                                                    {{--</tr>--}}
+                                                                {{--</table>--}}
+                                                            {{--</td>--}}
+                                                            {{--<td width='20'></td>--}}
+                                                        {{--</tr>--}}
 
-                                                        <tr><td height='15' colspan='3'></td></tr>
-                                                    </table>
-                                                </td>
+                                                        {{--<tr><td height='15' colspan='3'></td></tr>--}}
+                                                    {{--</table>--}}
+                                                {{--</td>--}}
 
-                                                <td width='18' valign="top" class="specbundle2">&nbsp;</td>
+                                                {{--<td width='18' valign="top" class="specbundle2">&nbsp;</td>--}}
 
-                                                <td width='291' class="specbundle2" valign='top'>
-                                                    <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" valign='top'>
-                                                        <tr><td height='15' colspan='3'></td></tr>
-                                                        <tr>
-                                                            <td width='20'></td>
-                                                            <td width='251'>
-                                                                <table width="251" border="0" cellspacing="0" cellpadding="0" align="center" valign='top'>
-                                                                    <tr>
-                                                                        <td>
-                                                                            <div class='contentEditableContainer contentTextEditable'>
-                                                                                <div class='contentEditable' style='color:#555555;font-size:21px;font-weight:normal; text-align: center;'>
-                                                                                    <h2 class='big'>Danh Mục Tin Tức</h2>
-                                                                                </div>
-                                                                            </div>
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr><td height='16'></td></tr>
-                                                                    <tr>
-                                                                        <td>
-                                                                            <div class='contentEditableContainer contentTextEditable'>
-                                                                                <div class='contentEditable' style='color:#999999;font-size:13px;line-height:19px; text-align: center;'>
-                                                                                    <p>Update</p>
-                                                                                    <p>Update</p>
-                                                                                    <p>Update</p>
-{{--                                                                                    <p >Địa Chỉ : {{$customer_insert['address']}}, {{$customer_insert['city']}},Tỉnh  {{$customer_insert['province']}} , Việt Nam</p>--}}
-                                                                                </div>
-                                                                            </div>
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr><td height='16'></td></tr>
-                                                                    <tr>
-                                                                        <td>
-                                                                            <div class='contentEditableContainer contentTextEditable'>
-                                                                                <div class='contentEditable'>
-                                                                                    <!-- <a target='_blank' class='link1' href="#" >Read more</a> -->
-                                                                                </div>
-                                                                            </div>
-                                                                        </td>
-                                                                    </tr>
-                                                                </table>
-                                                            </td>
-                                                            <td width='20'></td>
-                                                        </tr>
-                                                        <tr><td height='15' colspan='3'></td></tr>
-                                                    </table>
+                                                {{--<td width='291' class="specbundle2" valign='top'>--}}
+                                                    {{--<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" valign='top'>--}}
+                                                        {{--<tr><td height='15' colspan='3'></td></tr>--}}
+                                                        {{--<tr>--}}
+                                                            {{--<td width='20'></td>--}}
+                                                            {{--<td width='251'>--}}
+                                                                {{--<table width="251" border="0" cellspacing="0" cellpadding="0" align="center" valign='top'>--}}
+                                                                    {{--<tr>--}}
+                                                                        {{--<td>--}}
+                                                                            {{--<div class='contentEditableContainer contentTextEditable'>--}}
+                                                                                {{--<div class='contentEditable' style='color:#555555;font-size:21px;font-weight:normal; text-align: center;'>--}}
+                                                                                    {{--<h2 class='big'>Danh Mục Tin Tức</h2>--}}
+                                                                                {{--</div>--}}
+                                                                            {{--</div>--}}
+                                                                        {{--</td>--}}
+                                                                    {{--</tr>--}}
+                                                                    {{--<tr><td height='16'></td></tr>--}}
+                                                                    {{--<tr>--}}
+                                                                        {{--<td>--}}
+                                                                            {{--<div class='contentEditableContainer contentTextEditable'>--}}
+                                                                                {{--<div class='contentEditable' style='color:#999999;font-size:13px;line-height:19px; text-align: center;'>--}}
+                                                                                    {{--<p>Update</p>--}}
+                                                                                    {{--<p>Update</p>--}}
+                                                                                    {{--<p>Update</p>--}}
+                                                                                                                                                                        {{--<p >Địa Chỉ : {{$customer_insert['address']}}, {{$customer_insert['city']}},Tỉnh  {{$customer_insert['province']}} , Việt Nam</p>--}}
+                                                                                {{--</div>--}}
+                                                                            {{--</div>--}}
+                                                                        {{--</td>--}}
+                                                                    {{--</tr>--}}
+                                                                    {{--<tr><td height='16'></td></tr>--}}
+                                                                    {{--<tr>--}}
+                                                                        {{--<td>--}}
+                                                                            {{--<div class='contentEditableContainer contentTextEditable'>--}}
+                                                                                {{--<div class='contentEditable'>--}}
+                                                                                    {{--<!-- <a target='_blank' class='link1' href="#" >Read more</a> -->--}}
+                                                                                {{--</div>--}}
+                                                                            {{--</div>--}}
+                                                                        {{--</td>--}}
+                                                                    {{--</tr>--}}
+                                                                {{--</table>--}}
+                                                            {{--</td>--}}
+                                                            {{--<td width='20'></td>--}}
+                                                        {{--</tr>--}}
+                                                        {{--<tr><td height='15' colspan='3'></td></tr>--}}
+                                                    {{--</table>--}}
                                                 </td>
                                             </tr>
                                         </table>
@@ -674,7 +668,7 @@
                                                             <td align='left' valign='top'>
                                                                 <div class="contentEditableContainer contentTextEditable" >
                                                                     <div class="contentEditable" style='color:#555555;font-size:21px;font-weight:normal; text-align: center;'>
-                                                                        <h2 class='big'>Đừng quên ghé thăm website <a  style=" color:#27bdb1; text-decoration-color: white; text-decoration: none;" href="http://tevo.asia/">Zenshop</a> của chúng tôi !</h2>
+                                                                        <h2 class='big'>Cám ơn bạn đã sử dụng dịch vụ tại <a  style=" color:#27bdb1; text-decoration-color: white; text-decoration: none;" href="http://zenzen.com.vn">Zenzen.com.vn</a> !</h2>
                                                                     </div>
                                                                 </div>
                                                             </td>
@@ -694,7 +688,7 @@
                                                             <td align='right' valign='top' style='padding-bottom:8px;'>
                                                                 <div class="contentEditableContainer contentTextEditable" >
                                                                     <div class="contentEditable" >
-                                                                        <a target='_blank' class='link2' href="http://localhost/zenshop/public" style='padding:8px;background:#27bdb1;font-size:13px;color:#ffffff;text-decoration:none;font-weight:bold;'>Trang Web</a>
+                                                                        <a target='_blank' class='link2' href="http://zenzen.com.vn" style='padding:8px;background:#27bdb1;font-size:13px;color:#ffffff;text-decoration:none;font-weight:bold;'>Zenzen.com.vn</a>
                                                                     </div>
                                                                 </div>
                                                             </td>

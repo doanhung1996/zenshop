@@ -26,6 +26,19 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Order_detail whereQuantity($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Order_detail whereStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Order_detail whereUpdatedAt($value)
+ * @property string $name
+ * @property int $subtotal
+ * @property int $profit
+ * @property string $order_code
+ * @property string $image
+ * @property int|null $user_id
+ * @property-read \App\User|null $user
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Order_detail whereImage($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Order_detail whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Order_detail whereOrderCode($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Order_detail whereProfit($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Order_detail whereSubtotal($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Order_detail whereUserId($value)
  */
 class Order_detail extends Model
 {

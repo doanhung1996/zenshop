@@ -24,7 +24,7 @@ class CreateDeliveryRequest extends FormRequest
     public function rules()
     {
         return [
-            'title'=>'required',
+            'title'=>'required|unique:method_deliverys',
             'date_info'=>'required',
             'date'=>'required|numeric',
             'price'=>'required|numeric',

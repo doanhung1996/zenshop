@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => env('APP_URL', 'http://zenzen.com.vn/'),
 
     /*
     |--------------------------------------------------------------------------
@@ -104,10 +104,10 @@ return [
     |
     */
 
-    'key' => env('APP_KEY'),
+    'key' => env('APP_KEY','base64:5K8GRkJDsULYCHOcqnFiiHmYcqw+KwzD9RqxmyB82qc='),
 
     'cipher' => 'AES-256-CBC',
-
+    'admin_email' => 'doanvanhung160596@gmail.com',
     /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers
@@ -157,7 +157,7 @@ return [
          */
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
+        App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 

@@ -42,7 +42,7 @@ class MailResetPasswordToken extends Notification implements ShouldQueue
     {
         $email=base64_encode($notifiable['email']);
         return (new MailMessage)
-            ->from("hungngu1996@gmail.com","Zenshop")
+            ->from("hungngu1996@gmail.com","ZENZEN Vietnam™")
             ->subject("Lấy lại mật khẩu")
             ->line("Hey, did you forget your password? Click the button to reset it.")
             ->action('Reset Password', url("password/reset/$this->token/$email.html" ))

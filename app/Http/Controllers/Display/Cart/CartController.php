@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Display\Cart;
 //use App\Http\Requests\add_delivery_cart;
 use App\Events\CartSuccess;
 use App\Http\Requests\AddDeliveryCartRequest;
+use App\Http\Requests\AddQtyCartRequest;
 use App\Http\Requests\CofirmSuccessRequest;
 use App\Http\Requests\ConfirmRequestCart;
+use App\Http\Requests\UpdateQtyCartRequest;
 use App\Models\Admin\Customer;
 use App\Models\Admin\Delivery;
 use App\Models\Admin\Method_delivery;
@@ -157,12 +159,20 @@ class CartController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AddQtyCartRequest $request)
     {
         $product_id=$request->product_id;
+//        $product_qty=Product::whereId($product_id)->first()->qty;
         $qty=$request->qty;
+//        if ($qty > $product_qty){
+////            toastr.error('Số lượng hàng đã hết');
+//            return back();
+//        }elseif ($qty < 0){
+////            toastr.error('Số lượng không đúng');
+//            return back();
+//        }
         $product=Product::whereId($product_id)->first();
-        $new_cart =Cart::add("$product->id","$product->product_name","$qty",$product->price);
+        $new_cart =Cart::add("$product->id","$product->product_name","$qty",$product->price_sale);
         $new_cart->associate('App\Models\Admin\Product');
         return redirect()->route('cart.detail');
     }
@@ -274,6 +284,8 @@ class CartController extends Controller
         if (!empty($cart_content)){
             foreach($cart_content as $k => $v){
                $purchase=Product::whereId($v->id)->first(['product_purchase'])->product_purchase;
+               $qty=Product::whereId($v->id)->first()->qty - $v->qty ;
+               Product::whereId($v->id)->update(['qty'=> $qty]);
                //Giảm ở chỗ này , Giảm profit ,subtotal và thêm discount_id
                $profit=$v->price-$purchase;
                if (isset(auth()->user()->id)){
@@ -310,7 +322,8 @@ class CartController extends Controller
         }else{
             return redirect()->route('home');
         }
-        event(new CartSuccess($customer_insert, $cart_content, $total_sale, $total_qty,$order_date,$date_transport,$order_code));
+         $customer=(object)$customer;
+        event(new CartSuccess($order_detail_insert->order_id,$customer,$cart_content, $total_sale, $total_qty,$order_date,$date_transport,$order_code));
         Cart::destroy();
         return redirect()->route('cart.confirm_sc');
     }
@@ -339,8 +352,16 @@ class CartController extends Controller
     {
         $id=$request->id;
         $product=Product::whereId($id)->first();
+        $cart=Cart::content();
+        foreach ($cart as $k => $v) {
+            if ($v->id == $product->id){
+                if ($v->qty == $product->qty || $v->qty > $product->qty || $product->qty < 1){
+                    return '';
+                }
+            }
+        }
         $qty=1;
-        $new_cart = Cart::add("$product->id","$product->product_name","$qty",$product->price);
+        $new_cart = Cart::add("$product->id","$product->product_name","$qty",$product->price_sale);
         $new_cart->associate('App\Models\Admin\Product');
         $data_cart_count = count(Cart::content());
         $qty = Cart::count();
@@ -382,9 +403,18 @@ class CartController extends Controller
     {
 //        echo $request->
 //        dd(Cart::content());
+        $product_id=$request->product_id;
+        $product_qty=Product::whereId($product_id)->first()->qty;
         $rowId=$request->rowId;
         $qty=$request->qty;
-        Cart::update($rowId, $qty);
+        if ($qty > $product_qty){
+           return 'end';
+        }elseif($qty < 1){
+            return 'required';
+        }else{
+            Cart::update($rowId, $qty);
+            return 'ok';
+        }
 //        if ($update==true) {
 //            session()->flash('update_qty_success', 'Cập Nhật Thành Công !');
 //        }

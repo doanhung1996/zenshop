@@ -33,6 +33,14 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Menu_item whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Menu_item whereTypeConnect($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Menu_item whereUpdatedAt($value)
+ * @property string $type
+ * @property int $order
+ * @property int $user_id
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Admin\Menu_item[] $childs
+ * @property-read \App\User $user
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Menu_item whereOrder($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Menu_item whereType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Menu_item whereUserId($value)
  */
 class Menu_item extends Model
 {

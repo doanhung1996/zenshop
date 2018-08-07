@@ -6,9 +6,9 @@
                 <span class="title">Trang</span>
             </a>
             <ul class="sub-menu">
-                <li class="nav-item">
-                    <a href="{{route('page.create') }}" title="" class="nav-link">Thêm trang</a>
-                </li>
+                {{--<li class="nav-item">--}}
+                    {{--<a href="{{route('page.create') }}" title="" class="nav-link">Thêm trang</a>--}}
+                {{--</li>--}}
                 <li class="nav-item">
                     <a href="{{route('page.list') }}" title="" class="nav-link">Danh sách các trang</a>
                 </li>
@@ -20,12 +20,12 @@
                 <span class="title">Bài viết</span>
             </a>
             <ul class="sub-menu">
-                <li class="nav-item">
-                    <a href="{{route('post.create') }}" title="" class="nav-link">Thêm bài viết</a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{route('post.cat.create') }}" title="" class="nav-link">Thêm danh mục</a>
-                </li>
+                {{--<li class="nav-item">--}}
+                    {{--<a href="{{route('post.create') }}" title="" class="nav-link">Thêm bài viết</a>--}}
+                {{--</li>--}}
+                {{--<li class="nav-item">--}}
+                    {{--<a href="{{route('post.cat.create') }}" title="" class="nav-link">Thêm danh mục</a>--}}
+                {{--</li>--}}
                 <li class="nav-item">
                     <a href="{{route('post.index') }}" title="" class="nav-link">Danh sách bài viết</a>
                 </li>
@@ -40,12 +40,12 @@
                 <span class="title">Sản phẩm</span>
             </a>
             <ul class="sub-menu">
-                <li class="nav-item">
-                    <a href="{{route('product.create') }}" title="" class="nav-link">Thêm sản phẩm</a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{route('product.cat.create') }}" title="" class="nav-link">Thêm danh mục</a>
-                </li>
+                {{--<li class="nav-item">--}}
+                    {{--<a href="{{route('product.create') }}" title="" class="nav-link">Thêm sản phẩm</a>--}}
+                {{--</li>--}}
+                {{--<li class="nav-item">--}}
+                    {{--<a href="{{route('product.cat.create') }}" title="" class="nav-link">Thêm danh mục</a>--}}
+                {{--</li>--}}
                 <li class="nav-item">
                     <a href="{{route('product') }}" title="" class="nav-link">Danh sách sản phẩm</a>
                 </li>
@@ -74,9 +74,9 @@
                 <span class="title">Slider</span>
             </a>
             <ul class="sub-menu">
-                <li class="nav-item">
-                    <a href="{{route('slider.create') }}" title="" class="nav-link">Thêm slider</a>
-                </li>
+                {{--<li class="nav-item">--}}
+                    {{--<a href="{{route('slider.create') }}" title="" class="nav-link">Thêm slider</a>--}}
+                {{--</li>--}}
                 <li class="nav-item">
                     <a href="{{route('slider') }}" title="" class="nav-link">Danh sách slider</a>
                 </li>
@@ -88,9 +88,9 @@
                 <span class="title">Vận Chuyển</span>
             </a>
             <ul class="sub-menu">
-                <li class="nav-item">
-                    <a href="{{route('delivery.create') }}" title="" class="nav-link">Thêm Vận Chuyển</a>
-                </li>
+                {{--<li class="nav-item">--}}
+                    {{--<a href="{{route('delivery.create') }}" title="" class="nav-link">Thêm Vận Chuyển</a>--}}
+                {{--</li>--}}
                 <li class="nav-item">
                     <a href="{{route('delivery') }}" title="" class="nav-link">Danh sách Vận Chuyển</a>
                 </li>

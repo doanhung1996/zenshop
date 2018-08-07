@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Shop Bán Hàng</title>
+    <title>ZENZEN Vietnam™ - Mua Hàng Trực Tuyến Giá Tốt</title>
+    <meta name="author" content="Đoàn Văn Hùng" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="{{asset('admin/public/images/download.png')}}" />
+    <meta name="csrf-token" content="{{csrf_token()}}">
+    <link rel="shortcut icon" href="{{asset('admin/public/images/logozen1.png')}}" />
     <link href="{{asset('admin/public/css/bootstrap/bootstrap.min.css')}}" rel="stylesheet" type="text/css"/>
     <link href="{{asset('admin/public/css/bootstrap/bootstrap-theme.min.css')}}" rel="stylesheet" type="text/css"/>
     <link href="{{asset('admin/public/reset.css')}}" rel="stylesheet" type="text/css"/>
@@ -25,6 +27,13 @@
             integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
             crossorigin="anonymous">
     </script>
+    <script>
+        window.App = @json([
+            'singedIn' => Auth::check(),
+            'baseUrl' => config('app.url'),
+            'user' => Auth::user()
+        ])
+    </script>
     <script src="{{asset('public/js/toastr.min.js')}}"></script>
     @yield('extra-css')
 </head>
@@ -33,7 +42,8 @@
     <img src="{{asset('admin/public/images/logo-icon.png')}}" alt="">
 </div>
 @include('admin.header')
-@yield('content')
+    @yield('content')
+
 @include('admin.footer')
 <script src="{{asset('plugins/ckeditor/ckeditor.js')}}">
 
@@ -67,3 +77,13 @@
         });
 </script>
 
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-123291897-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-123291897-1');
+</script>
+<script src="{{ asset('js/app.js') }}"></script>

@@ -3,7 +3,7 @@
 <div id="main-content-wp" class="list-product-page">
     <div class="section" id="title-page">
         <div class="clearfix">
-            <a href="http://localhost/zenshop/public" title="Zenshop" id="add-new" class="fl-left">Zenshop</a>
+            <a href="{{route('order')}}" title="Đơn Hàng" id="add-new" class="fl-left">Đơn Hàng</a>
             <h3 id="index" class="fl-left">Chi Tiết Đơn Hàng</h3>
         </div>
     </div>
@@ -18,11 +18,11 @@
                 <ul class="list-item">
                     <li>
                         <h3 class="title">Mã đơn hàng</h3>
-                        <span class="detail" style="color: #930ce4;">{{$order->order_code}}</span>
+                        <span class="detail" style="color:#0f9a87;">{{$order->order_code}}</span>
                     </li>
                     <li>
                         <h3 class="title">Địa chỉ nhận hàng</h3>
-                        <span class="detail" style="color: #177eea;">{{$order->address}}, {{$order->city}} , Tỉnh {{$order->province}}</span>
+                        <span class="detail" style="color: #0f9a87;">{{$order->address}}, {{$order->city}} , Tỉnh {{$order->province}}</span>
                     </li>
                     <li>
                         <h3 class="title">Họ Tên ----- Số điện thoại liên hệ</h3>
@@ -31,9 +31,10 @@
                     </li>
                     <li>
                         <h3 class="title">Phương thức vận chuyển ------ Thời gian giao hàng</h3>
-                        <span class="detail" style="color: red;">{{$order->delivery}} ------</span>
-                        <span class="detail" style="color: red;">Từ {{$order->order_date}} đến {{$order->date_transport}}</span>
+                        <span class="detail" style="color: #0f9a87;">{{$order->delivery}} ------</span>
+                        <span class="detail" style="color: #0f9a87;">Từ {{$order->order_date}} đến {{$order->date_transport}}</span>
                     </li>
+
                     <form method="POST" action="{{route('status.order')}}">
                         @csrf
                         <li>
@@ -46,6 +47,10 @@
                             </select>
                             <input type="hidden" name="checkItem" value="{{$order->id}}">
                             <input type="submit" name="sm_action" value="Cập nhật trạng thái">
+                        </li>
+                        <li>
+                            <h3 class="title">Hóa Đơn Thanh Toán</h3>
+                            <a style="color: #0f9a87;" href="{{route('bill',$order->id)}}">Hóa Đơn Thanh Toán</a>
                         </li>
                     </form>
                 </ul>

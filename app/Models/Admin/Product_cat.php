@@ -21,6 +21,14 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Product_cat whereStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Product_cat whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Product_cat whereUpdatedAt($value)
+ * @property string $slug
+ * @property int $user_id
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Admin\Product[] $category_product
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Admin\Product_cat[] $childs
+ * @property-read \App\Models\Admin\Product_cat $parent
+ * @property-read \App\User $user
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Product_cat whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Product_cat whereUserId($value)
  */
 class Product_cat extends Model
 {

@@ -19,20 +19,35 @@
                         <label for="product-code">Mã sản phẩm (Product Code)</label>
                         <input type="text" name="product_code" value="{{old('product_code')}}" id="product-code">
                         <label for="product_purchase">Giá Nhập (Product Purchase)</label>
-                        <input type="text" name="product_purchase" value="{{old('product_purchase')}}" id="product_purchase">
+                        <input type="number" min="0" name="product_purchase" value="{{old('product_purchase')}}" id="product_purchase">
                         <label for="price">Giá Bán Thực (Price)</label>
-                        <input type="text" name="price" value="{{old('price')}}" id="price">
+                        <input type="number" min="0" name="price" value="{{old('price')}}" id="price">
                         <label for="price">Giảm giá (Product Discount %)</label>
-                        <input type="text" name="product_discount" value="{{old('product_discount')}}" id="price">
+                        <input type="number" min="0" name="product_discount" value="{{old('product_discount')}}" id="price">
+                        <label for="qty">Số Lượng (qty)</label>
+                        <input type="number" min="0" name="qty" value="{{old('qty')}}" id="qty">
                         <label for="desc">Mô tả ngắn</label>
                         <textarea name="description" id="editor" value="{{old('description')}}"></textarea>
                         <label for="desc">Chi tiết</label>
                         <textarea name="detail" id="editor1" value="{{old('description')}}"></textarea>
-                        <label>Hình ảnh</label>
+                        <label>Hình ảnh 1</label>
                         <div id="uploadFile">
                             <img id="blah" src="{{asset('admin/public/images/img-thumb.png')}}" alt="your image" width="400" height="400" />
                             <input type="file" name="fileUpload" onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])">
                         </div>
+                        <label>Hình ảnh 2</label>
+                        <div id="uploadFile">
+                            <img id="bla" src="{{asset('admin/public/images/img-thumb.png')}}" alt="your image" width="400" height="400" />
+                            <input type="file" name="images" onchange="document.getElementById('bla').src = window.URL.createObjectURL(this.files[0])">
+                        </div>
+
+                        <label>Hình ảnh 3</label>
+                        <div id="uploadFile">
+                            <img id="blahh" src="{{asset('admin/public/images/img-thumb.png')}}" alt="your image" width="400" height="400" />
+                            <input type="file" name="images_s" onchange="document.getElementById('blahh').src = window.URL.createObjectURL(this.files[0])">
+                        </div>
+                        <label for="link_video">Link Video</label>
+                        <input type="text" name="link_video" value="{{old('link_video')}}" id="link_video">
                         <label>Danh mục sản phẩm</label>
                         <select name="product_cat_id">
                         <option value="">-- Chọn danh mục --</option>

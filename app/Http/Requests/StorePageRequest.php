@@ -25,7 +25,7 @@ class StorePageRequest extends FormRequest
     {
         return [
             'content_page' => 'required',
-            'title' => 'required'
+            'title' => 'required|unique:pages'
         ];
     }
 }

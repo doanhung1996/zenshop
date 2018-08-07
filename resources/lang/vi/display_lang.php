@@ -115,5 +115,6 @@ return [
     'confirm_email_success'=>'Đăng ký thành công',
     'confirm_email_info'=>'<a href="https://mail.google.com" style="color: #27bdb1;">Email</a> của bạn đã đăng ký dịch vụ nhận thông tin về sản phẩm và thông tin khuyến mãi. Hãy kiểm tra <a href="https://mail.google.com" style="color: #27bdb1;">email</a> hàng tháng để nhận thông tin .',
     'category'=>'Danh mục sản phẩm',
-
+    //Home
+    'view'=>'lượt xem',
 ];

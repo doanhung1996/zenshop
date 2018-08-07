@@ -4,8 +4,8 @@
     <div id="main-content-wp" class="list-post-page">
         <div class="section" id="title-page">
             <div class="clearfix">
-                <a href="{{route('page.list')}}" title="" id="add-new" class="fl-left">Thêm mới</a>
-                <h3 id="index" class="fl-left">Danh sách trang</h3>
+                <a href="{{route('email.store.list')}}" title="" id="add-new" class="fl-left">Thêm mới</a>
+                <h3 id="index" class="fl-left">Danh sách Email Khách Hàng</h3>
             </div>
         </div>
         <div class="wrap clearfix">
@@ -21,7 +21,6 @@
                                 @else
                                     <li class="all"><a href="{{route('email.store.list')}}">Tất cả <span class="count">{{$email_count}}</span></a></li>
                                 @endif
-
                             </ul>
                             <form method="GET" action="{{route('email.search')}}" class="form-s fl-right">
                                 <input type="text" name="value" value="{{old('value')}}" id="s">
@@ -42,7 +41,7 @@
                                     <tr>
                                         <td><input type="checkbox" name="checkAll" id="checkAll"></td>
                                         <td><span class="thead-text">STT</span></td>
-                                        <td><span class="thead-text">Email Customer</span></td>
+                                        <td><span class="thead-text">Email</span></td>
                                         <td><span class="thead-text">Thời gian</span></td>
                                     </tr>
                                     </thead>
@@ -69,7 +68,7 @@
                                     <tr>
                                         <td><input type="checkbox" name="checkAll" id="checkAll"></td>
                                         <td><span class="thead-text">STT</span></td>
-                                        <td><span class="thead-text">Email Customer</span></td>
+                                        <td><span class="thead-text">Email</span></td>
                                         <td><span class="thead-text">Thời gian</span></td>
                                     </tr>
                                     </thead>

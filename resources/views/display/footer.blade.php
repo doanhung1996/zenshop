@@ -163,6 +163,7 @@
 <script src="{{asset('public/js/vendors/bootstrap.min.js')}}"></script>
 <script src="{{asset('public/js/vendors/own-menu.js')}}"></script>
 <script src="{{asset('public/js/vendors/jquery.sticky.js')}}"></script>
+<script src="{{asset('public/js/vendors/modernizr.js')}}"></script>
 <script src="{{asset('public/js/vendors/owl.carousel.min.js')}}"></script>
 
 <script src="{{asset('public/fancybox/fb/jquery.fancybox.js')}}"></script>
@@ -187,20 +188,6 @@
         });
     })(jQuery);
 </script>
-
-@if (count($errors) > 0)
-    <div>
-        <ul>
-            @foreach ($errors->all() as $error)
-                <script>
-                    $( document ).ready(function() {
-                        toastr.error("{{$error}}");
-                    });
-                </script>
-            @endforeach
-        </ul>
-    </div>
-    @endif
 </body>
 
 <!-- Mirrored from event-theme.com/themes/html/smarttech/index-4.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Jan 2018 03:30:01 GMT -->

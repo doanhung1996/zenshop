@@ -13,11 +13,13 @@
                 <div class="product">
                     <article><a href="{{$item_top_ten->path()}}"> <img class="img-responsive" style="max-width: 184px; max-height: 167.08px;" src="{{$item_top_ten->image}}" alt="" ></a>
                         <!-- Content -->
-                        <span class="sale-tag">{{$item_top_ten->product_discount}}%</span>
+                        <span class="sale-tag">-{{$item_top_ten->product_discount}}%</span>
                         <span class="tag">{{$item_top_ten->product_cat->title}}</span> <a href="{{$item_top_ten->path()}}" class="tittle">@php echo substr($item_top_ten->product_name,0,40) @endphp</a>
                         <!-- Reviews -->
-                        <p class="rev"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> <i class="fa fa-star-o"></i> <span class="margin-left-10">5 Review(s)</span></p>
-                        <div class="price">{{number_format($item_top_ten->price).'đ'}}</div>
+                        <p class="rev"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> <i class="fa fa-star-o"></i> <span class="margin-left-10">{{$item_top_ten->viewer}} @lang('display_lang.view')</span></p>
+                        <div class="price">{{number_format($item_top_ten->price_sale).' đ'}}</div>
+                        <br>
+                        <div class="price" style="font-size: 13px; color: #00000061;"><strike>{{number_format($item_top_ten->price).' đ'}}</strike> -{{$item_top_ten->product_discount}}%</div>
                         <a href="javascript:void(0)" onclick="addtocart({{$item_top_ten->id}})" id = "item-{{$item_top_ten->id}}" data_cart="{{$item_top_ten->id}}" class="cart-btn"><i class="icon-basket-loaded"></i></a> </article>
                 </div>
         @endforeach

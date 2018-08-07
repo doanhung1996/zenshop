@@ -3,7 +3,7 @@
 <div id="main-content-wp" class="list-post-page">
     <div class="section" id="title-page">
         <div class="clearfix">
-            <a href="?page=add_cat" title="" id="add-new" class="fl-left">Thêm mới</a>
+            <a href="{{route('post.create')}}" title="" id="add-new" class="fl-left">Thêm mới</a>
             <h3 id="index" class="fl-left">Danh sách bài viết</h3>
         </div>
     </div>

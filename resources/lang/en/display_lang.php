@@ -116,4 +116,6 @@ return [
     'confirm_email_info'=>'Your <a href="https://mail.google.com" style="color: #27bdb1;">email</a> has been registered for product information and promotional information. Check your <a href="https://mail.google.com" style="color: #27bdb1;">email</a> monthly for information.',
     //Product Display
     'category'=>'Categories',
+    //HOME
+    'view'=>'view(s)',
     ];

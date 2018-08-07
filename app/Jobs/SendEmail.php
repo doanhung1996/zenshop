@@ -15,7 +15,7 @@ class SendEmail implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
     public $event;
-
+    public $tries = 5;
     /**
      * Create a new job instance.
      *
@@ -34,8 +34,8 @@ class SendEmail implements ShouldQueue
      */
     public function handle()
     {
-        Mail::to($this->event->customer_insert->email)
-            ->send(new SendToCartSuccess($this->event->customer_insert,
+        Mail::to($this->event->customer->email)
+            ->send(new SendToCartSuccess($this->event->customer,
             $this->event->cart_content,
             $this->event->total_sale,
             $this->event->total_qty,

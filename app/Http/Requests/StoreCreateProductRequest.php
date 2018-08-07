@@ -24,7 +24,7 @@ class StoreCreateProductRequest extends FormRequest
     public function rules()
     {
         return [
-            'product_name'=>'required',
+            'product_name'=>'required|unique:products',
             'product_code'=>'required',
             'price'=>'required|numeric',
             'product_purchase'=>'required|numeric',
@@ -33,6 +33,9 @@ class StoreCreateProductRequest extends FormRequest
             'fileUpload'=>'required',
             'product_cat_id'=>'required',
             'status'=>'required',
+            'images'=>'required',
+            'images_s'=>'required',
+            'link_video'=>'required',
             'product_discount'=>'numeric|min:0|max:100'
         ];
     }

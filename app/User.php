@@ -6,6 +6,7 @@ use App\Notifications\MailResetPasswordToken;
 use Hash;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use NotificationChannels\WebPush\HasPushSubscriptions;
 
 /**
  * App\User
@@ -30,10 +31,19 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereRememberToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereVerified($value)
+ * @property string|null $phone
+ * @property string|null $address
+ * @property string|null $gender
+ * @property string|null $image
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Admin\Page[] $pages
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereAddress($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereGender($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereImage($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\User wherePhone($value)
  */
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable,HasPushSubscriptions;
     CONST ADMIN = 'admin';
     CONST ACTIVE = 'active';
     CONST PENDING = 'pending';
@@ -78,4 +88,9 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Models\Admin\Page', 'user_id');
     }
+
+//    public function routeNotificationForOneSignal()
+//    {
+//        return 1;
+//    }
 }

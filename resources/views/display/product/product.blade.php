@@ -28,7 +28,7 @@
                                 <ul>
                                     @foreach($category_category as $item_category_category)
                                     <li>
-                                        <a href="{{route('product.category',$item_category_category->slug)}}"><label for="cate12">{{$item_category_category->title}}</label></a>
+                                        <a href="{{route('product.category',$item_category_category->slug)}}">{{$item_category_category->title}}</a>
                                     </li>
                                     @endforeach
                                     {{--<li>--}}
@@ -205,6 +205,7 @@
                         <!-- Items -->
                         <div class="item-col-4">
                             <!-- Product -->
+                            @if(!empty($product))
                             @foreach($product as $item_product)
                             <div class="product">
                                 <article><a href="{{route('product.display.show',[$check_category->slug,$check_parent->slug,$item_product->slug])}}"><img class="img-responsive" style=" min-width: 169.38px; min-height: 169.38px; max-width: 169.38px; max-height: 169.38px;" src="{{asset("$item_product->image")}}" alt="" ></a>
@@ -212,11 +213,12 @@
                                     <span class="sale-tag">{{$item_product->product_discount}}%</span>
                                     <span class="tag">{{$check_parent->title}}</span> <a href="{{route('product.display.show',[$check_category->slug,$check_parent->slug,$item_product->slug])}}" class="tittle">@php echo substr($item_product->product_name,0,43)@endphp</a>
                                     <!-- Reviews -->
-                                    <p class="rev"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> <i class="fa fa-star"></i> <span class="margin-left-10">5 Review(s)</span></p>
+                                    <p class="rev"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> <i class="fa fa-star"></i> <span class="margin-left-10">{{$item_product->viewer}} view(s)</span></p>
                                     <div class="price">{{number_format($item_product->price)}}.đ</div>
                                     <a href="javascript:void(0)" onclick="addtocart({{$item_product->id}})" id = "item-{{$item_product->id}}" data_cart="{{$item_product->id}}" class="cart-btn"><i class="icon-basket-loaded"></i></a> </article>
                             </div>
-                            @endforeach
+                            @endforeach()
+                            @endif
                             <!-- pagination -->
 {{--
                             {{--<ul class="pagination">--}}

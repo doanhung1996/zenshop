@@ -15,21 +15,30 @@ class CartSuccess
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $customer_insert;
+    public $order_id;
+    public $customer;
     public $cart_content;
     public $total_sale;
     public $total_qty;
     public $order_date;
     public $date_transport;
     public $order_code;
+
     /**
      * Create a new event instance.
      *
-     * @return void
+     * @param $customer
+     * @param $cart_content
+     * @param $total_sale
+     * @param $total_qty
+     * @param $order_date
+     * @param $date_transport
+     * @param $order_code
      */
-    public function __construct(Customer $customer_insert, $cart_content, $total_sale, $total_qty,$order_date,$date_transport,$order_code)
+    public function __construct($order_id, $customer, $cart_content, $total_sale, $total_qty,$order_date,$date_transport,$order_code)
     {
-        $this->customer_insert=$customer_insert;
+        $this->order_id = $order_id;
+        $this->customer=$customer;
         $this->cart_content=$cart_content;
         $this->total_sale=$total_sale;
         $this->total_qty=$total_qty;
@@ -43,8 +52,8 @@ class CartSuccess
      *
      * @return \Illuminate\Broadcasting\Channel|array
      */
-    public function broadcastOn()
-    {
-        return new PrivateChannel('channel-name');
-    }
+//    public function broadcastOn()
+//    {
+//        return new PrivateChannel('channel-name');
+//    }
 }

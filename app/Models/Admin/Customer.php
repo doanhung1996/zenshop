@@ -29,6 +29,13 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Customer wherePhone($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Customer whereStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Customer whereUpdatedAt($value)
+ * @property string $province
+ * @property string $city
+ * @property int|null $user_id
+ * @property-read \App\User|null $user
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Customer whereCity($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Customer whereProvince($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin\Customer whereUserId($value)
  */
 class Customer extends Model
 {

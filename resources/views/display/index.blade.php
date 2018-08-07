@@ -1,14 +1,15 @@
 <!DOCTYPE html>
+<html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <meta name="author" content="Hùng" />
+    <meta name="author" content="Đoàn Văn Hùng" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Document Title -->
-    <title>Shop Bán Hàng</title>
+    <title>ZENZEN Vietnam™ - Mua Hàng Trực Tuyến Giá Tốt</title>
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="{{asset('public/images/download.png')}}" />
+    <link rel="shortcut icon" href="{{asset('public/images/logozen1.png')}}" />
     <link rel="icon" href="{{asset('public/images/favicon.ico')}}" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     <!-- SLIDER REVOLUTION 4.x CSS SETTINGS -->
@@ -66,6 +67,7 @@
         }
     </style>
 </head>
+<body>
 {{--<script>--}}
     {{--$( document ).ready(function() {--}}
         {{--$( document ).ready(function() {--}}
@@ -119,9 +121,14 @@
             // processData: true,//Giá Trị TRUE or FALSE . Mặc Định TRUE
             dataType: 'html',//HTML,TEXT,SCRIPT HOẶC JSON,
             success: function (data) {
-                $('#home-cart').html(data);
-                toastr.success('Thêm Thành Công');
+                if(data == ''){
+                    toastr.error('Số lượng hàng đã hết');
+                }else {
+                    $('#home-cart').html(data);
+                    toastr.success('Thêm Thành Công');
+                }
             },
         });
     }
 </script>
+

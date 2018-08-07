@@ -24,7 +24,7 @@ class AddEmailCustomerRequest extends FormRequest
     public function rules()
     {
         return [
-            'email'=>'unique:email_customer'
+//            'email'=>'unique:email_customer'
         ];
     }
 }

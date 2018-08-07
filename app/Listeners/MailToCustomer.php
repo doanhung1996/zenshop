@@ -27,6 +27,6 @@ class MailToCustomer
      */
     public function handle(CartSuccess $event)
     {
-        dispatch(new SendEmail($event))->delay(now()->addMinutes(0));
+        dispatch(new SendEmail($event));
     }
 }

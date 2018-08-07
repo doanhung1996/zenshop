@@ -74,6 +74,8 @@ class ProductController extends Controller
      */
     public function show($category,$slug,$parent_slug)
     {
+        $view =new Product();
+        $view->updateView($parent_slug);
         $check_category=Product_cat::where('slug',$category)->firstOrFail();
         $check_parent = $check_category->childs()->where('slug', $slug)->firstOrFail();
         $product=Product::where(['slug'=>$parent_slug,'status'=> '1'])->firstOrFail();

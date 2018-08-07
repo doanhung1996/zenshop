@@ -851,7 +851,7 @@ section {
 	margin-left: 10px;
 }
 .product article .sale-tag {
-	background: #f73232;
+	background: #27bdb1;
 	border-radius: 2px;
 	font-size: 13px;
 	color: #fff;
@@ -2504,7 +2504,7 @@ section {
 	position: absolute;
 	right: 0px;
 	color: #fff;
-	background: #0088cc;
+	background: #27bdb1;
 	border: none;
 	width: 40px;
 	top: 0px;
@@ -4756,6 +4756,13 @@ footer .social p a {
 }
 .layout-7 .header-style-4 {
 	background: #83bb2b;
+}
+.fixed{
+	padding-top: 10px;
+	position: fixed;
+	background: #27bdb1;
+	top: 0;
+	width: 100%;
 }
 .layout-7 .with-bg-slide-all {
 	background: url(../images/with-bg-full.jpg) center center no-repeat;

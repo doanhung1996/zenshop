@@ -4,7 +4,7 @@
 <div id="main-content-wp" class="list-post-page">
     <div class="section" id="title-page">
         <div class="clearfix">
-            <a href="{{route('page.list')}}" title="" id="add-new" class="fl-left">Thêm mới</a>
+            <a href="{{route('page.create')}}" title="Thêm Mới" id="add-new" class="fl-left">Thêm Mới</a>
             <h3 id="index" class="fl-left">Danh sách trang</h3>
         </div>
     </div>

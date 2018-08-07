@@ -460,6 +460,14 @@ header .ownmenu .nav ul.dropdown-menu .indicator {
 	-moz-box-sizing: border-box;
 	-webkit-box-sizing: border-box;
 }
+	.fixed{
+
+	}
+
+	.cate-lst{
+	display: none;
+	}
+
 .ownmenu > li > a {
 	padding: 15px 25px;
 }
@@ -2920,7 +2928,7 @@ header .navbar {
 	text-align: center;
 	width: 100%;
 	float: none;
-	margin-top: 10px;
+	margin-top: 0px;
 }
 header .nav {
 	padding: 0px;
@@ -3388,7 +3396,7 @@ header nav {
 	font-size: 26px;
 }
 .cart-pop .dropdown-menu {
-	margin-top: 10px;
+	margin-top: 0px;
 	min-width: 246px;
 	padding: 15px;
 	min-height: 180px;
