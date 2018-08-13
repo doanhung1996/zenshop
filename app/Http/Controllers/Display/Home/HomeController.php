@@ -99,7 +99,7 @@ class HomeController extends Controller
 
     public function search(ProductFilter $filter)
     {
-        $query = Product::filter($filter)->with('category','product_cat');
+        $query = Product::active()->filter($filter)->with('category','product_cat');
         $product=  $query->paginate(20);
         $product_count=$product->perpage();
         $product_count_search=$product->total();

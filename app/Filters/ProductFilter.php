@@ -13,7 +13,7 @@ class ProductFilter extends Filters
     public function qc($category)
     {
         return $this->builder->whereHas('category', function($q) use($category){
-            $q->orwhere('slug', $category);
+            $q->where('slug', $category);
         });
     }
 

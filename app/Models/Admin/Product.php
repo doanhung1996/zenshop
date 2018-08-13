@@ -101,8 +101,8 @@ class Product extends Model
         return $filter->apply($query);
     }
 
-//    public function scopeActive($query){
-//        return $query->where('status', '1');
-//    }
+    public function scopeActive($query){
+        return $query->where('status', '1');
+    }
 
 }
