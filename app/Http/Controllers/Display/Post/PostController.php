@@ -6,6 +6,7 @@ use App\Models\Admin\Menu_item;
 use App\Models\Admin\Menu_type;
 use App\Models\Admin\Post;
 use App\Models\Admin\Post_cat;
+use Event;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -97,6 +98,7 @@ class PostController extends Controller
         $check_category=Post_cat::where('slug',$category)->firstOrFail();
         $check_parent = $check_category->childs()->where('slug', $slug)->firstOrFail();
         $post=Post::where(['slug'=>$parent_slug,'status'=> '1'])->firstOrFail();
+        Event::fire('posts.view', $post);
         $menu_type_id=Menu_type::where('name','Header')->first()->id;
         $category_category=Menu_item::where('parent_id',0)->where('menu_type_id',$menu_type_id)->where('type','post')->get();
         return view('display.post.detail_post',compact('post','check_category','check_parent','category_category'));

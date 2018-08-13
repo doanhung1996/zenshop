@@ -45,9 +45,22 @@
     @yield('content')
 
 @include('admin.footer')
-<script src="{{asset('plugins/ckeditor/ckeditor.js')}}">
-
+<script src="{{asset('plugins/ckeditor/ckeditor.js')}}"></script>
+@if(Auth::check())
+<script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+<script>
+    var OneSignal = window.OneSignal || [];
+    OneSignal.push(function() {
+        OneSignal.init({
+            appId: "bd83c22f-49fe-4744-a709-1bf6fd8e3e7d",
+        });
+        OneSignal.sendTags({
+            userId: '{{ Auth::id() }}'
+        })
+    });
 </script>
+@endif
+
 {{--<script> CKEDITOR.replace('editor',{--}}
         {{--filebrowserBrowseUrl: '{{ asset('plugins/ckfinder/ckfinder.html') }}',--}}
         {{--filebrowserImageBrowseUrl: '{{ asset('plugins/ckfinder/ckfinder.html?type=Images') }}',--}}

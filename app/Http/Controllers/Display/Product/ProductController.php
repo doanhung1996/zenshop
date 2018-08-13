@@ -6,6 +6,7 @@ use App\Models\Admin\Menu_item;
 use App\Models\Admin\Menu_type;
 use App\Models\Admin\Product;
 use App\Models\Admin\Product_cat;
+use Event;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -74,11 +75,10 @@ class ProductController extends Controller
      */
     public function show($category,$slug,$parent_slug)
     {
-        $view =new Product();
-        $view->updateView($parent_slug);
         $check_category=Product_cat::where('slug',$category)->firstOrFail();
         $check_parent = $check_category->childs()->where('slug', $slug)->firstOrFail();
         $product=Product::where(['slug'=>$parent_slug,'status'=> '1'])->firstOrFail();
+        Event::fire('products.view', $product);
         $related_products=Product_cat::where('slug',$slug)->latest()->firstOrFail()->product()->get();
         $menu_type_id=Menu_type::where('name','Header')->first()->id;
         $category_category=Menu_item::where('parent_id',0)->where('menu_type_id',$menu_type_id)->where('type','product')->get();
@@ -106,6 +106,17 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
         //
+    }
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function search(Request $request)
+    {
+        return 'ok';
     }
 
     /**

@@ -25,13 +25,13 @@
                         <span class="detail" style="color: #0f9a87;">{{$order->address}}, {{$order->city}} , Tỉnh {{$order->province}}</span>
                     </li>
                     <li>
-                        <h3 class="title">Họ Tên ----- Số điện thoại liên hệ</h3>
-                        <span class="detail" style="color: #0f9a87;">{{$order->fullname}} -------</span>
+                        <h3 class="title">Họ Tên / Số điện thoại liên hệ</h3>
+                        <span class="detail" style="color: #0f9a87;">{{$order->fullname}} /</span>
                         <span class="detail" style="color: #0f9a87;">{{$order->phone}}</span>
                     </li>
                     <li>
-                        <h3 class="title">Phương thức vận chuyển ------ Thời gian giao hàng</h3>
-                        <span class="detail" style="color: #0f9a87;">{{$order->delivery}} ------</span>
+                        <h3 class="title">Phương thức vận chuyển / Thời gian giao hàng</h3>
+                        <span class="detail" style="color: #0f9a87;">{{$order->delivery}} /</span>
                         <span class="detail" style="color: #0f9a87;">Từ {{$order->order_date}} đến {{$order->date_transport}}</span>
                     </li>
 
@@ -53,8 +53,19 @@
                             <a style="color: #0f9a87;" href="{{route('bill',$order->id)}}">Hóa Đơn Thanh Toán</a>
                         </li>
                     </form>
+                    <h3 class="title">Tác Vụ</h3>
+                    <form action="{{route('delete.order.detail')}}" method="get">
+                        {{--@csrf()--}}
+                        <select name="actions">
+                            <option  value='delete' @if(old('actions')=='delete') selected @endif>Xóa</option>
+                            <option  value='delete_update' @if(old('actions')=='delete_update') selected @endif>Khôi Phục Và Xóa</option>
+                        </select>
+                        <input type="hidden" name="order_id" value="{{$order->id}}">
+                        <input type="submit" name="action_sm" value="Submit">
+                    </form>
                 </ul>
             </div>
+            <div class="update">
             <div class="section">
                 <div class="section-head">
                     <h3 class="section-title">Sản phẩm đơn hàng</h3>
@@ -87,7 +98,7 @@
                             </td>
                             <td class="thead-text">{{$item_order_detail->name}}</td>
                             <td class="thead-text">@php echo number_format($item_order_detail->price,0) .' đ' @endphp</td>
-                            <td class="thead-text">{{$item_order_detail->quantity}}</td>
+                            <td class="thead-text"><input onchange="update(this);" name="qty" order_id="{{$order->id}}" product_id="{{$item_order_detail->product_id}}" order_detail_id="{{$item_order_detail->id}}" type="number" min="0" style="width: 50px;"  value="{{$item_order_detail->quantity}}"></td>
                             <td class="thead-text">@php echo number_format($item_order_detail->subtotal,0) .' đ' @endphp</td>
                             <td class="thead-text">@php echo number_format($item_order_detail->profit,0) .' đ' @endphp</td>
                             <td class="thead-text">{{optional($item_order_detail->user)->name}}</td>
@@ -99,23 +110,24 @@
                         </tbody>
                     </table>
                 </div>
-            </div>
-            <div class="section">
-                <h3 class="section-title">Giá trị đơn hàng</h3>
-                <div class="section-detail">
-                    <ul class="list-item clearfix">
-                        <li>
-                            <span class="total-fee">Tổng số lượng</span>
-                            <span class="total-fee">Tổng giá trị đơn hàng</span>
-                            <span class="total-fee">Tổng lợi nhuận đơn hàng</span>
-                        </li>
-                        <li>
-                            <span class="total" style="margin-bottom: 5px;">{{$order->total_qty}} sản phẩm</span>
-                            <span class="total" style="margin-bottom: 5px;">@php echo number_format($order->total_sale,0) .' đ' @endphp</span>
-                            <span class="total" style="margin-bottom: 5px;">@php echo number_format($total_profit,0) .' đ' @endphp</span>
-                        </li>
-                    </ul>
+                <div class="section">
+                    <h3 class="section-title">Giá trị đơn hàng</h3>
+                    <div class="section-detail">
+                        <ul class="list-item clearfix">
+                            <li>
+                                <span class="total-fee">Tổng số lượng</span>
+                                <span class="total-fee">Tổng giá trị đơn hàng</span>
+                                <span class="total-fee">Tổng lợi nhuận đơn hàng</span>
+                            </li>
+                            <li>
+                                <span class="total" style="margin-bottom: 5px;">{{$order->total_qty}} sản phẩm</span>
+                                <span class="total" style="margin-bottom: 5px;">@php echo number_format($order->total_sale,0) .' đ' @endphp</span>
+                                <span class="total" style="margin-bottom: 5px;">@php echo number_format($total_profit,0) .' đ' @endphp</span>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
+            </div>
             </div>
         </div>
     </div>
@@ -137,6 +149,58 @@
 <script>
     @if(session()->get('success_status'))
     toastr.success( "{{ session()->get('success_status') }}",{timeOut: 5000});
+    @endif
+</script>
+<script>
+    function update(obj) {
+        var qty=$(obj).val();
+        var product_id=$(obj).attr('product_id');
+        var order_id=$(obj).attr('order_id');
+        var order_detail_id=$(obj).attr('order_detail_id');
+        // alert(order_id);
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+            url:'{{route('update.order_cart')}}',
+            method:'GET',
+            data:{qty:qty,product_id:product_id,order_id:order_id,order_detail_id:order_detail_id},
+            processData:true,
+            dataType:'html',
+            success:function(data){
+                $('.update').html(data);
+                // console.log(data);
+                // console.log(data);
+                // alert(data);
+                // if(data == 'required'){
+                //     toastr.error('Số lượng không đúng ');
+                // }
+                // if(data == 'end'){
+                //     toastr.error('Số lượng hàng đã hết');
+                // }
+                // if(data != ''){
+                    // load_cart();
+                    // load_change_cart();
+                // }
+            },
+        });
+    }
+</script>
+<script>
+    @if(session()->get('success_status'))
+    toastr.success( "{{ session()->get('success_status') }}",{timeOut: 5000});
+    @endif
+</script>
+<script>
+    @if(session()->get('fail_status'))
+    toastr.error( "{{ session()->get('fail_status') }}",{timeOut: 5000});
+    @endif
+</script>
+<script>
+    @if(session()->get('success_delete'))
+    toastr.success( "{{ session()->get('success_delete') }}",{timeOut: 5000});
     @endif
 </script>
 @endsection('content')

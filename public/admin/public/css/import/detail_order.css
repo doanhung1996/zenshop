@@ -40,7 +40,7 @@
 .detail-exhibition .section .section-detail .list-item li span{ display: block; padding-bottom: 5px; color: #333; font-size: 14px;}
 .detail-exhibition .section .section-detail .list-item li .total{
     font-size: 16px;
-    color: #e60000;
+    color: #0f9a87;
     padding-bottom: 0;
     font-family: 'Roboto Medium';
     font-weight: normal;
@@ -73,7 +73,7 @@
     font-size: 13px;
     padding: 3px 10px;
     border: none;
-    background: #0183f3;
+    background: #0f9a87;
     color: #fff;
     font-family: 'Roboto Medium';
     font-weight: normal;

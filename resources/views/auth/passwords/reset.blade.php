@@ -1,5 +1,4 @@
 @extends('display.index')
-
 @section('content')
     <section class="login-sec padding-top-30 padding-bottom-100">
         <div class="container">

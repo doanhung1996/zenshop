@@ -463,7 +463,9 @@ header .ownmenu .nav ul.dropdown-menu .indicator {
 	.fixed{
 
 	}
-
+	#delete-class{
+		display: none;
+	}
 	.cate-lst{
 	display: none;
 	}

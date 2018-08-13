@@ -89,8 +89,9 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Admin\Page', 'user_id');
     }
 
-//    public function routeNotificationForOneSignal()
-//    {
-//        return 1;
-//    }
+    public function routeNotificationForOneSignal()
+    {
+        return ['tags' => ['key' => 'userId', 'relation' => '=', 'value' => '1']]; //thawngf userid nay la 1 ak ?
+//        return '3dabe4bf-7e45-4411-a0b6-a2e67fef67d7'; //cái id này mà vào bằng máy khác là nó đổi. sợ ko noti đến đây
+    }
 }

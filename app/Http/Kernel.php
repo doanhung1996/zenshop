@@ -2,6 +2,8 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\Filter;
+use App\Http\Middleware\FilterPost;
 use App\Http\Middleware\Role;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -61,5 +63,7 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'isadmin' => Role::class,
+        'view.count' => Filter::class,
+        'view.post.count' => FilterPost::class,
     ];
 }

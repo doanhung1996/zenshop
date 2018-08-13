@@ -88,14 +88,15 @@ class NotificationToAdmin extends Notification
     public function toOneSignal($notifiable)
     {
         return OneSignalMessage::create()
-            ->subject("Your {$notifiable->service} account was approved!")
-            ->body("Click here to see details.")
-            ->url('http://onesignal.com')
+            ->subject("Có đơn đặt hàng mới từ địa chỉ {$this->event->customer->email}!")
+            ->body("Click để xem chi tiết.")
+            ->url(config('app.url') . '/admin/order/detail/'. $this->event->order_id)
+            ->icon(asset('public/images/logozen1.png'))
             ->webButton(
                 OneSignalWebButton::create('link-1')
                     ->text('Click here')
-                    ->icon('https://upload.wikimedia.org/wikipedia/commons/4/4f/Laravel_logo.png')
-                    ->url('http://laravel.com')
+                    ->icon(asset('public/images/logozen1.png'))
+                    ->url(config('app.url') . '/admin/order/detail/'. $this->event->order_id)
             );
     }
 

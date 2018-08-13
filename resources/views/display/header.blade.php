@@ -57,7 +57,7 @@
             </div>
         </div>
     </div>
-    <!-- Header -->
+<!-- Header -->
     <header class="header-style-4">
         <div class="clearfix-header">
             <div class="container">
@@ -69,8 +69,15 @@
                         <form action="{{route('search')}}" method="GET" >
                             <select class="selectpicker" name="qc">
                                 <option value=""> Danh Mục Sản Phẩm</option>
-                                @foreach($category_product_header as $item_category_product_header_search)
-                                    <option value="{{$item_category_product_header_search->slug}}" @if(isset($category)=="$item_category_product_header_search->slug") selected @endif>{{$item_category_product_header_search->title}}</option>
+                                @foreach($category_product_header as $category)
+                                    <option
+                                            value="{{$category->slug}}"
+                                            @if(Request::has('qc'))
+                                                {{ Request::input('qc') == $category->slug ? 'selected' : '' }}
+                                            @endif
+                                    >
+                                        {{$category->title}}
+                                    </option>
                                 @endforeach
                             </select>
                             <input type="search" name="q" value="@if(isset($value)) {{$value}} @endif" placeholder="Tìm Kiếm ...">
@@ -201,6 +208,8 @@
         $(window).bind('scroll', function () {
             var screen = $(document).width();
             if(screen > 768){
+                // $('#deleteCalling').css('display','none');
+                // $('#delete-class').css('display','none');
                 // console.log(screen);
                 if ($(window).scrollTop() > 97) {
                     // $('header .navbar').css(

@@ -96,4 +96,13 @@ class Product extends Model
         return $price;
     }
 
+    public function scopeFilter($query, $filter)
+    {
+        return $filter->apply($query);
+    }
+
+//    public function scopeActive($query){
+//        return $query->where('status', '1');
+//    }
+
 }

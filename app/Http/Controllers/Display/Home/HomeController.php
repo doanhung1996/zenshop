@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Display\Home;
 
+use App\Filters\ProductFilter;
 use App\Models\Admin\Menu_item;
 use App\Models\Admin\Menu_type;
 use App\Models\Admin\Post;
@@ -58,42 +59,53 @@ class HomeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function search(Request $request)
+//    public function search(Request $request) // test thu nhe
+//    {
+//        $category=$request->qc;
+//        $value=$request->q;
+//        if (empty($category) && empty($value)){
+//            return back();
+//        }
+//        if(!empty($category) && !empty($value)){
+//            $category_id= Product_cat::where('slug',$category)->firstOrFail()->id;
+//            $product = Product::with('category','product_cat')->where('status',1)
+//                ->orwhere('category_id',$category_id)->orwhere('product_name','like',"%$value%")->orwhere('product_name_seal','like',"%$value%")->paginate(20);
+//            $product->withPath("?qc="."$category"."&q="."$value");
+//            $product_count=count($product);
+//            $product_count_search= Product::with('category','product_cat')->where('status',1)
+//                ->orwhere('category_id',$category_id)->orwhere('product_name','like',"%$value%")->orwhere('product_name_seal','like',"%$value%")->count();
+//        }elseif(!empty($category)){
+//            $category_id= Product_cat::where('slug',$category)->firstOrFail()->id;
+//            $product = Product::with('category','product_cat')->where('status',1)
+//                ->orwhere('category_id',$category_id)->paginate(20);
+//            $product->withPath("?qc="."$category"."&q="."$value");
+//            $product_count=count($product);
+//            $product_count_search= Product::with('category','product_cat')->where('status',1)
+//                ->orwhere('category_id',$category_id)->count();
+//        }elseif (!empty($value)){
+//             $product = Product::with('category','product_cat')->where('status',1)
+//               ->orwhere('product_name','like',"%$value%")->orwhere('product_name_seal','like',"%$value%")->paginate(20);
+//            $product->withPath("?qc="."$category"."&q="."$value");
+//            $product_count=count($product);
+//            $product_count_search= Product::with('category','product_cat')->where('status',1)
+//                ->orwhere('product_name','like',"%$value%")->orwhere('product_name_seal','like',"%$value%")->count();
+//        }else{
+//            return back();
+//        }
+//        $menu_type_id=Menu_type::where('name','Header')->first()->id;
+//        $category_category=Menu_item::where('parent_id',0)->where('menu_type_id',$menu_type_id)->where('type','product')->get();
+//        return view('display.product.search',compact('product_count_search','product_count','category_category','product','value'));
+//    }
+
+    public function search(ProductFilter $filter)
     {
-        $category=$request->qc;
-        $value=$request->q;
-        if (empty($category) && empty($value)){
-            return back();
-        }
-        if(!empty($category) && !empty($value)){
-            $category_id= Product_cat::where('slug',$category)->firstOrFail()->id;
-            $product = Product::with('category','product_cat')->where('status',1)
-                ->orwhere('category_id',$category_id)->orwhere('product_name','like',"%$value%")->orwhere('product_name_seal','like',"%$value%")->paginate(20);
-            $product->withPath("?qc="."$category"."&q="."$value");
-            $product_count=count($product);
-            $product_count_search= Product::with('category','product_cat')->where('status',1)
-                ->orwhere('category_id',$category_id)->orwhere('product_name','like',"%$value%")->orwhere('product_name_seal','like',"%$value%")->count();
-        }elseif(!empty($category)){
-            $category_id= Product_cat::where('slug',$category)->firstOrFail()->id;
-            $product = Product::with('category','product_cat')->where('status',1)
-                ->orwhere('category_id',$category_id)->paginate(20);
-            $product->withPath("?qc="."$category"."&q="."$value");
-            $product_count=count($product);
-            $product_count_search= Product::with('category','product_cat')->where('status',1)
-                ->orwhere('category_id',$category_id)->count();
-        }elseif (!empty($value)){
-             $product = Product::with('category','product_cat')->where('status',1)
-               ->orwhere('product_name','like',"%$value%")->orwhere('product_name_seal','like',"%$value%")->paginate(20);
-            $product->withPath("?qc="."$category"."&q="."$value");
-            $product_count=count($product);
-            $product_count_search= Product::with('category','product_cat')->where('status',1)
-                ->orwhere('product_name','like',"%$value%")->orwhere('product_name_seal','like',"%$value%")->count();
-        }else{
-            return back();
-        }
+        $query = Product::filter($filter)->with('category','product_cat');
+        $product=  $query->paginate(20);
+        $product_count=$product->perpage();
+        $product_count_search=$product->total();
         $menu_type_id=Menu_type::where('name','Header')->first()->id;
         $category_category=Menu_item::where('parent_id',0)->where('menu_type_id',$menu_type_id)->where('type','product')->get();
-        return view('display.product.search',compact('product_count_search','product_count','category_category','product','category','value'));
+        return view('display.product.search',compact('product_count_search','product_count','category_category','product','value'));
     }
 
     /**

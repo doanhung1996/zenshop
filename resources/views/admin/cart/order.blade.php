@@ -151,4 +151,9 @@
     toastr.success( "{{ session()->get('success_status') }}",{timeOut: 5000});
     @endif
 </script>
+<script>
+    @if(session()->get('success_delete'))
+    toastr.success( "{{ session()->get('success_delete') }}",{timeOut: 5000});
+    @endif
+</script>
 @endsection('content')

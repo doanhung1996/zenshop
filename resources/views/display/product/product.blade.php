@@ -26,15 +26,15 @@
                             <h6>@lang('display_lang.category')</h6>
                             <div class="checkbox checkbox-primary">
                                 <ul>
+                                    @php $count=0;@endphp
                                     @foreach($category_category as $item_category_category)
-                                    <li>
-                                        <a href="{{route('product.category',$item_category_category->slug)}}">{{$item_category_category->title}}</a>
-                                    </li>
+                                        @php $count++;@endphp
+                                        <li>
+                                            <input id="cate{{$count}}" class="styled" type="checkbox" value="{{$item_category_category->title}}">
+                                            <label for="cate{{$count}}"> {{$item_category_category->title}} </label>
+                                            {{--                                            <a href="{{route('product.category',$item_category_category->slug)}}">{{$item_category_category->title}}</a>--}}
+                                        </li>
                                     @endforeach
-                                    {{--<li>--}}
-                                        {{--<input id="cate12" class="styled" type="checkbox" >--}}
-                                        {{--<label for="cate12">Office Supplies </label>--}}
-                                    {{--</li>--}}
                                 </ul>
                             </div>
 

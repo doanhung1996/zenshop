@@ -230,9 +230,9 @@ class CartController extends Controller
         $total_change=(int)str_replace(',','',$total);
         $method_delivery=Method_delivery::whereId($request->delivery)->first();
         //Giảm chỗ này . - Thêm discount_id
-             $total_sale = (int)$total_change+$method_delivery['price'];
-             $delivery=$method_delivery['title'].' '.$method_delivery['date_info'];
-             $date=$method_delivery['date'];
+        $total_sale = (int)$total_change+$method_delivery['price'];
+        $delivery=$method_delivery['title'].' '.$method_delivery['date_info'];
+        $date=$method_delivery['date'];
         $pay=$request->pay;
         $order_date=date('d/m/Y - H:i:s',strtotime('now'));
         $date_transport=date('d/m/Y - H:i:s',strtotime("now + $date days"));

@@ -11,7 +11,8 @@
     <!-- Favicon -->
     <link rel="shortcut icon" href="{{asset('public/images/logozen1.png')}}" />
     <link rel="icon" href="{{asset('public/images/favicon.ico')}}" type="image/x-icon">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,900" rel="stylesheet">
+    {{--<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">--}}
     <!-- SLIDER REVOLUTION 4.x CSS SETTINGS -->
     <link rel="stylesheet" type="text/css" href="{{asset('public/rs-plugin/css/settings.css')}}" media="screen" />
 
@@ -33,9 +34,9 @@
     <link href="{{asset('public/select2/select2.min.css')}}" rel="stylesheet" type="text/css"/>
 
     <!-- Fonts Online -->
-    <link href="https://fonts.googleapis.com/css?family=Lato:100i,300,400,700,900" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans&amp;subset=vietnamese" rel="stylesheet">
+    {{--<link href="https://fonts.googleapis.com/css?family=Lato:100i,300,400,700,900" rel="stylesheet">--}}
+    {{--<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">--}}
+    {{--<link href="https://fonts.googleapis.com/css?family=Open+Sans&amp;subset=vietnamese" rel="stylesheet">--}}
     <!-- JavaScripts -->
     <script src="{{asset('public/rs-plugin/js/jquery-3.3.1.js')}}"></script>
     <script src="{{asset('public/lightbox-js/lightbox.js')}}"></script>
@@ -61,11 +62,7 @@
     {{--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.0/jquery.fancybox.min.css" />--}}
     {{--<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.0/jquery.fancybox.min.js"></script>--}}
     {{--<script type="text/javascript" src="/fancybox/source/helpers/jquery.fancybox-thumbs.js?v=1.0.7"></script>--}}
-    <style>
-        body{
-            font-family: 'Open Sans', sans-serif;
-        }
-    </style>
+
 </head>
 <body>
 {{--<script>--}}
@@ -76,7 +73,7 @@
     {{--});--}}
 {{--</script>--}}
 <div id="voyager-loader">
-    <img src="{{asset('public/images/logo-icon.png')}}" alt="">
+    <img src="{{asset('public/images/Spinner.png')}}" alt="">
 </div>
 @include('display.header')
 @yield('content')
@@ -100,13 +97,13 @@
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
 </script>
-<script>
-    document.addEventListener('touchmove', function (event) {
-        event.preventDefault();
-    }, {
-        passive: false
-    });
-</script>
+{{--<script>--}}
+    {{--document.addEventListener('touchmove', function (event) {--}}
+        {{--event.preventDefault();--}}
+    {{--}, {--}}
+        {{--passive: true--}}
+    {{--});--}}
+{{--</script>--}}
 <script>
     function addtocart(id) {
         $.ajaxSetup({
